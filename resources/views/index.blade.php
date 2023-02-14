@@ -144,10 +144,10 @@
                     </a>
                 </div>
                 <div class="picture_container">
-                    <img loading="lazy" src="{{ asset('asset/images/Rectangle-392x.png')}}" class="pic1 img-fluid" alt="">
-                    <img loading="lazy" src="{{ asset('asset/images/Rectangle-372x.png')}}" class="pic2 img-fluid" alt="">
-                    <img loading="lazy" src="{{ asset('asset/images/Rectangle-362x.png')}}" class="pic3 img-fluid" alt="">
-                    <img loading="lazy" src="{{ asset('asset/images/Rectangle-382x.png')}}" class="pic4 img-fluid" alt="" srcset="">
+                    <img loading="lazy" src="{{ asset('asset/images/rectangle_382x.png')}}" class="pic4 img-fluid" alt="" srcset="">
+                    <img loading="lazy" src="{{ asset('asset/images/rectangle_392x.png')}}" class="pic1 img-fluid" alt="">
+                    <img loading="lazy" src="{{ asset('asset/images/rectangle_372x.png')}}" class="pic2 img-fluid" alt="">
+                    <img loading="lazy" src="{{ asset('asset/images/rectangle_362x.png')}}" class="pic3 img-fluid" alt="">
                 </div>
             </div>
         </div>
