@@ -1,0 +1,219 @@
+* {
+    scroll-behavior: smooth;
+    transition: 0.5s all;
+}
+
+:root {
+    --Source-Serif-Pro: "Source Serif Pro";
+    --Source-Serif-Pro-Black: 900;
+    --Source-Serif-Pro-Regular: 400;
+
+    --Source-Sans-Pro: "Source Sans Pro";
+    --Source-Sans-Pro-SemiBold: 600;
+    --Source-Sans-Pro-Bold: 700;
+    --Source-Sans-Pro-Regular: 400;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    transition: 0.3s all;
+    background-color: #fafafa;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    height: 92px;
+}
+
+.main_section {
+    margin-left: 10%;
+    margin-right: 10%;
+    display: grid;
+    row-gap: 10px;
+    font-size: 1rem;
+    overflow: auto;
+    width: -webkit-fill-available;
+    max-width: 1100px;
+    /* justify-content: space-between;*/
+}
+
+.section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header > .main_section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left_header {
+    display: flex;
+    /* margin-left: 10%; */
+    height: 100%;
+    width: 10%;
+    align-items: center;
+}
+
+.right_header {
+    display: flex;
+    height: 100%;
+    /* margin-right: 10%; */
+    width: -webkit-fill-available;
+    justify-content: space-between;
+    align-items: center;
+    column-gap: 10%;
+}
+
+.right_header > .right {
+    display: flex;
+    column-gap: 5%;
+    /* flex: none; */
+    /* overflow-wrap: anywhere; */
+    justify-content: flex-end;
+    width: -webkit-fill-available;
+}
+
+a {
+    text-decoration: none;
+}
+
+.logo_text {
+    text-decoration: none;
+    font-size: 40px;
+    font-family: var(--Source-Serif-Pro);
+    font-weight: var(--Source-Serif-Pro-Black);
+    background: linear-gradient(#3dbac5, #1478ae);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.head_anchor {
+    font-size: 16px;
+    font-family: var(--Source-Sans-Pro);
+    font-weight: var(--Source-Sans-Pro-SemiBold);
+    color: #9c9c9c;
+}
+
+.head_anchor_active {
+    background: linear-gradient(#3dbac5, #1478ae);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.head_button {
+    font-size: 16px;
+    font-family: var(--Source-Sans-Pro);
+    font-weight: var(--Source-Sans-Pro-Bold);
+    color: rgb(19, 19, 19);
+    padding: 20px 40px;
+    border-radius: 35px;
+    background-color: rgba(178, 178, 178, 0.14);
+}
+
+.header * .user_information {
+    display: flex;
+    column-gap: 10px;
+    width: max-content;
+    align-items: center;
+}
+
+.user_picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.user_name {
+    font-family: "Source Sans Pro";
+    font-weight: var(--Source-Sans-Pro-Bold);
+    font-size: 14px;
+    color: #756d6d;
+}
+
+.settings-icon {
+    display: none;
+}
+
+@media screen and (max-width: 660px) {
+    .header {
+        height: 75px;
+        flex-direction: row-reverse;
+    }
+    .header > .main_section {
+        flex-direction: row-reverse;
+    }
+    .header * .right_header {
+        display: none;
+    }
+    .header * .hamburger_container {
+        display: flex;
+    }
+    .header * .left_header {
+        width: unset;
+    }
+    .main_section {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+    .settings-icon {
+        display: block;
+    }
+}
+
+.hamburger_container {
+    display: none;
+    height: min-content;
+    align-self: center;
+}
+
+.hamburger {
+    font-size: 40px;
+    background: linear-gradient(#3dbac5, #1478ae);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.dropdown_1 {
+    display: flex !important;
+    flex-direction: column;
+    width: 100%;
+    right: 0;
+    /* padding: 10px; */
+    background-color: white;
+    position: absolute;
+    z-index: 10000;
+    margin-top: 70px;
+}
+
+.dropdown_1 * .user_information {
+    display: flex;
+    justify-content: space-between;
+    width: -webkit-fill-available;
+}
+
+.dropdown_anchors {
+    padding: 10px 5%;
+    border-bottom: 1px solid lightgray;
+    border-radius: unset;
+    background-color: white;
+}
+
+.show_dropdown {
+    display: flex;
+    flex-direction: column;
+}
+
+.hide_dropdown {
+    display: none !important;
+}
+
+.hide {
+    display: none;
+}

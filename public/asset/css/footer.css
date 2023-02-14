@@ -1,0 +1,119 @@
+
+.footer{
+    background-color: #474747;
+    background-image: none;
+    padding: 3% 0% 1% 0%;
+}
+
+.footer * .footer_section{
+    display: flex;
+    justify-content: space-between;
+}
+
+.foot_section{
+    max-width: 290px;
+    width: fit-content;
+    padding: 20px;
+    height: 250px;
+}
+
+.footer * .left_footer_section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer * .company_logo{
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-image: none;
+    letter-spacing: -1px;
+    color: #FFFFFF;
+    background-color: transparent;
+    /* border: 1px solid #000000; */
+    text-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+
+}
+
+.footer * .copyright_statement{
+    font-family: var(--Source-Sans-Pro);
+    font-weight: var(--Source-Sans-Pro-Regular);
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+
+
+}
+
+.footer * .middle_footer_section{
+    display: flex;
+    flex-direction: column;
+    grid-row-gap: 2px;
+    padding-top: 30px;
+}
+
+.footer * .foot_anchor{
+    font-weight: var(--Source-Sans-Pro-Bold);
+    color: rgba(255, 255, 255, 0.66);
+    font-size: 16px;
+}
+
+.footer * .right_footer_section{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 30px;
+}
+
+
+.footer * .light_anchor_container{
+    display: flex;
+    flex-direction: column;
+    grid-row-gap: 2px;
+}
+
+.footer * .light_foot_anchor{
+    font-family: var(--Source-Sans-Pro);
+    font-size: 16px;
+    font-weight: var(--Source-Sans-Pro-Regular);
+    color: rgba(255, 255, 255, 0.66);
+}
+
+.footer * .social_link_container{
+    display: flex;
+    column-gap: 30px;
+}
+
+.footer * .social_links{
+    text-decoration: none;
+}
+
+.footer * .link_image{
+    width: 20px;
+    height: 20px;
+}
+
+.footer * a{
+    width: max-content;
+}
+
+
+
+@media screen and (max-width: 660px) 
+{
+    .footer{
+        padding: 3% 0% 1% 0%;
+    }
+
+    .footer * .footer_section{
+        flex-direction: column-reverse;
+    }
+
+    .footer * .foot_section{
+        height: unset;
+    }
+
+    .footer * .right_footer_section{
+        row-gap: 10px;
+    }
+    
+}
