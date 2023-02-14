@@ -59,21 +59,35 @@
                     <a href="http://" target="_blank" class="head_anchor" rel="noopener noreferrer">Contact us</a>
                 </div>
                 <div class="left">
-                    
-                    <a href="{{ route('login') }}" target="_blank" class="head_button" rel="noopener noreferrer">Login</a>
+                    @guest
+                    <a href="{{route('login')}}" target="_blank" class="head_button" rel="noopener noreferrer">Login</a>
+                    @endguest
                     <div class="user_information">
                         <div onclick="showDropdown(this)">
-                            <button class="hamburger picture_dropdown_button hide"  > <i class="fa-solid fa-gear"></i> </button>
-                            <img src="asset/images/section_7_img_1.png" alt="" class="user_picture img-fluid picture_dropdown_button">
+                        @guest
+                            <button class="hamburger picture_dropdown_button settings-icon" > <i class="fa-solid fa-gear"></i> </button>
+                        @endguest
+                        @auth
+                            <img src="{{ asset('asset/images/section_7_img_1.png')}}" alt="" class="user_picture img-fluid picture_dropdown_button">
+                        @endauth
                         </div>
                         <div class="dropdown_1 hide_dropdown" style="right:unset;width: 200px;top: 0;"  id="picture_dropdown_target">
-                            <a href="{{ route('login') }}" target="_blank" class="head_button dropdown_anchors" rel="noopener noreferrer">Login</a>
-        
-                            <div class="user_name dropdown_anchors">Andy Wills</div>
+                        @guest
+                            <a href="{{route('login')}}" class="head_button dropdown_anchors" rel="noopener noreferrer">Login</a>
+                        @endguest
+                        @auth
+                            <div class="user_name dropdown_anchors">{{ Auth::user()->name }}</div>
                             <a href="" class="head_anchor dropdown_anchors">Profile</a>
-                            <a href="" class="head_anchor dropdown_anchors">Logout</a>
+                            <form action="{{ route('logout') }}"  style="display: none;" method="post" id="lgut">
+                                @csrf
+                                <input type="submit" id="logoutbtn">
+                            </form>
+                            <a type="button" onclick="$('#lgut').submit()" class="head_anchor dropdown_anchors">Logout</a>
+                        @endauth
                         </div>
-                        <div class="user_name">Andy Wills</div>
+                        @auth
+                        <div class="user_name">{{ Auth::user()->name }}</div>
+                        @endauth
                     </div>
                 </div>
             </div>
