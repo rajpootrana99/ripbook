@@ -37,7 +37,7 @@
                 </div>
                 <div class="dropdown_1 hide_dropdown" style="text-align: end;margin-top: 60px;"  id="picture_dropdown_target">
                     @guest
-                    <a href="http://" target="_blank" class="head_button dropdown_anchors" rel="noopener noreferrer">Login</a>
+                    <a href="{{ route('login' )}}" class="head_button dropdown_anchors" rel="noopener noreferrer">Login</a>
                     @endguest
                     @auth
                         <div class="user_name dropdown_anchors">{{ Auth::user()->name }}</div>
