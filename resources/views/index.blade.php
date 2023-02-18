@@ -37,11 +37,11 @@
                 </div>
                 <div class="dropdown_1 hide_dropdown" style="text-align: end;margin-top: 60px;"  id="picture_dropdown_target">
                     @guest
-                    <a href="{{ route('login' )}}" class="head_button dropdown_anchors" rel="noopener noreferrer">Login</a>
+                    <a href="{{ route('login' )}}" class="head_button dropdown_anchors">Login</a>
                     @endguest
                     @auth
                         <div class="user_name dropdown_anchors">{{ Auth::user()->name }}</div>
-                        <a href="" class="head_anchor dropdown_anchors">Profile</a>
+                        <a href="{{ route('dashboard') }}" class="head_anchor dropdown_anchors">Profile</a>
                         <form action="{{ route('logout') }}"  style="display: none;" method="post" id="lgut">
                             @csrf
                             <input type="submit" id="logoutbtn">
@@ -55,13 +55,13 @@
             </div>
             <div class="right_header">
                 <div class="right">
-                    <a href="/" class="head_anchor head_anchor_active" rel="noopener noreferrer">Home</a>
-                    <a href="#pricicing_section" class="head_anchor" rel="noopener noreferrer">Pricing</a>
-                    <a href="" target="" class="head_anchor" rel="noopener noreferrer">Contact us</a>
+                    <a href="/" class="head_anchor head_anchor_active">Home</a>
+                    <a href="#pricicing_section" class="head_anchor">Pricing</a>
+                    <a href="" class="head_anchor">Contact us</a>
                 </div>
                 <div class="left">
                     @guest
-                    <a href="{{route('login')}}" target="_blank" class="head_button" rel="noopener noreferrer">Login</a>
+                    <a href="{{route('login')}}" class="head_button">Login</a>
                     @endguest
                     <div class="user_information">
                         <div onclick="showDropdown(this)">
@@ -74,11 +74,11 @@
                         </div>
                         <div class="dropdown_1 hide_dropdown" style="right:unset;width: 200px;top: 0;"  id="picture_dropdown_target">
                         @guest
-                            <a href="{{route('login')}}" class="head_button dropdown_anchors" rel="noopener noreferrer">Login</a>
+                            <a href="{{route('login')}}" class="head_button dropdown_anchors">Login</a>
                         @endguest
                         @auth
                             <div class="user_name dropdown_anchors">{{ Auth::user()->name }}</div>
-                            <a href="" class="head_anchor dropdown_anchors">Profile</a>
+                            <a href="{{ route('dashboard') }}" class="head_anchor dropdown_anchors">Profile</a>
                             <form action="{{ route('logout') }}"  style="display: none;" method="post" id="lgut">
                                 @csrf
                                 <input type="submit" id="logoutbtn">
@@ -95,9 +95,9 @@
             <div class="hamburger_container">
                 <button class="hamburger" id="hamburger_dropdown_button"  onclick="showDropdown(this)"> <i class="fa-solid fa-bars"></i> </button>
                 <div class="dropdown_1 hide_dropdown" id="hamburger_dropdown_target">
-                    <a href="../home/" class="head_anchor head_anchor_active dropdown_anchors" target="_blank" rel="noopener noreferrer">Home</a>
-                    <a href="http://" target="_blank" class="head_anchor dropdown_anchors" rel="noopener noreferrer">Pricing</a>
-                    <a href="http://" target="_blank" class="head_anchor dropdown_anchors" rel="noopener noreferrer">Contact us</a>
+                    <a href="/" class="head_anchor head_anchor_active dropdown_anchors">Home</a>
+                    <a href="#pricicing_section" class="head_anchor dropdown_anchors">Pricing</a>
+                    <a href="http://" class="head_anchor dropdown_anchors">Contact us</a>
                 </div>
             </div>
 
