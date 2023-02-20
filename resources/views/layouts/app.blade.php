@@ -3,6 +3,7 @@
    <head>
       <!-- Required meta tags -->
       <meta charset="utf-8">
+      <meta name="csrf-token" content="{{ csrf_token() }}" />
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <title>Rip Book | User Dashboard</title>
       <!-- Favicon -->
@@ -15,6 +16,10 @@
       <link rel="stylesheet" href="{{ asset('asset/admin/css/style.css')}}">
       <!-- Responsive CSS -->
       <link rel="stylesheet" href="{{ asset('asset/admin/css/responsive.css')}}">
+
+      <!-- Jquery Scripts -->
+      <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+      <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
    </head>
    <body>

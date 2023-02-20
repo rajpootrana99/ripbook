@@ -16,11 +16,13 @@
         <nav class="iq-sidebar-menu">
             <ul id="iq-sidebar-toggle" class="iq-menu">
                 <li class="iq-menu-title"><i class="ri-subtract-line"></i><span>Dashboard</span></li>
-                <li class="active">
-                <a href="{{ route('dashboard' )}}" class="iq-waves-effect"><i class="ri-user-line"></i><span>Profile</span></a>
+                
+                <li @if(Request::is('dashboard')) class="active" @endif>
+                <a href="{{ route('dashboard') }}" class="iq-waves-effect"><i class="ri-user-line"></i><span>Profile</span></a>
                 </li>
-                <li>
-                <a href="dashboard-1.html" class="iq-waves-effect"><i class="ri-home-3-line"></i><span>Memorial</span></a>
+                
+                <li @if(Request::is('memorial')) class="active" @endif>
+                <a href="{{ route('memorial') }}" class="iq-waves-effect"><i class="ri-home-3-line"></i><span>Memorial</span></a>
                 </li>
                 
             </ul>
