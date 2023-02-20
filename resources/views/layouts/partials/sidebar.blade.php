@@ -22,7 +22,7 @@
                 </li>
                 
                 <li @if(Request::is('memorial')) class="active" @endif>
-                <a href="{{ route('memorial') }}" class="iq-waves-effect"><i class="ri-home-3-line"></i><span>Memorial</span></a>
+                <a href="{{ route('memorial.index') }}" class="iq-waves-effect"><i class="ri-home-3-line"></i><span>Memorial</span></a>
                 </li>
                 
             </ul>

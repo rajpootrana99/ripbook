@@ -28,6 +28,7 @@
                            <table class="table table-bordered table-responsive-md text-center">
                              <thead>
                                <tr>
+                                 <th>Image</th>
                                  <th>Title</th>
                                  <th>Address</th>
                                  <th>Date of Birth</th>
@@ -53,85 +54,92 @@
       </div>
    </div>
 
-   <div class="modal fade" id="createMemorial" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal fade" id="createMemorial" tabindex="-1" role="dialog"  aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Create Memorial</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" id="createMemorialForm" enctype="multipart/form-data">
-                    @csrf
-                    <div class="form-group row align-items-center">
-                        <div class="col-md-12">
-                        <div class="profile-img-edit">
-                            <img class="profile-pic" src="{{ asset('asset/admin/images/user/11.png')}}" alt="profile-pic">
-                            <div class="p-image">
-                                <i class="ri-pencil-line upload-button"></i>
-                                <input class="file-upload" type="file" name="feature_image" id="feature_image" accept="image/*"/>
+                <div class="modal-header">
+                    <h5 class="modal-title">Create Memorial</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="createMemorialForm" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        @csrf
+                        <div class="form-group row align-items-center">
+                            <div class="col-md-12">
+                                <div class="profile-img-edit">
+                                    <img class="profile-pic" src="{{ asset('asset/admin/images/user/11.png')}}" alt="profile-pic">
+                                    <div class="p-image">
+                                        <i class="ri-pencil-line upload-button"></i>
+                                        <input class="file-upload" type="file" name="feature_image" id="feature_image" accept="image/*"/>
+                                    </div>
+                                </div>
+                                <span class="text-danger feature_image_error"></span>
                             </div>
-                            <span class="text-danger feature_image_error"></span>
                         </div>
-                        </div>
+                        <div class=" row align-items-center">
+                            <div class="form-group col-sm-6">
+                                <input type="text" class="form-control" style="height: 40px;" id="title" name="title" placeholder="Enter Title">
+                                <span class="text-danger title_error"></span>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <input type="text" class="form-control" style="height: 40px;" id="address" name="address" placeholder="Enter Address">
+                                <span class="text-danger address_error"></span>
+                            </div>
+                            <div class="form-group col-sm-12">
+                                <textarea
+                                class="form-control"
+                                name="description"
+                                id="description"
+                                rows="3"
+                                style="line-height: 22px"
+                                placeholder="Write Description..."
+                                ></textarea>
+                                <span class="text-danger description_error"></span>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <input type="text" class="form-control" style="height: 40px;" id="dob" name="dob" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date of Birth">
+                                <span class="text-danger dob_error"></span>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <input type="text" class="form-control" style="height: 40px;" id="pob" name="pob" placeholder="Place of Birth">
+                                <span class="text-danger pob_error"></span>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <input type="text" class="form-control" style="height: 40px;" id="dod" name="dod" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date of Death">
+                                <span class="text-danger dod_error"></span>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <input type="text" class="form-control" style="height: 40px;" id="pod" name="pod" placeholder="Place of Death">
+                                <span class="text-danger pod_error"></span>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <input type="number" class="form-control" style="height: 40px;" id="age" name="age"  placeholder="Enter Age">
+                                <span class="text-danger age_error"></span>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <input type="text" class="form-control" style="height: 40px;" id="religion" name="religion"  placeholder="Religion">
+                                <span class="text-danger religion_error"></span>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <input type="text" class="form-control" style="height: 40px;" id="residence" name="residence"  placeholder="Residence">
+                                <span class="text-danger residence_error"></span>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <select class="form-control" id="exampleFormControlSelect4" name="visibility" id="visibility">
+                                <option value="0">Public</option>
+                                <option value="1">Private</option>
+                                </select>
+                                <span class="text-danger visibility_error"></span>
+                            </div>
+                        </div>      
                     </div>
-                    <div class=" row align-items-center">
-                        <div class="form-group col-sm-6">
-                            <input type="text" class="form-control" style="height: 40px;" id="title" name="title" placeholder="Enter Title">
-                            <span class="text-danger title_error"></span>
-                        </div>
-                        <div class="form-group col-sm-6">
-                            <input type="text" class="form-control" style="height: 40px;" id="address" name="address" placeholder="Enter Address">
-                            <span class="text-danger address_error"></span>
-                        </div>
-                        <div class="form-group col-sm-12">
-                            <textarea
-                            class="form-control"
-                            name="description"
-                            id="description"
-                            rows="3"
-                            style="line-height: 22px"
-                            placeholder="Write Description..."
-                            ></textarea>
-                            <span class="text-danger description_error"></span>
-                        </div>
-                        <div class="form-group col-sm-3">
-                            <input type="text" class="form-control" style="height: 40px;" id="dob" name="dob" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date of Birth">
-                            <span class="text-danger dob_error"></span>
-                        </div>
-                        <div class="form-group col-sm-3">
-                            <input type="text" class="form-control" style="height: 40px;" id="pob" name="pob" placeholder="Place of Birth">
-                            <span class="text-danger pob_error"></span>
-                        </div>
-                        <div class="form-group col-sm-3">
-                            <input type="text" class="form-control" style="height: 40px;" id="dod" name="dod" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date of Death">
-                            <span class="text-danger dod_error"></span>
-                        </div>
-                        <div class="form-group col-sm-3">
-                            <input type="text" class="form-control" style="height: 40px;" id="pod" name="pod" placeholder="Place of Death">
-                            <span class="text-danger pod_error"></span>
-                        </div>
-                        <div class="form-group col-sm-4">
-                            <input type="number" class="form-control" style="height: 40px;" id="age" name="age"  placeholder="Enter Age">
-                            <span class="text-danger age_error"></span>
-                        </div>
-                        <div class="form-group col-sm-4">
-                            <input type="text" class="form-control" style="height: 40px;" id="religion" name="religion"  placeholder="Religion">
-                            <span class="text-danger religion_error"></span>
-                        </div>
-                        <div class="form-group col-sm-4">
-                            <input type="text" class="form-control" style="height: 40px;" id="residence" name="residence"  placeholder="Residence">
-                            <span class="text-danger residence_error"></span>
-                        </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
                     </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save</button>
-            </div>
             </div>
         </div>
     </div>
@@ -163,8 +171,8 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        fetchSites();
-        function fetchSites() {
+        fetchMemorials();
+        function fetchMemorials() {
             $.ajax({
                 type: "GET",
                 url: "fetchMemorials",
@@ -173,6 +181,7 @@
                     $('tbody').html("");
                     $.each(response.memorials, function(key, memorial) {
                         $('tbody').append('<tr>\
+                            <td><img src="storage/'+memorial.feature_image+'" width="60px" class="rounded ml-3" alt="Responsive image"></td>\
                             <td>' + memorial.title + '</td>\
                             <td>' + memorial.address + '</td>\
                             <td>' + memorial.dob + '</td>\
@@ -180,9 +189,9 @@
                             <td>' + memorial.dod + '</td>\
                             <td>' + memorial.residence + '</td>\
                             <td>' + memorial.religion + '</td>\
-                            <td><button value="' + user.id + '" style="border: none; background-color: #fff" class="view_btn"><i class="fas fa-eye"></i></button></td>\
-                            <td><button value="' + site.id + '" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
-                            <td><button value="' + site.id + '" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
+                            <td><button value="' + memorial.id + '" style="border: none; background-color: #fff" class="view_btn"><i class="fa fa-eye"></i></button></td>\
+                            <td><button value="' + memorial.id + '" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
+                            <td><button value="' + memorial.id + '" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
                     </tr>');
                     });
                 }
@@ -209,7 +218,7 @@
                     if (response.status == 0) {
                         $('#deleteSite').modal('hide');
                     } else {
-                        fetchSites();
+                        fetchMemorials();
                         $('#deleteSite').modal('hide');
                     }
                 }
@@ -260,7 +269,7 @@
                     } else {
                         $('#editSiteForm')[0].reset();
                         $('#editSite').modal('hide');
-                        fetchSites();
+                        fetchMemorials();
                     }
                 },
                 error: function(error) {
@@ -274,7 +283,7 @@
             let formDate = new FormData($('#createMemorialForm')[0]);
             $.ajax({
                 type: "post",
-                url: "site",
+                url: "memorial",
                 data: formDate,
                 contentType: false,
                 processData: false,
@@ -290,7 +299,7 @@
                     } else {
                         $('#createMemorialForm')[0].reset();
                         $('#createMemorial').modal('hide');
-                        fetchSites();
+                        fetchMemorials();
                     }
                 },
                 error: function(error) {
