@@ -132,7 +132,19 @@ class MemorialController extends Controller
      */
     public function destroy(Memorial $memorial)
     {
-        //
+        $memorial->delete();
+        if($memorial){
+            return response()->json([
+                'status' => 1,
+                'message' => 'Memorial deleted successfully',
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => 0,
+                'message' => 'Memorial not deleted successfully',
+            ]);
+        }
     }
 
     public function storeImage($memorial)

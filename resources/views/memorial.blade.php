@@ -144,22 +144,29 @@
         </div>
     </div>
 
-    <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"  aria-hidden="true">
+    <div class="modal fade" id="deleteMemorial" tabindex="-1" role="dialog"  aria-hidden="true">
         <div class="modal-dialog modal-sm">
             <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>Modal body text goes here.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" id="deleteMemorialForm">
+                    @csrf
+                    @method('DELETE')
+                    <div class="modal-body">
+                        <div class="row">
+                            <input type="hidden" id="memorial_id" name="memorial_id">
+                            <p class="ml-3">Are you sure want to delete?</p>
+                        </div><!--end row-->
+                    </div><!--end modal-body-->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Yes</button>
+                    </div><!--end modal-footer-->
+                </form>
             </div>
         </div>
     </div>
@@ -201,25 +208,27 @@
             e.preventDefault();
             $(document).find('span.error-text').text('');
         });
+
         $(document).on('click', '.delete_btn', function(e) {
             e.preventDefault();
-            var site_id = $(this).val();
-            $('#deleteSite').modal('show');
-            $('#site_id').val(site_id)
+            var memorial_id = $(this).val();
+            $('#deleteMemorial').modal('show');
+            $('#memorial_id').val(memorial_id)
         });
-        $(document).on('submit', '#deleteSiteForm', function(e) {
+
+        $(document).on('submit', '#deleteMemorialForm', function(e) {
             e.preventDefault();
-            var site_id = $('#site_id').val();
+            var memorial_id = $('#memorial_id').val();
             $.ajax({
                 type: 'delete',
-                url: 'site/' + site_id,
+                url: 'memorial/' + memorial_id,
                 dataType: 'json',
                 success: function(response) {
                     if (response.status == 0) {
-                        $('#deleteSite').modal('hide');
+                        $('#deleteMemorial').modal('hide');
                     } else {
                         fetchMemorials();
-                        $('#deleteSite').modal('hide');
+                        $('#deleteMemorial').modal('hide');
                     }
                 }
             });
