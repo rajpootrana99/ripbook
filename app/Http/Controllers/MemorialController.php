@@ -21,7 +21,8 @@ class MemorialController extends Controller
         return view('memorial');
     }
 
-    public function fetchMemorials(){
+    public function fetchMemorials()
+    {
         $memorials = Memorial::where('user_id', Auth::id())->orderBy('id', 'DESC')->get();
         return response()->json([
             'status' => true,
@@ -81,11 +82,9 @@ class MemorialController extends Controller
         ]);
         $this->storeImage($memorial);
 
-        if($memorial){
+        if ($memorial) {
             return response()->json(['status' => 1, 'message' => 'Memorial Created Successfully']);
-        }
-
-        else{
+        } else {
             return response()->json(['status' => 0, 'message' => 'Memorial not Created Successfully']);
         }
     }
@@ -109,7 +108,9 @@ class MemorialController extends Controller
      */
     public function edit(Memorial $memorial)
     {
-        //
+        return response()->json([
+            'memorial' => $memorial,
+        ]);
     }
 
     /**
@@ -121,7 +122,47 @@ class MemorialController extends Controller
      */
     public function update(Request $request, Memorial $memorial)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'title' => ['required', 'string', 'min:3'],
+            'description' => ['required', 'string', 'min:3'],
+            'address' => ['required', 'string', 'min:3'],
+            'dob' => ['required', 'date', 'min:3'],
+            'pob' => ['required', 'string', 'min:3'],
+            'dod' => ['required', 'date', 'min:3'],
+            'pod' => ['required', 'string', 'min:3'],
+            'age' => ['required', 'integer'],
+            'religion' => ['required', 'string', 'min:3'],
+            'residence' => ['required', 'string', 'min:3'],
+            'visibility' => ['required', 'integer'],
+        ]);
+        if (!$validator->passes()) {
+            return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
+        }
+
+        $memorial->update([
+            'user_id' => Auth::id(),
+            'title' => $request->title,
+            'description' => $request->description,
+            'address' => $request->address,
+            'dob' => $request->dob,
+            'pob' => $request->pob,
+            'dod' => $request->dod,
+            'pod' => $request->pod,
+            'age' => $request->age,
+            'religion' => $request->religion,
+            'residence' => $request->residence,
+            'visibility' => $request->visibility,
+        ]);
+
+        if ($request->feature_image) {
+            $this->storeImage($memorial);
+        }
+
+        if ($memorial) {
+            return response()->json(['status' => 1, 'message' => 'Memorial Updated Successfully']);
+        } else {
+            return response()->json(['status' => 0, 'message' => 'Memorial not Updated Successfully']);
+        }
     }
 
     /**
@@ -133,13 +174,12 @@ class MemorialController extends Controller
     public function destroy(Memorial $memorial)
     {
         $memorial->delete();
-        if($memorial){
+        if ($memorial) {
             return response()->json([
                 'status' => 1,
                 'message' => 'Memorial deleted successfully',
             ]);
-        }
-        else{
+        } else {
             return response()->json([
                 'status' => 0,
                 'message' => 'Memorial not deleted successfully',
