@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    
-    
+
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;900&display=swap" rel="stylesheet">
@@ -18,35 +19,36 @@
     <link rel="stylesheet" href="{{ asset('asset/css/header.css')}}">
     <link rel="stylesheet" href="{{ asset('asset/css/index.css')}}">
     <link rel="stylesheet" href="{{ asset('asset/css/footer.css')}}">
-    
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    
+
 </head>
+
 <body>
     <div class="header">
         <div class="main_section">
             <div class="hamburger_container">
                 <div onclick="showDropdown(this)">
                     @guest
-                        <button class="hamburger picture_dropdown_button"  > <i class="fa-solid fa-gear"></i> </button>
+                    <button class="hamburger picture_dropdown_button"> <i class="fa-solid fa-gear"></i> </button>
                     @endguest
                     @auth
                     <img src="{{ asset('asset/images/section_7_img_1.png')}}" alt="" class="user_picture img-fluid picture_dropdown_button">
                     @endauth
                 </div>
-                <div class="dropdown_1 hide_dropdown" style="text-align: end;margin-top: 60px;"  id="picture_dropdown_target">
+                <div class="dropdown_1 hide_dropdown" style="text-align: end;margin-top: 60px;" id="picture_dropdown_target">
                     @guest
                     <a href="{{ route('login' )}}" class="head_button dropdown_anchors">Login</a>
                     @endguest
                     @auth
-                        <div class="user_name dropdown_anchors">{{ Auth::user()->name }}</div>
-                        <a href="{{ route('dashboard') }}" class="head_anchor dropdown_anchors">Profile</a>
-                        <form action="{{ route('logout') }}"  style="display: none;" method="post" id="lgut">
-                            @csrf
-                            <input type="submit" id="logoutbtn">
-                        </form>
-                        <a type="button" onclick="$('#lgut').submit()" class="head_anchor dropdown_anchors">Logout</a>
+                    <div class="user_name dropdown_anchors">{{ Auth::user()->name }}</div>
+                    <a href="{{ route('dashboard') }}" class="head_anchor dropdown_anchors">Profile</a>
+                    <form action="{{ route('logout') }}" style="display: none;" method="post" id="lgut">
+                        @csrf
+                        <input type="submit" id="logoutbtn">
+                    </form>
+                    <a type="button" onclick="$('#lgut').submit()" class="head_anchor dropdown_anchors">Logout</a>
                     @endauth
                 </div>
             </div>
@@ -65,26 +67,26 @@
                     @endguest
                     <div class="user_information">
                         <div onclick="showDropdown(this)">
-                        @guest
-                            <button class="hamburger picture_dropdown_button settings-icon" > <i class="fa-solid fa-gear"></i> </button>
-                        @endguest
-                        @auth
+                            @guest
+                            <button class="hamburger picture_dropdown_button settings-icon"> <i class="fa-solid fa-gear"></i> </button>
+                            @endguest
+                            @auth
                             <img src="{{ asset('asset/images/section_7_img_1.png')}}" alt="" class="user_picture img-fluid picture_dropdown_button">
-                        @endauth
+                            @endauth
                         </div>
-                        <div class="dropdown_1 hide_dropdown" style="right:unset;width: 200px;top: 0;"  id="picture_dropdown_target">
-                        @guest
+                        <div class="dropdown_1 hide_dropdown" style="right:unset;width: 200px;top: 0;" id="picture_dropdown_target">
+                            @guest
                             <a href="{{route('login')}}" class="head_button dropdown_anchors">Login</a>
-                        @endguest
-                        @auth
+                            @endguest
+                            @auth
                             <div class="user_name dropdown_anchors">{{ Auth::user()->name }}</div>
                             <a href="{{ route('dashboard') }}" class="head_anchor dropdown_anchors">Profile</a>
-                            <form action="{{ route('logout') }}"  style="display: none;" method="post" id="lgut">
+                            <form action="{{ route('logout') }}" style="display: none;" method="post" id="lgut">
                                 @csrf
                                 <input type="submit" id="logoutbtn">
                             </form>
                             <a type="button" onclick="$('#lgut').submit()" class="head_anchor dropdown_anchors">Logout</a>
-                        @endauth
+                            @endauth
                         </div>
                         @auth
                         <div class="user_name">{{ Auth::user()->name }}</div>
@@ -93,7 +95,7 @@
                 </div>
             </div>
             <div class="hamburger_container">
-                <button class="hamburger" id="hamburger_dropdown_button"  onclick="showDropdown(this)"> <i class="fa-solid fa-bars"></i> </button>
+                <button class="hamburger" id="hamburger_dropdown_button" onclick="showDropdown(this)"> <i class="fa-solid fa-bars"></i> </button>
                 <div class="dropdown_1 hide_dropdown" id="hamburger_dropdown_target">
                     <a href="/" class="head_anchor head_anchor_active dropdown_anchors">Home</a>
                     <a href="#pricicing_section" class="head_anchor dropdown_anchors">Pricing</a>
@@ -119,11 +121,11 @@
                     <div class="form_grid">
                         <div class="radio_1">
                             <input type="radio" name="date" id="d_o_b">
-                            <label for="d_o_b" ><span style="opacity: 0.6;">Date of birth</span></label>
+                            <label for="d_o_b"><span style="opacity: 0.6;">Date of birth</span></label>
                         </div>
                         <div class="radio_2">
-                            <input type="radio" name="date" id="d_o_d"> 
-                            <label for="d_o_d" ><span style="opacity: 0.6;">Date of death</span></label>
+                            <input type="radio" name="date" id="d_o_d">
+                            <label for="d_o_d"><span style="opacity: 0.6;">Date of death</span></label>
                         </div>
                     </div>
                     <div class="form_grid" style="column-gap: 0%;">
@@ -132,14 +134,14 @@
                             <input type="date" name="" id="" onchange="this.previousElementSibling.value=this.value" class="input_box date_box">
                             <img loading="lazy" src="{{ asset('asset/images/calendar.svg')}}" class="calendar_icon" alt="" srcset="">
                         </div>
-                        
+
                         <input type="submit" class="search_btn" role="button" value="Search">
                     </div>
                 </div>
             </div>
             <div class="right_section_1">
                 <div class="absolute_item">
-                    <a href="http://" target="_blank" class="create-memorial">
+                    <a href="{{ route('memorial.index' )}}" class="create-memorial">
                         <i class="fa-solid fa-pen-to-square" style="color: #60C689;"></i> Create Memorial
                     </a>
                 </div>
@@ -164,10 +166,10 @@
                         <div class="description">What were they like as children? In college? At work? Participating in a hobby? We Remember encourages you to get memories from everyone who knew them, so you can see sides of them you never knew existed.</div>
                     </div>
                     <div class="form_grid left_bottom_section">
-                        <a href="http://" class="see_feed_button" target="_blank" rel="noopener noreferrer">See Feed</a> 
-                        <a href="http://" target="_blank" class="create-memorial">
+                        <a href="" class="see_feed_button">See Feed</a>
+                        <a href="{{ route('memorial.index' )}}" class="create-memorial">
                             <i class="fa-solid fa-pen-to-square" style="color: #60C689;"></i> Create Memorial
-                        </a>          
+                        </a>
                     </div>
                 </div>
             </div>
@@ -180,7 +182,9 @@
                                 <img loading="lazy" src="{{ asset('asset/images/vertical_slideer_img_1.png')}}" class="item_picture" alt="" srcset="">
                                 <div class="item_information">
                                     <div class="item_country">India</div>
-                                    <a href="{{ route('single-memorial') }}"><div class="item_name">Mrs Manonmani Sokkalingam</div></a>
+                                    <a href="{{ route('single-memorial') }}">
+                                        <div class="item_name">Mrs Manonmani Sokkalingam</div>
+                                    </a>
                                     <div class="time_of_death">
                                         <div class="lifetime">1945&mdash;2021</div>
                                         <div class="time_passed">1 hour ago</div>
@@ -191,7 +195,9 @@
                                 <img loading="lazy" src="{{ asset('asset/images/vertical_slideer_img_1.png')}}" class="item_picture" alt="" srcset="">
                                 <div class="item_information">
                                     <div class="item_country">India</div>
-                                    <a href="{{ route('single-memorial') }}"><div class="item_name">Mrs Manonmani Sokkalingam</div></a>
+                                    <a href="{{ route('single-memorial') }}">
+                                        <div class="item_name">Mrs Manonmani Sokkalingam</div>
+                                    </a>
                                     <div class="time_of_death">
                                         <div class="lifetime">1945&mdash;2021</div>
                                         <div class="time_passed">1 hour ago</div>
@@ -202,7 +208,9 @@
                                 <img loading="lazy" src="{{ asset('asset/images/vertical_slideer_img_2.png')}}" class="item_picture" alt="" srcset="">
                                 <div class="item_information">
                                     <div class="item_country">Germany</div>
-                                    <a href="{{ route('single-memorial') }}"><div class="item_name">Late Srikanthan Naguleswary</div></a>
+                                    <a href="{{ route('single-memorial') }}">
+                                        <div class="item_name">Late Srikanthan Naguleswary</div>
+                                    </a>
                                     <div class="time_of_death">
                                         <div class="lifetime">1945&mdash;2021</div>
                                         <div class="time_passed">1 hour ago</div>
@@ -213,21 +221,25 @@
                                 <img loading="lazy" src="{{ asset('asset/images/vertical_slideer_img_3.png')}}" class="item_picture" alt="" srcset="">
                                 <div class="item_information">
                                     <div class="item_country">Italy</div>
-                                    <a href="{{ route('single-memorial') }}"><div class="item_name">Late Srikanthan Naguleswary</div></a>
+                                    <a href="{{ route('single-memorial') }}">
+                                        <div class="item_name">Late Srikanthan Naguleswary</div>
+                                    </a>
                                     <div class="time_of_death">
                                         <div class="lifetime">1945&mdash;2021</div>
                                         <div class="time_passed">1 hour ago</div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                         <div class="vertical_slide_2">
                             <div class="item_container">
                                 <img loading="lazy" src="{{ asset('asset/images/vertical_slideer_img_3.png')}}" class="item_picture" alt="" srcset="">
                                 <div class="item_information">
                                     <div class="item_country">India</div>
-                                    <a href="{{ route('single-memorial') }}"><div class="item_name">Mrs Manonmani Sokkalingam</div></a>
+                                    <a href="{{ route('single-memorial') }}">
+                                        <div class="item_name">Mrs Manonmani Sokkalingam</div>
+                                    </a>
                                     <div class="time_of_death">
                                         <div class="lifetime">1945&mdash;2021</div>
                                         <div class="time_passed">1 hour ago</div>
@@ -238,7 +250,9 @@
                                 <img loading="lazy" src="{{ asset('asset/images/vertical_slideer_img_3.png')}}" class="item_picture" alt="" srcset="">
                                 <div class="item_information">
                                     <div class="item_country">India</div>
-                                    <a href="{{ route('single-memorial') }}"><div class="item_name">Mrs Manonmani Sokkalingam</div></a>
+                                    <a href="{{ route('single-memorial') }}">
+                                        <div class="item_name">Mrs Manonmani Sokkalingam</div>
+                                    </a>
                                     <div class="time_of_death">
                                         <div class="lifetime">1945&mdash;2021</div>
                                         <div class="time_passed">1 hour ago</div>
@@ -249,7 +263,9 @@
                                 <img loading="lazy" src="{{ asset('asset/images/vertical_slideer_img_4.png')}}" class="item_picture" alt="" srcset="">
                                 <div class="item_information">
                                     <div class="item_country">Germany</div>
-                                    <a href="{{ route('single-memorial') }}"><div class="item_name">Late Srikanthan Naguleswary</div></a>
+                                    <a href="{{ route('single-memorial') }}">
+                                        <div class="item_name">Late Srikanthan Naguleswary</div>
+                                    </a>
                                     <div class="time_of_death">
                                         <div class="lifetime">1945&mdash;2021</div>
                                         <div class="time_passed">1 hour ago</div>
@@ -260,14 +276,16 @@
                                 <img loading="lazy" src="{{ asset('asset/images/vertical_slideer_img_4.png')}}" class="item_picture" alt="" srcset="">
                                 <div class="item_information">
                                     <div class="item_country">Italy</div>
-                                    <a href="{{ route('single-memorial') }}"><div class="item_name">Late Srikanthan Naguleswary</div></a>
+                                    <a href="{{ route('single-memorial') }}">
+                                        <div class="item_name">Late Srikanthan Naguleswary</div>
+                                    </a>
                                     <div class="time_of_death">
                                         <div class="lifetime">1945&mdash;2021</div>
                                         <div class="time_passed">1 hour ago</div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="bottom_cover"></div>
@@ -287,7 +305,9 @@
                         <img src="{{ asset('asset/images/horizontal_slider_1.png')}}" alt="" class="item_picture">
                         <div class="item_information">
                             <div class="item_country">India</div>
-                            <a href="{{ route('single-memorial') }}"><div class="item_name">Mrs Manonmani Sokkalingam</div></a>
+                            <a href="{{ route('single-memorial') }}">
+                                <div class="item_name">Mrs Manonmani Sokkalingam</div>
+                            </a>
                             <div class="lifetime">1945&mdash;2022</div>
                             <div class="time_passed">1 hour ago</div>
                         </div>
@@ -296,7 +316,9 @@
                         <img src="{{ asset('asset/images/horizontal_slider_2.png')}}" alt="" class="item_picture">
                         <div class="item_information">
                             <div class="item_country">India</div>
-                            <a href="{{ route('single-memorial') }}"><div class="item_name">Mrs Manonmani Sokkalingam</div></a>
+                            <a href="{{ route('single-memorial') }}">
+                                <div class="item_name">Mrs Manonmani Sokkalingam</div>
+                            </a>
                             <div class="lifetime">1945&mdash;2022</div>
                             <div class="time_passed">1 hour ago</div>
                         </div>
@@ -305,7 +327,9 @@
                         <img src="{{ asset('asset/images/horizontal_slider_3.png')}}" alt="" class="item_picture">
                         <div class="item_information">
                             <div class="item_country">India</div>
-                            <a href="{{ route('single-memorial') }}"><div class="item_name">Mrs Manonmani Sokkalingam</div></a>
+                            <a href="{{ route('single-memorial') }}">
+                                <div class="item_name">Mrs Manonmani Sokkalingam</div>
+                            </a>
                             <div class="lifetime">1945&mdash;2022</div>
                             <div class="time_passed">1 hour ago</div>
                         </div>
@@ -314,7 +338,9 @@
                         <img src="{{ asset('asset/images/horizontal_slider_4.png')}}" alt="" class="item_picture">
                         <div class="item_information">
                             <div class="item_country">India</div>
-                            <a href="{{ route('single-memorial') }}"><div class="item_name">Mrs Manonmani Sokkalingam</div></a>
+                            <a href="{{ route('single-memorial') }}">
+                                <div class="item_name">Mrs Manonmani Sokkalingam</div>
+                            </a>
                             <div class="lifetime">1945&mdash;2022</div>
                             <div class="time_passed">1 hour ago</div>
                         </div>
@@ -323,7 +349,9 @@
                         <img src="{{ asset('asset/images/horizontal_slider_5.png')}}" alt="" class="item_picture">
                         <div class="item_information">
                             <div class="item_country">India</div>
-                            <a href="{{ route('single-memorial') }}"><div class="item_name">Mrs Manonmani Sokkalingam</div></a>
+                            <a href="{{ route('single-memorial') }}">
+                                <div class="item_name">Mrs Manonmani Sokkalingam</div>
+                            </a>
                             <div class="lifetime">1945&mdash;2022</div>
                             <div class="time_passed">1 hour ago</div>
                         </div>
@@ -332,7 +360,9 @@
                         <img src="{{ asset('asset/images/horizontal_slider_6.png')}}" alt="" class="item_picture">
                         <div class="item_information">
                             <div class="item_country">India</div>
-                            <a href="{{ route('single-memorial') }}"><div class="item_name">Mrs Manonmani Sokkalingam</div></a>
+                            <a href="{{ route('single-memorial') }}">
+                                <div class="item_name">Mrs Manonmani Sokkalingam</div>
+                            </a>
                             <div class="lifetime">1945&mdash;2022</div>
                             <div class="time_passed">1 hour ago</div>
                         </div>
@@ -368,7 +398,7 @@
                 <div class="description">
                     Celebrate the life of a colleague, family member, or friend who has passed away with a custom Vaalvu setup.
                 </div>
-                <a href="http://" class="see_feed_button learn_more_button" target="_blank" rel="noopener noreferrer">Learn More</a> 
+                <a href="http://" class="see_feed_button learn_more_button" target="_blank" rel="noopener noreferrer">Learn More</a>
             </div>
             <div class="right_section">
                 <div class="image_container">
@@ -388,31 +418,31 @@
                         <button class="mode_1 mode_selected"> Orbituary </button>
                         <button class="mode_2"> Remembrance </button>
                     </div>
-                    <button class="th"> 
+                    <button class="th">
                         <div class="price"> <i class="fas fa-dollar-sign"></i> 10</div>
                         <div class="plan_days">/2 days</div>
                     </button>
-                    <button class="th"> 
+                    <button class="th">
                         <div class="price"> <i class="fas fa-dollar-sign"></i> 30</div>
                         <div class="plan_days">/3 days</div>
                     </button>
-                    <button class="th order_recomended"> 
+                    <button class="th order_recomended">
                         <div class="price"> <i class="fas fa-dollar-sign"></i> 60</div>
                         <div class="plan_days">/4 days</div>
                     </button>
-                    <button class="th"> 
+                    <button class="th">
                         <div class="price"> <i class="fas fa-dollar-sign"></i> 90</div>
                         <div class="plan_days">/5 days</div>
                     </button>
-                    <button class="th"> 
+                    <button class="th">
                         <div class="price"> <i class="fas fa-dollar-sign"></i> 120</div>
                         <div class="plan_days">/6 days</div>
                     </button>
-                    <button class="th"> 
+                    <button class="th">
                         <div class="price"> <i class="fas fa-dollar-sign"></i> 150</div>
                         <div class="plan_days">/7 days</div>
                     </button>
-                    <button class="th order_best"> 
+                    <button class="th order_best">
                         <div class="price"> <i class="fas fa-dollar-sign"></i> 200</div>
                         <div class="plan_days">/8 days</div>
                     </button>
@@ -517,7 +547,7 @@
                     <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
                     <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
                 </div>
-                
+
                 <div class="table_row">
                     <div class="mode_option"></div>
                     <button class="order_button">Order</button>
@@ -527,7 +557,7 @@
                     <button class="order_button">Order</button>
                     <button class="order_button">Order</button>
                     <button class="order_button order_best">Order</button>
-                    
+
                 </div>
             </div>
         </div>
@@ -610,17 +640,18 @@
                         <a href="" class="social_links">
                             <img src="{{ asset('asset/images/twitter.svg')}}" alt="" class="link_image">
                         </a>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>	
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="{{ asset('asset/js/header.js')}}"></script>
     <script src="{{ asset('asset/js/index.js')}}"></script>
 </body>
+
 </html>

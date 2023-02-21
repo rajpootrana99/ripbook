@@ -322,6 +322,7 @@
 .item_name {
     font-weight: var(--Source-Sans-Pro-Bold);
     font-size: 17px;
+    color: #000;
 }
 
 .time_of_death {
