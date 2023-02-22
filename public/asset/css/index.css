@@ -603,15 +603,18 @@
     font-size: 16px;
     border: none;
     color: #131313;
+    cursor: pointer;
 }
 
 .order_recomended {
     background-color: #fcb71e !important;
+    cursor: pointer;
 }
 
 .order_best {
     color: white;
     background-color: #60c689 !important;
+    cursor: pointer;
 }
 
 .order_best > .plan_days {
