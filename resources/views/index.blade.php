@@ -8,8 +8,8 @@
     <title>Document</title>
 
 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,9 +19,10 @@
     <link rel="stylesheet" href="{{ asset('asset/css/header.css')}}">
     <link rel="stylesheet" href="{{ asset('asset/css/index.css')}}">
     <link rel="stylesheet" href="{{ asset('asset/css/footer.css')}}">
+    <link rel="stylesheet" href="{{ asset('asset/css/card_style.css')}}">
 
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
 </head>
 
@@ -550,13 +551,13 @@
 
                 <div class="table_row">
                     <div class="mode_option"></div>
-                    <button class="order_button">Order</button>
-                    <button class="order_button">Order</button>
-                    <button class="order_button order_recomended">Order</button>
-                    <button class="order_button">Order</button>
-                    <button class="order_button">Order</button>
-                    <button class="order_button">Order</button>
-                    <button class="order_button order_best">Order</button>
+                    <button type="button" class="order_button" id="buySubscriptionButton">Order</button>
+                    <button type="button" class="order_button" id="buySubscriptionButton">Order</button>
+                    <button type="button" class="order_button order_recomended" id="buySubscriptionButton">Order</button>
+                    <button type="button" class="order_button" id="buySubscriptionButton">Order</button>
+                    <button type="button" class="order_button" id="buySubscriptionButton">Order</button>
+                    <button type="button" class="order_button" id="buySubscriptionButton">Order</button>
+                    <button type="button" class="order_button order_best" id="buySubscriptionButton">Order</button>
 
                 </div>
             </div>
@@ -646,12 +647,83 @@
             </div>
         </div>
     </div>
+
+    <div class="modal" id="cardModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">PAYMENT</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form>
+                            <div class="row">
+                                <div class="col">
+                                    <div class="inputBox">
+                                        <span>cards accepted :</span>
+                                        <img src="{{ asset('asset/img/card.png')}}" alt="" />
+                                    </div>
+                                    <div class="inputBox">
+                                        <span>name on card :</span>
+                                        <input type="text" placeholder="mr. john deo" />
+                                    </div>
+                                    <div class="inputBox">
+                                        <span>credit card number :</span>
+                                        <input type="number" placeholder="1111-2222-3333-4444" />
+                                    </div>
+                                    <div class="inputBox">
+                                        <span>exp month :</span>
+                                        <input type="text" placeholder="january" />
+                                    </div>
+                                    <div class="flex">
+                                        <div class="inputBox">
+                                            <span>exp year :</span>
+                                            <input type="number" placeholder="2022" />
+                                        </div>
+                                        <div class="inputBox">
+                                            <span>CVV :</span>
+                                            <input type="text" placeholder="1234" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="submit" value="proceed to checkout" class="submit-btn" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
     <script src="{{ asset('asset/js/header.js')}}"></script>
     <script src="{{ asset('asset/js/index.js')}}"></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).on('click', '#buySubscriptionButton', function(e) {
+            e.preventDefault();
+            $('#cardModal').modal('show');
+        });
+
+    });
+</script>
 </body>
 
 </html>
