@@ -11,6 +11,9 @@
     overflow: unset;
 }
 
+a {
+    text-decoration: none;
+}
 .left_section_1 {
     /* margin-left: 10%; */
     flex-direction: column;

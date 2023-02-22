@@ -203,6 +203,8 @@ a {
     border-bottom: 1px solid lightgray;
     border-radius: unset;
     background-color: white;
+    cursor: pointer;
+    text-decoration: none;
 }
 
 .show_dropdown {

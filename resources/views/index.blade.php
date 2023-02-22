@@ -673,9 +673,9 @@
                                         <input type="text" name="name" id="card-holder-name" placeholder="mr. john deo" />
                                         <span class="text-danger name_error"></span>
                                     </div>
-                                    <div class="inputBox">
+                                    <div class="form-group" >
                                         <span>Card Details :</span>
-                                        <div id="card-element"></div>
+                                        <div id="card-element" class="form-control" style='height: 2.4em; padding-top: .7em;'></div>
                                     </div>
                                 </div>
                             </div>
