@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MemorialController;
+use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,9 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
     Route::resource('memorial', MemorialController::class);
     Route::get('/fetchMemorials', [MemorialController::class, 'fetchMemorials'])->name('memorial.get');
+    Route::post('subscription', [PlanController::class, 'subscription'])->name('subscription.create');
+    
 });
+Route::resource('plan', PlanController::class);
 
 require __DIR__.'/auth.php';

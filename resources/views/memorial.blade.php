@@ -309,6 +309,7 @@
                 }
             });
         });
+        
         $(document).on('click', '.edit_btn', function(e) {
             e.preventDefault();
             var memorial_id = $(this).val();

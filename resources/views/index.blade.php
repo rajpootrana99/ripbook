@@ -551,13 +551,13 @@
 
                 <div class="table_row">
                     <div class="mode_option"></div>
-                    <button type="button" class="order_button" id="buySubscriptionButton">Order</button>
-                    <button type="button" class="order_button" id="buySubscriptionButton">Order</button>
-                    <button type="button" class="order_button order_recomended" id="buySubscriptionButton">Order</button>
-                    <button type="button" class="order_button" id="buySubscriptionButton">Order</button>
-                    <button type="button" class="order_button" id="buySubscriptionButton">Order</button>
-                    <button type="button" class="order_button" id="buySubscriptionButton">Order</button>
-                    <button type="button" class="order_button order_best" id="buySubscriptionButton">Order</button>
+                    <button type="button" value="1" class="order_button" id="buySubscriptionButton">Order</button>
+                    <button type="button" value="2" class="order_button" id="buySubscriptionButton">Order</button>
+                    <button type="button" value="3" class="order_button order_recomended" id="buySubscriptionButton">Order</button>
+                    <button type="button" value="4" class="order_button" id="buySubscriptionButton">Order</button>
+                    <button type="button" value="5" value="1" class="order_button" id="buySubscriptionButton">Order</button>
+                    <button type="button" value="6" class="order_button" id="buySubscriptionButton">Order</button>
+                    <button type="button" value="7" class="order_button order_best" id="buySubscriptionButton">Order</button>
 
                 </div>
             </div>
@@ -659,7 +659,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form>
+                        <form id="payment-form" method="POST">
+                            @csrf
+                            <input type="hidden" name="plan_id" id="plan_id">
                             <div class="row">
                                 <div class="col">
                                     <div class="inputBox">
@@ -668,29 +670,16 @@
                                     </div>
                                     <div class="inputBox">
                                         <span>name on card :</span>
-                                        <input type="text" placeholder="mr. john deo" />
+                                        <input type="text" name="name" id="card-holder-name" placeholder="mr. john deo" />
+                                        <span class="text-danger name_error"></span>
                                     </div>
                                     <div class="inputBox">
-                                        <span>credit card number :</span>
-                                        <input type="number" placeholder="1111-2222-3333-4444" />
-                                    </div>
-                                    <div class="inputBox">
-                                        <span>exp month :</span>
-                                        <input type="text" placeholder="january" />
-                                    </div>
-                                    <div class="flex">
-                                        <div class="inputBox">
-                                            <span>exp year :</span>
-                                            <input type="number" placeholder="2022" />
-                                        </div>
-                                        <div class="inputBox">
-                                            <span>CVV :</span>
-                                            <input type="text" placeholder="1234" />
-                                        </div>
+                                        <span>Card Details :</span>
+                                        <div id="card-element"></div>
                                     </div>
                                 </div>
                             </div>
-                            <input type="submit" value="proceed to checkout" class="submit-btn" />
+                            <input type="submit" value="purchase" id="purchase_button" class="submit-btn" />
                         </form>
                     </div>
                 </div>
@@ -704,6 +693,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
     <script src="{{ asset('asset/js/header.js')}}"></script>
     <script src="{{ asset('asset/js/index.js')}}"></script>
+    <script src="https://js.stripe.com/v3/"></script>
 
     <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
@@ -717,9 +707,85 @@
             }
         });
 
+        const stripe = Stripe('{{ env('STRIPE_KEY') }}')
+        const elements = stripe.elements();
+        const cardElement = elements.create('card')
+
         $(document).on('click', '#buySubscriptionButton', function(e) {
             e.preventDefault();
-            $('#cardModal').modal('show');
+            var plan_id = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: "plan/"+plan_id,
+                dataType: "json",
+                success: function(response) {
+                    if(response.status==0){
+                        alert(response.message);
+                    }
+                    else{
+                        $('#cardModal').modal('show');
+                        $('#plan_id').val(plan_id)
+                        cardElement.mount('#card-element')
+                        $('#purchase_button').attr('data-secret', response.intent.client_secret);
+                    }
+                }
+            });
+        });
+
+        $(document).on('submit', '#payment-form', async function(e) {
+            e.preventDefault();
+            const purchaseBtn =  document.getElementById('purchase_button');
+            // console.log(purchaseBtn);
+            const form = document.getElementById('payment-form');
+            const cardHolderName = $('#card-holder-name');
+            purchaseBtn.disabled = true;
+            const { setupIntent, error } = await stripe.confirmCardSetup(
+                purchaseBtn.dataset.secret, {
+                    payment_method: {
+                        card: cardElement,
+                        billing_details: {
+                            name: cardHolderName.value
+                        }
+                    }
+                }
+            );
+
+            if(error){
+                purchaseBtn.disable = false
+            }
+            else{
+                let token = document.createElement('input');
+                token.setAttribute('type', 'hidden');
+                token.setAttribute('name', 'token');
+                token.setAttribute('value', setupIntent.payment_method);
+                form.appendChild(token);
+                let formDate = new FormData($('#payment-form')[0]);
+                $.ajax({
+                    type: "post",
+                    url: "subscription",
+                    data: formDate,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $(document).find('span.error-text').text('');
+                    },
+                    success: function(response) {
+                        if (response.status == 0) {
+                            $('#cardModal').modal('show')
+                            $.each(response.error, function(prefix, val) {
+                                $('span.' + prefix + '_error').text(val[0]);
+                            });
+                        } else {
+                            $('#payment-form')[0].reset();
+                            $('#cardModal').modal('hide');
+                            alert(response.message);
+                        }
+                    },
+                    error: function(error) {
+                        $('#cardModal').modal('show')
+                    }
+                });
+            }
         });
 
     });
