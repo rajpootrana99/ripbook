@@ -95,22 +95,26 @@ class MemorialController extends Controller
         $validator = Validator::make($request->all(), [
             'memorial_id' => ['required'],
             'image' => ['required'],
+            'image.*' => ['image', 'mimes:jpeg,png,jpggif,svg'],
         ]);
         if (!$validator->passes()) {
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
         }
-
         if ($request->hasFile('image')) {
             foreach ($request->file('image') as $image) {
                 $gallery = new Gellery();
                 $destinationPath = 'memorials/';
-                $filename = time() . '.' . $image->extension();
+                $filename = md5_file($image->getRealPath()) . '.' . $image->extension();
                 $image->move($destinationPath, $filename);
                 $fullPath = $destinationPath . $filename;
                 $gallery->memorial_id = $request->memorial_id;
                 $gallery->image = $fullPath;
                 $gallery->save();
             }
+            return response()->json([
+                'status' => 200,
+                'message' => 'Images uploaded successfully'
+            ]);
         }
     }
 

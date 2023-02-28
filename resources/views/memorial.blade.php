@@ -243,7 +243,7 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="image" name="image[]" multiple>
+                                    <input type="file" class="custom-file-input" id="image[]" name="image[]" multiple>
                                     <label class="custom-file-label" for="image">Choose file</label>
                                 </div>
                                 <span class="text-danger image_error"></span>
