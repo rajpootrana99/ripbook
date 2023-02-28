@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gellery;
 use App\Models\Memorial;
 use App\Traits\ImageUpload;
 use Illuminate\Http\Request;
@@ -86,6 +87,30 @@ class MemorialController extends Controller
             return response()->json(['status' => 1, 'message' => 'Memorial Created Successfully']);
         } else {
             return response()->json(['status' => 0, 'message' => 'Memorial not Created Successfully']);
+        }
+    }
+
+    public function addGallery(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'memorial_id' => ['required'],
+            'image' => ['required'],
+        ]);
+        if (!$validator->passes()) {
+            return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
+        }
+
+        if ($request->hasFile('image')) {
+            foreach ($request->file('image') as $image) {
+                $gallery = new Gellery();
+                $destinationPath = 'memorials/';
+                $filename = time() . '.' . $image->extension();
+                $image->move($destinationPath, $filename);
+                $fullPath = $destinationPath . $filename;
+                $gallery->memorial_id = $request->memorial_id;
+                $gallery->image = $fullPath;
+                $gallery->save();
+            }
         }
     }
 

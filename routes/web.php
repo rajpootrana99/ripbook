@@ -33,8 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('memorial', MemorialController::class);
     Route::get('/fetchMemorials', [MemorialController::class, 'fetchMemorials'])->name('memorial.get');
     Route::post('subscription', [PlanController::class, 'subscription'])->name('subscription.create');
-    
+    Route::post('/addGallery', [MemorialController::class, 'addGallery']);
 });
 Route::resource('plan', PlanController::class);
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

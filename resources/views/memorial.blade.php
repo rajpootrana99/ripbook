@@ -17,7 +17,7 @@
                             <span class="float-right mb-3 mr-2">
                                 <button type="button" class="btn btn-sm iq-bg-success mb-1" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="ri-add-fill"><span class="pl-1">Add Notices</span></i>
                                 </button>
-                                <button type="button" class="btn btn-sm iq-bg-danger mb-1" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="ri-add-fill"><span class="pl-1">Add Gallery</span></i>
+                                <button type="button" class="btn btn-sm iq-bg-danger mb-1" data-toggle="modal" data-target="#addGallery" id="addGalleryButton"><i class="ri-add-fill"><span class="pl-1">Add Gallery</span></i>
                                 </button>
                                 <button type="button" class="btn btn-sm iq-bg-success mb-1" data-toggle="modal" data-target="#createMemorial" id="createMemorialButton"><i class="ri-add-fill"><span class="pl-1">Create Memorial</span></i>
                                 </button>
@@ -219,6 +219,47 @@
     </div>
 </div>
 
+<div class="modal fade" id="addGallery" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Upload Gallery for Memorial</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" id="addGalleryForm" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="memorial_id">Select Input</label>
+                                <select class="form-control" id="memorial" name="memorial_id">
+                                </select>
+                                <span class="text-danger memorial_id_error"></span>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="image" name="image[]" multiple>
+                                    <label class="custom-file-label" for="image">Choose file</label>
+                                </div>
+                                <span class="text-danger image_error"></span>
+                            </div>
+                        </div>
+                    </div><!--end row-->
+                </div><!--end modal-body-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div><!--end modal-footer-->
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="deleteMemorial" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
@@ -285,6 +326,54 @@
             $(document).find('span.error-text').text('');
         });
 
+        $(document).on('click', '#addGalleryButton', function(e) {
+            e.preventDefault();
+            $('#addGallery').modal('show');
+            $(document).find('span.error-text').text('');
+            $.ajax({
+                type: "GET",
+                url: "fetchMemorials",
+                dataType: "json",
+                success: function(response) {
+                    var memorial_id = $('#memorial');
+                    $('#memorial').children().remove().end();
+                    $.each(response.memorials, function(memorial) {
+                        memorial_id.append($("<option />").val(response.memorials[memorial].id).text(response.memorials[memorial].id + ' - ' + response.memorials[memorial].title));
+                    });
+                }
+            });
+        });
+
+        $(document).on('submit', '#addGalleryForm', function(e) {
+            e.preventDefault();
+            let formDate = new FormData($('#addGalleryForm')[0]);
+            $.ajax({
+                type: "post",
+                url: "addGallery",
+                data: formDate,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $(document).find('span.error-text').text('');
+                },
+                success: function(response) {
+                    if (response.status == 0) {
+                        $('#addGallery').modal('show')
+                        $.each(response.error, function(prefix, val) {
+                            $('span.' + prefix + '_error').text(val[0]);
+                        });
+                    } else {
+                        $('#addGalleryForm')[0].reset();
+                        $('#addGallery').modal('hide');
+                        fetchMemorials();
+                    }
+                },
+                error: function(error) {
+                    $('#addGallery').modal('show')
+                }
+            });
+        });
+
         $(document).on('click', '.delete_btn', function(e) {
             e.preventDefault();
             var memorial_id = $(this).val();
@@ -309,7 +398,6 @@
                 }
             });
         });
-        
         $(document).on('click', '.edit_btn', function(e) {
             e.preventDefault();
             var memorial_id = $(this).val();
@@ -379,7 +467,8 @@
                     $('#editMemorial').modal('show');
                 }
             });
-        })
+        });
+
         $(document).on('submit', '#createMemorialForm', function(e) {
             e.preventDefault();
             let formDate = new FormData($('#createMemorialForm')[0]);
