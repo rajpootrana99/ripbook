@@ -25,18 +25,31 @@ class Memorial extends Model
         'feature_image',
     ];
 
-    public function getVisibilityAttribute($attribute){
+    public function getVisibilityAttribute($attribute)
+    {
         return $this->visibilityOptions()[$attribute] ?? 0;
     }
 
-    public function visibilityOptions(){
+    public function visibilityOptions()
+    {
         return [
             1 => 'Private',
             0 => 'Public',
         ];
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
+    }
+
+    public function Gelleries()
+    {
+        return $this->hasMany(Gellery::class);
+    }
+
+    public function notices()
+    {
+        return $this->hasMany(Notice::class);
     }
 }
