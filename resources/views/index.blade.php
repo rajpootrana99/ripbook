@@ -302,7 +302,7 @@
             </div>
             <div class="horizontal_slider_container">
                 <div class="horizontal_slide">
-                    @if($memorials)
+                    @if($memorials->count() > 0)
                     @foreach($memorials as $memorial)
                     <div class="item_container">
                         <img src="{{ asset('storage/'.$memorial->feature_image)}}" alt="" class="item_picture">
