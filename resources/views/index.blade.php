@@ -316,6 +316,8 @@
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <h4>Nothing yet</h4>
                     @endif
                 </div>
             </div>
