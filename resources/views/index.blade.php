@@ -302,72 +302,21 @@
             </div>
             <div class="horizontal_slider_container">
                 <div class="horizontal_slide">
+                    @if($memorials)
+                    @foreach($memorials as $memorial)
                     <div class="item_container">
-                        <img src="{{ asset('asset/images/horizontal_slider_1.png')}}" alt="" class="item_picture">
+                        <img src="{{ asset('storage/'.$memorial->feature_image)}}" alt="" class="item_picture">
                         <div class="item_information">
-                            <div class="item_country">India</div>
+                            <div class="item_country">{{ $memorial->pob }}</div>
                             <a href="{{ route('single-memorial') }}">
-                                <div class="item_name">Mrs Manonmani Sokkalingam</div>
+                                <div class="item_name">{{ $memorial->title }}</div>
                             </a>
-                            <div class="lifetime">1945&mdash;2022</div>
+                            <div class="lifetime"> <strong>Date of Birth: </strong>{{ $memorial->dob }} <strong>Date of Death: </strong>{{ $memorial->dod }}</div>
                             <div class="time_passed">1 hour ago</div>
                         </div>
                     </div>
-                    <div class="item_container">
-                        <img src="{{ asset('asset/images/horizontal_slider_2.png')}}" alt="" class="item_picture">
-                        <div class="item_information">
-                            <div class="item_country">India</div>
-                            <a href="{{ route('single-memorial') }}">
-                                <div class="item_name">Mrs Manonmani Sokkalingam</div>
-                            </a>
-                            <div class="lifetime">1945&mdash;2022</div>
-                            <div class="time_passed">1 hour ago</div>
-                        </div>
-                    </div>
-                    <div class="item_container">
-                        <img src="{{ asset('asset/images/horizontal_slider_3.png')}}" alt="" class="item_picture">
-                        <div class="item_information">
-                            <div class="item_country">India</div>
-                            <a href="{{ route('single-memorial') }}">
-                                <div class="item_name">Mrs Manonmani Sokkalingam</div>
-                            </a>
-                            <div class="lifetime">1945&mdash;2022</div>
-                            <div class="time_passed">1 hour ago</div>
-                        </div>
-                    </div>
-                    <div class="item_container">
-                        <img src="{{ asset('asset/images/horizontal_slider_4.png')}}" alt="" class="item_picture">
-                        <div class="item_information">
-                            <div class="item_country">India</div>
-                            <a href="{{ route('single-memorial') }}">
-                                <div class="item_name">Mrs Manonmani Sokkalingam</div>
-                            </a>
-                            <div class="lifetime">1945&mdash;2022</div>
-                            <div class="time_passed">1 hour ago</div>
-                        </div>
-                    </div>
-                    <div class="item_container">
-                        <img src="{{ asset('asset/images/horizontal_slider_5.png')}}" alt="" class="item_picture">
-                        <div class="item_information">
-                            <div class="item_country">India</div>
-                            <a href="{{ route('single-memorial') }}">
-                                <div class="item_name">Mrs Manonmani Sokkalingam</div>
-                            </a>
-                            <div class="lifetime">1945&mdash;2022</div>
-                            <div class="time_passed">1 hour ago</div>
-                        </div>
-                    </div>
-                    <div class="item_container">
-                        <img src="{{ asset('asset/images/horizontal_slider_6.png')}}" alt="" class="item_picture">
-                        <div class="item_information">
-                            <div class="item_country">India</div>
-                            <a href="{{ route('single-memorial') }}">
-                                <div class="item_name">Mrs Manonmani Sokkalingam</div>
-                            </a>
-                            <div class="lifetime">1945&mdash;2022</div>
-                            <div class="time_passed">1 hour ago</div>
-                        </div>
-                    </div>
+                    @endforeach
+                    @endif
                 </div>
             </div>
             <div class="slider_controls"></div>
@@ -654,7 +603,7 @@
                 <div class="modal-header">
                     <h5 class="modal-title">PAYMENT</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                        <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
@@ -673,7 +622,7 @@
                                         <input type="text" name="name" id="card-holder-name" placeholder="mr. john deo" />
                                         <span class="text-danger name_error"></span>
                                     </div>
-                                    <div class="form-group" >
+                                    <div class="form-group">
                                         <span>Card Details :</span>
                                         <div id="card-element" class="form-control" style='height: 2.4em; padding-top: .7em;'></div>
                                     </div>
@@ -700,96 +649,98 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script>
-    $(document).ready(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        const stripe = Stripe('{{ env('STRIPE_KEY') }}')
-        const elements = stripe.elements();
-        const cardElement = elements.create('card')
-
-        $(document).on('click', '#buySubscriptionButton', function(e) {
-            e.preventDefault();
-            var plan_id = $(this).val();
-            $.ajax({
-                type: "GET",
-                url: "plan/"+plan_id,
-                dataType: "json",
-                success: function(response) {
-                    if(response.status==0){
-                        alert(response.message);
-                    }
-                    else{
-                        $('#cardModal').modal('show');
-                        $('#plan_id').val(plan_id)
-                        cardElement.mount('#card-element')
-                        $('#purchase_button').attr('data-secret', response.intent.client_secret);
-                    }
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-        });
 
-        $(document).on('submit', '#payment-form', async function(e) {
-            e.preventDefault();
-            const purchaseBtn =  document.getElementById('purchase_button');
-            // console.log(purchaseBtn);
-            const form = document.getElementById('payment-form');
-            const cardHolderName = $('#card-holder-name');
-            purchaseBtn.disabled = true;
-            const { setupIntent, error } = await stripe.confirmCardSetup(
-                purchaseBtn.dataset.secret, {
-                    payment_method: {
-                        card: cardElement,
-                        billing_details: {
-                            name: cardHolderName.value
-                        }
-                    }
-                }
-            );
+            const stripe = Stripe('{{ env('
+                STRIPE_KEY ') }}')
+            const elements = stripe.elements();
+            const cardElement = elements.create('card')
 
-            if(error){
-                purchaseBtn.disable = false
-            }
-            else{
-                let token = document.createElement('input');
-                token.setAttribute('type', 'hidden');
-                token.setAttribute('name', 'token');
-                token.setAttribute('value', setupIntent.payment_method);
-                form.appendChild(token);
-                let formDate = new FormData($('#payment-form')[0]);
+            $(document).on('click', '#buySubscriptionButton', function(e) {
+                e.preventDefault();
+                var plan_id = $(this).val();
                 $.ajax({
-                    type: "post",
-                    url: "subscription",
-                    data: formDate,
-                    contentType: false,
-                    processData: false,
-                    beforeSend: function() {
-                        $(document).find('span.error-text').text('');
-                    },
+                    type: "GET",
+                    url: "plan/" + plan_id,
+                    dataType: "json",
                     success: function(response) {
                         if (response.status == 0) {
-                            $('#cardModal').modal('show')
-                            $.each(response.error, function(prefix, val) {
-                                $('span.' + prefix + '_error').text(val[0]);
-                            });
-                        } else {
-                            $('#payment-form')[0].reset();
-                            $('#cardModal').modal('hide');
                             alert(response.message);
+                        } else {
+                            $('#cardModal').modal('show');
+                            $('#plan_id').val(plan_id)
+                            cardElement.mount('#card-element')
+                            $('#purchase_button').attr('data-secret', response.intent.client_secret);
                         }
-                    },
-                    error: function(error) {
-                        $('#cardModal').modal('show')
                     }
                 });
-            }
-        });
+            });
 
-    });
-</script>
+            $(document).on('submit', '#payment-form', async function(e) {
+                e.preventDefault();
+                const purchaseBtn = document.getElementById('purchase_button');
+                // console.log(purchaseBtn);
+                const form = document.getElementById('payment-form');
+                const cardHolderName = $('#card-holder-name');
+                purchaseBtn.disabled = true;
+                const {
+                    setupIntent,
+                    error
+                } = await stripe.confirmCardSetup(
+                    purchaseBtn.dataset.secret, {
+                        payment_method: {
+                            card: cardElement,
+                            billing_details: {
+                                name: cardHolderName.value
+                            }
+                        }
+                    }
+                );
+
+                if (error) {
+                    purchaseBtn.disable = false
+                } else {
+                    let token = document.createElement('input');
+                    token.setAttribute('type', 'hidden');
+                    token.setAttribute('name', 'token');
+                    token.setAttribute('value', setupIntent.payment_method);
+                    form.appendChild(token);
+                    let formDate = new FormData($('#payment-form')[0]);
+                    $.ajax({
+                        type: "post",
+                        url: "subscription",
+                        data: formDate,
+                        contentType: false,
+                        processData: false,
+                        beforeSend: function() {
+                            $(document).find('span.error-text').text('');
+                        },
+                        success: function(response) {
+                            if (response.status == 0) {
+                                $('#cardModal').modal('show')
+                                $.each(response.error, function(prefix, val) {
+                                    $('span.' + prefix + '_error').text(val[0]);
+                                });
+                            } else {
+                                $('#payment-form')[0].reset();
+                                $('#cardModal').modal('hide');
+                                alert(response.message);
+                            }
+                        },
+                        error: function(error) {
+                            $('#cardModal').modal('show')
+                        }
+                    });
+                }
+            });
+
+        });
+    </script>
 </body>
 
 </html>
