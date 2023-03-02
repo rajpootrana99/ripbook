@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('memorial_id');
             $table->string('notice');
             $table->string('date');
-            $table->string('description');
+            $table->string('description')->nullable()->default(' ');
             $table->timestamps();
         });
     }

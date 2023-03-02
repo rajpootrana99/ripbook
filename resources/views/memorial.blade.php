@@ -15,7 +15,7 @@
                     <div class="iq-card-body">
                         <div>
                             <span class="float-right mb-3 mr-2">
-                                <button type="button" class="btn btn-sm iq-bg-success mb-1" data-toggle="modal" data-target=".bd-example-modal-sm"><i class="ri-add-fill"><span class="pl-1">Add Notices</span></i>
+                                <button type="button" class="btn btn-sm iq-bg-success mb-1" data-toggle="modal" data-target="#addNotice" id="addNoticeButton"><i class="ri-add-fill"><span class="pl-1">Add Notices</span></i>
                                 </button>
                                 <button type="button" class="btn btn-sm iq-bg-danger mb-1" data-toggle="modal" data-target="#addGallery" id="addGalleryButton"><i class="ri-add-fill"><span class="pl-1">Add Gallery</span></i>
                                 </button>
@@ -234,8 +234,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="memorial_id">Select Input</label>
-                                <select class="form-control" id="memorial" name="memorial_id">
+                                <label for="memorial_id">Select Memorial</label>
+                                <select class="form-control" id="gallery_memorial_id" name="memorial_id">
                                 </select>
                                 <span class="text-danger memorial_id_error"></span>
                             </div>
@@ -248,6 +248,50 @@
                                 </div>
                                 <span class="text-danger image_error"></span>
                             </div>
+                        </div>
+                    </div><!--end row-->
+                </div><!--end modal-body-->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div><!--end modal-footer-->
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addNotice" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Notice for Memorial</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" id="addNoticeForm" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <label for="memorial_id">Select Memorial</label>
+                                <select class="form-control" id="notice_memorial_id" name="memorial_id">
+                                </select>
+                                <span class="text-danger memorial_id_error"></span>
+                            </div>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <input type="text" class="form-control" style="height: 40px;" id="notice" name="notice" placeholder="Notice of">
+                            <span class="text-danger notice_error"></span>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <input type="text" class="form-control" style="height: 40px;" id="date" name="date" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date">
+                            <span class="text-danger date_error"></span>
+                        </div>
+                        <div class="form-group col-sm-12">
+                            <textarea class="form-control" name="description" id="description" rows="3" style="line-height: 22px" placeholder="Write Description..."></textarea>
+                            <span class="text-danger description_error"></span>
                         </div>
                     </div><!--end row-->
                 </div><!--end modal-body-->
@@ -326,6 +370,54 @@
             $(document).find('span.error-text').text('');
         });
 
+        $(document).on('click', '#addNoticeButton', function(e) {
+            e.preventDefault();
+            $('#addNotice').modal('show');
+            $(document).find('span.error-text').text('');
+            $.ajax({
+                type: "GET",
+                url: "fetchMemorials",
+                dataType: "json",
+                success: function(response) {
+                    var memorial_id = $('#notice_memorial_id');
+                    $('#memorial').children().remove().end();
+                    $.each(response.memorials, function(memorial) {
+                        memorial_id.append($("<option />").val(response.memorials[memorial].id).text(response.memorials[memorial].id + ' - ' + response.memorials[memorial].title));
+                    });
+                }
+            });
+        });
+
+        $(document).on('submit', '#addNoticeForm', function(e) {
+            e.preventDefault();
+            let formDate = new FormData($('#addNoticeForm')[0]);
+            $.ajax({
+                type: "post",
+                url: "notice",
+                data: formDate,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $(document).find('span.error-text').text('');
+                },
+                success: function(response) {
+                    if (response.status == 0) {
+                        $('#addNotice').modal('show')
+                        $.each(response.error, function(prefix, val) {
+                            $('span.' + prefix + '_error').text(val[0]);
+                        });
+                    } else {
+                        $('#addNoticeForm')[0].reset();
+                        $('#addNotice').modal('hide');
+                        fetchMemorials();
+                    }
+                },
+                error: function(error) {
+                    $('#addNotice').modal('show')
+                }
+            });
+        });
+
         $(document).on('click', '#addGalleryButton', function(e) {
             e.preventDefault();
             $('#addGallery').modal('show');
@@ -335,7 +427,7 @@
                 url: "fetchMemorials",
                 dataType: "json",
                 success: function(response) {
-                    var memorial_id = $('#memorial');
+                    var memorial_id = $('#gallery_memorial_id');
                     $('#memorial').children().remove().end();
                     $.each(response.memorials, function(memorial) {
                         memorial_id.append($("<option />").val(response.memorials[memorial].id).text(response.memorials[memorial].id + ' - ' + response.memorials[memorial].title));

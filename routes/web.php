@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MemorialController;
+use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/fetchMemorials', [MemorialController::class, 'fetchMemorials'])->name('memorial.get');
     Route::post('subscription', [PlanController::class, 'subscription'])->name('subscription.create');
     Route::post('/addGallery', [MemorialController::class, 'addGallery']);
+    Route::resource('notice', NoticeController::class);
 });
 Route::resource('plan', PlanController::class);
 
