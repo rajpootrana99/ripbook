@@ -317,7 +317,7 @@
                     </div>
                     @endforeach
                     @else
-                    <h4>Nothing yet</h4>
+                    <h5 class="text-center">Nothing yet</h5>
                     @endif
                 </div>
             </div>
