@@ -179,114 +179,44 @@
                     <div class="top_cover"></div>
                     <div class="d-flex vertical_slide">
                         <div class="vertical_slide_1">
-                            <div class="item_container">
-                                <img loading="lazy" src="{{ asset('asset/images/vertical_slideer_img_1.png')}}" class="item_picture" alt="" srcset="">
-                                <div class="item_information">
-                                    <div class="item_country">India</div>
-                                    <a href="{{ route('single-memorial') }}">
-                                        <div class="item_name">Mrs Manonmani Sokkalingam</div>
-                                    </a>
-                                    <div class="time_of_death">
-                                        <div class="lifetime">1945&mdash;2021</div>
-                                        <div class="time_passed">1 hour ago</div>
+                            @if($left_memorials->count() > 0)
+                            @foreach($left_memorials as $left_memorial)
+                                <div class="item_container">
+                                    <img loading="lazy" src="{{ asset('storage/'.$left_memorial->feature_image)}}" class="item_picture" alt="" srcset="">
+                                    <div class="item_information">
+                                        <div class="item_country">{{ $left_memorial->pob }}</div>
+                                        <a href="{{ route('single-memorial') }}">
+                                            <div class="item_name">{{ $left_memorial->title }}</div>
+                                        </a>
+                                        <div class="time_of_death">
+                                            <div class="lifetime">Date of Birth: {{ $left_memorial->dob }}</div>
+                                            <div class="time_passed">Date of Death: {{ $left_memorial->dod }}</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item_container">
-                                <img loading="lazy" src="{{ asset('asset/images/vertical_slideer_img_1.png')}}" class="item_picture" alt="" srcset="">
-                                <div class="item_information">
-                                    <div class="item_country">India</div>
-                                    <a href="{{ route('single-memorial') }}">
-                                        <div class="item_name">Mrs Manonmani Sokkalingam</div>
-                                    </a>
-                                    <div class="time_of_death">
-                                        <div class="lifetime">1945&mdash;2021</div>
-                                        <div class="time_passed">1 hour ago</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_container">
-                                <img loading="lazy" src="{{ asset('asset/images/vertical_slideer_img_2.png')}}" class="item_picture" alt="" srcset="">
-                                <div class="item_information">
-                                    <div class="item_country">Germany</div>
-                                    <a href="{{ route('single-memorial') }}">
-                                        <div class="item_name">Late Srikanthan Naguleswary</div>
-                                    </a>
-                                    <div class="time_of_death">
-                                        <div class="lifetime">1945&mdash;2021</div>
-                                        <div class="time_passed">1 hour ago</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_container">
-                                <img loading="lazy" src="{{ asset('asset/images/vertical_slideer_img_3.png')}}" class="item_picture" alt="" srcset="">
-                                <div class="item_information">
-                                    <div class="item_country">Italy</div>
-                                    <a href="{{ route('single-memorial') }}">
-                                        <div class="item_name">Late Srikanthan Naguleswary</div>
-                                    </a>
-                                    <div class="time_of_death">
-                                        <div class="lifetime">1945&mdash;2021</div>
-                                        <div class="time_passed">1 hour ago</div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            @endforeach
+                            @else
+                                <h5 class="text-center">Nothing yet</h5>
+                            @endif
                         </div>
                         <div class="vertical_slide_2">
-                            <div class="item_container">
-                                <img loading="lazy" src="{{ asset('asset/images/vertical_slideer_img_3.png')}}" class="item_picture" alt="" srcset="">
-                                <div class="item_information">
-                                    <div class="item_country">India</div>
-                                    <a href="{{ route('single-memorial') }}">
-                                        <div class="item_name">Mrs Manonmani Sokkalingam</div>
-                                    </a>
-                                    <div class="time_of_death">
-                                        <div class="lifetime">1945&mdash;2021</div>
-                                        <div class="time_passed">1 hour ago</div>
+                            @if($right_memorials->count() > 0)
+                            @foreach($right_memorials as $right_memorial)
+                                <div class="item_container">
+                                    <img loading="lazy" src="{{ asset('storage/'.$right_memorial->feature_image)}}" class="item_picture" alt="" srcset="">
+                                    <div class="item_information">
+                                        <div class="item_country">{{ $right_memorial->pob }}</div>
+                                        <a href="{{ route('single-memorial') }}">
+                                            <div class="item_name">{{ $right_memorial->title }}</div>
+                                        </a>
+                                        <div class="time_of_death">
+                                            <div class="lifetime">Date of Birth: {{ $right_memorial->dob }}</div>
+                                            <div class="time_passed">Date of Death: {{ $right_memorial->dod }}</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="item_container">
-                                <img loading="lazy" src="{{ asset('asset/images/vertical_slideer_img_3.png')}}" class="item_picture" alt="" srcset="">
-                                <div class="item_information">
-                                    <div class="item_country">India</div>
-                                    <a href="{{ route('single-memorial') }}">
-                                        <div class="item_name">Mrs Manonmani Sokkalingam</div>
-                                    </a>
-                                    <div class="time_of_death">
-                                        <div class="lifetime">1945&mdash;2021</div>
-                                        <div class="time_passed">1 hour ago</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_container">
-                                <img loading="lazy" src="{{ asset('asset/images/vertical_slideer_img_4.png')}}" class="item_picture" alt="" srcset="">
-                                <div class="item_information">
-                                    <div class="item_country">Germany</div>
-                                    <a href="{{ route('single-memorial') }}">
-                                        <div class="item_name">Late Srikanthan Naguleswary</div>
-                                    </a>
-                                    <div class="time_of_death">
-                                        <div class="lifetime">1945&mdash;2021</div>
-                                        <div class="time_passed">1 hour ago</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item_container">
-                                <img loading="lazy" src="{{ asset('asset/images/vertical_slideer_img_4.png')}}" class="item_picture" alt="" srcset="">
-                                <div class="item_information">
-                                    <div class="item_country">Italy</div>
-                                    <a href="{{ route('single-memorial') }}">
-                                        <div class="item_name">Late Srikanthan Naguleswary</div>
-                                    </a>
-                                    <div class="time_of_death">
-                                        <div class="lifetime">1945&mdash;2021</div>
-                                        <div class="time_passed">1 hour ago</div>
-                                    </div>
-                                </div>
-                            </div>
-
+                            @endforeach
+                            @endif
                         </div>
                     </div>
                     <div class="bottom_cover"></div>

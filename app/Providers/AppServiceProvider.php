@@ -27,9 +27,13 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        $left_memorials = Memorial::where('visibility', 0)->limit(4)->orderBy('id', 'DESC')->get();
+        $right_memorials = Memorial::where('visibility', 0)->limit(4)->orderBy('id', 'DESC')->get();
         $memorials = Memorial::where('visibility', 0)->limit(6)->orderBy('id', 'DESC')->get();
         View::share([
             'memorials' => $memorials,
+            'left_memorials' => $left_memorials,
+            'right_memorials' => $right_memorials,
         ]);
     }
 }
