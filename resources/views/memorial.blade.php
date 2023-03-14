@@ -466,6 +466,18 @@
             });
         });
 
+        $(document).on('click', '.view_btn', function(e) {
+            e.preventDefault();
+            var memorial_id = $(this).val();
+            $.ajax({
+                type: "GET",
+                url: 'memorial/' + memorial_id,
+                success: function(response) {
+                    console.log('success');
+                }
+            });
+        });
+
         $(document).on('click', '.delete_btn', function(e) {
             e.preventDefault();
             var memorial_id = $(this).val();

@@ -124,9 +124,10 @@ class MemorialController extends Controller
      * @param  \App\Models\Memorial  $memorial
      * @return \Illuminate\Http\Response
      */
-    public function show(Memorial $memorial)
+    public function show($memorial)
     {
-        //
+        $memorial = Memorial::with('gelleries', 'notices')->find($memorial);
+        return view('memorial-single', ['memorial' => $memorial]);
     }
 
     /**
