@@ -135,7 +135,21 @@
                         </div>
                     </div>
                     <a href="" class="tribute_now_button info_buttons"> <img src="{{ asset('asset/images/tribute_now.svg')}}" alt=""> Tribute Now</a>
-                    <a href="" class="share_button info_buttons"> <img src="{{ asset('asset/images/reply.svg')}}" alt=""> Share</a>
+                    <div class="likeShareBtnmt-3">
+                        <div id="fb-root"></div>
+                        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0" nonce="mQPuNecT"></script>
+                        <a target="_blank" 
+                            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" 
+                            class="share_button info_buttons fb-xfbml-parse-ignore"><img src="{{ asset('asset/images/reply.svg')}}" alt=""> Share</a>
+                    
+                        <div class="fb-share-button" 
+                            data-href="https://ripbook.arumsolutions.co/memorial/{{$memorial->id}}" 
+                            data-layout="" data-size="large">
+                            <a target="_blank" 
+                                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" 
+                                class="fb-xfbml-parse-ignore">Share</a></div>
+                    </div>
+                    
                 </div>
                 <div class="person_about_container">
                     <div class="small_title">Obituary</div>

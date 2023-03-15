@@ -24,12 +24,12 @@ Route::get('/', function () {
 Route::get('/single-memorial', function () {
     return view('memorial-single');
 })->name('single-memorial');
-
+Route::get('memorial/{memorial}', [MemorialController::class, 'show'])->name('memorial.show');
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::resource('memorial', MemorialController::class);
+    Route::resource('memorial', MemorialController::class)->except(['show']);;
     Route::get('/fetchMemorials', [MemorialController::class, 'fetchMemorials'])->name('memorial.get');
     Route::post('subscription', [PlanController::class, 'subscription'])->name('subscription.create');
     Route::post('/addGallery', [MemorialController::class, 'addGallery']);
