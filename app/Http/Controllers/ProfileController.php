@@ -3,38 +3,44 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\User;
+use App\Traits\ImageUpload;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
-    public function edit(Request $request): View
-    {
-        return view('profile.edit', [
-            'user' => $request->user(),
-        ]);
-    }
+    use ImageUpload;
 
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request)
     {
-        $request->user()->fill($request->validated());
-
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'min:3'],
+            'email' => ['required', 'email', 'exists:users'],
+            'phone' => ['required'],
+        ]);
+        if (!$validator->passes()) {
+            return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
         }
 
-        $request->user()->save();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        $user = User::find(Auth::id());
+        if($user->email == $request->email){
+            $user->update($request->all());
+            $this->storeImage($user);
+            return response()->json(['status' => 1, 'message' => 'User Profile Updated Successfully']);
+        } 
+        else {
+            return response()->json(['status' => 0, 'message' => 'User Profile not Updated Successfully']);
+        }
+        
+        
     }
 
     /**
@@ -56,5 +62,12 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function storeImage($user)
+    {
+        $user->update([
+            'image' => $this->imagePath('image', 'user', $user),
+        ]);
     }
 }

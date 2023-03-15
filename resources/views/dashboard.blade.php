@@ -36,14 +36,19 @@
                            </div>
                         </div>
                         <div class="iq-card-body">
-                           <form>
+                           <form id="updateUserProfile" enctype="multipart/form-data">
+                              @csrf
                               <div class="form-group row align-items-center">
                                  <div class="col-md-12">
                                     <div class="profile-img-edit">
+                                       @if(Auth::user()->image)
+                                          <img class="profile-pic" src="{{ asset('storage/'.Auth::user()->image) }}" alt="profile-pic">
+                                       @else
                                        <img class="profile-pic" src="{{ asset('asset/admin/images/user/11.png')}}" alt="profile-pic">
+                                       @endif
                                        <div class="p-image">
                                           <i class="ri-pencil-line upload-button"></i>
-                                          <input class="file-upload" type="file" accept="image/*"/>
+                                          <input class="file-upload" type="file" name="image" accept="image/*"/>
                                        </div>
                                     </div>
                                  </div>
@@ -51,40 +56,37 @@
                               <div class=" row align-items-center">
                                  <div class="form-group col-sm-6">
                                     <label for="name">Name:</label>
-                                    <input type="text" class="form-control" id="name" value="{{ Auth::user()->name }}">
+                                    <input type="text" class="form-control" name="name" id="name" value="{{ Auth::user()->name }}">
+                                    <span class="text-danger name_error"></span>
                                  </div>
                                  <div class="form-group col-sm-6">
                                     <label for="email">Email:</label>
-                                    <input type="email" class="form-control" id="email" value="{{ Auth::user()->email }}" disabled>
+                                    <input type="email" class="form-control" name="email" id="email" value="{{ Auth::user()->email }}">
+                                    <span class="text-danger email_error"></span>
                                  </div>
                                  <div class="form-group col-sm-6">
                                     <label for="phone">Phone:</label>
-                                    <input type="number" class="form-control" id="phone" value="{{ Auth::user()->phone }}">
+                                    <input type="number" class="form-control" name="phone" id="phone" value="{{ Auth::user()->phone }}">
+                                    <span class="text-danger phone_error"></span>
                                  </div>
                                  <div class="form-group col-sm-6">
                                     <label for="street">Street Address:</label>
-                                    <input type="text" class="form-control" id="street" placeholder="Street # 1">
+                                    <input type="text" class="form-control" id="street" name="street" placeholder="Street # 1" value="{{ Auth::user()->street }}">
                                  </div>
                                  <div class="form-group col-sm-6">
                                     <label for="cname">City:</label>
-                                    <input type="text" class="form-control" id="cname" placeholder="Colombo">
+                                    <input type="text" class="form-control" name="city" id="city" placeholder="Colombo" value="{{ Auth::user()->city }}">
                                  </div>
                                  <div class="form-group col-sm-6">
-                                    <label for="pcode">City:</label>
-                                    <input type="number" class="form-control" id="pcode" placeholder="60000">
+                                    <label for="pcode">Postal Code:</label>
+                                    <input type="number" class="form-control" name="pcode" id="pcode" placeholder="60000" value="{{ Auth::user()->pcode }}">
                                  </div>
                                  <div class="form-group col-sm-6">
-                                    <label>Country:</label>
-                                    <select class="form-control" id="exampleFormControlSelect3">
-                                       <option>Caneda</option>
-                                       <option>Noida</option>
-                                       <option selected="">USA</option>
-                                       <option>Sirilanka</option>
-                                       <option>Africa</option>
-                                    </select>
+                                    <label for="Contry">Country:</label>
+                                    <input type="text" class="form-control" name="country" id="country" placeholder="Sirilanka" value="{{ Auth::user()->country }}">
                                  </div>
                               </div>
-                              <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                              <button type="submit" class="btn btn-primary mr-2">Save</button>
                               <button type="reset" class="btn iq-bg-danger">Cancle</button>
                            </form>
                         </div>
@@ -98,19 +100,23 @@
                            </div>
                         </div>
                         <div class="iq-card-body">
-                           <form>
+                           <form id="changePassword">
+                              @csrf
+                              @method('PUT')
                               <div class="form-group">
-                                 <label for="cpass">Current Password:</label>
-                                 <a href="javascripe:void();" class="float-right">Forgot Password</a>
-                                    <input type="Password" class="form-control" id="cpass" value="">
+                                 <label for="current_password">Current Password:</label>
+                                    <input type="Password" class="form-control" name="current_password" id="current_password">
+                                    <span class="text-danger current_password_error"></span>
                                  </div>
                               <div class="form-group">
-                                 <label for="npass">New Password:</label>
-                                 <input type="Password" class="form-control" id="npass" value="">
+                                 <label for="password">New Password:</label>
+                                 <input type="Password" class="form-control" name="password" id="password">
+                                 <span class="text-danger password_error"></span>
                               </div>
                               <div class="form-group">
-                                 <label for="vpass">Verify Password:</label>
-                                    <input type="Password" class="form-control" id="vpass" value="">
+                                 <label for="password_confirmation">Verify Password:</label>
+                                    <input type="Password" class="form-control" name="password_confirmation" id="password_confirmation">
+                                    <span class="text-danger password_confirmation_error"></span>
                               </div>
                               <button type="submit" class="btn btn-primary mr-2">Submit</button>
                               <button type="reset" class="btn iq-bg-danger">Cancle</button>
@@ -124,4 +130,69 @@
       </div>
    </div>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $(document).on('submit', '#updateUserProfile', function(e) {
+            e.preventDefault();
+            let formData = new FormData($('#updateUserProfile')[0]);
+            $.ajax({
+                type: "post",
+                url: "updateUser",
+                data: formData,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $(document).find('span.error-text').text('');
+                },
+                success: function(response) {
+                    if (response.status == 0) {
+                        $.each(response.error, function(prefix, val) {
+                            $('span.' + prefix + '_error').text(val[0]);
+                        });
+                    } else {
+                        $('#updateUserProfile')[0].reset();
+                        location.reload();
+                    }
+                },
+            });
+        });
+
+        $(document).on('submit', '#changePassword', function(e) {
+            e.preventDefault();
+            let formData = new FormData($('#changePassword')[0]);
+            console.log(formData)
+            $.ajax({
+               type: "post",
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content'),
+                    '_method': 'put'
+                },
+                url: "password",
+                data: formData,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                    $(document).find('span.error-text').text('');
+                },
+                success: function(response) {
+                    if (response.status == 0) {
+                        $.each(response.error, function(prefix, val) {
+                            $('span.' + prefix + '_error').text(val[0]);
+                        });
+                    } else {
+                        $('#changePassword')[0].reset();
+                        location.reload();
+                    }
+                },
+            });
+        });
+    });
+</script>
 @endsection
