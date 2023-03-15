@@ -357,7 +357,7 @@
                             <td>' + memorial.dod + '</td>\
                             <td>' + memorial.residence + '</td>\
                             <td>' + memorial.religion + '</td>\
-                            <td><button value="' + memorial.id + '" style="border: none; background-color: #fff" class="view_btn"><i class="fa fa-eye"></i></button></td>\
+                            <td><a href="memorial/'+memorial.id+'" style="border: none; background-color: #fff" ><i class="fa fa-eye"></i></a></td>\
                             <td><button value="' + memorial.id + '" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
                             <td><button value="' + memorial.id + '" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
                     </tr>');
@@ -462,18 +462,6 @@
                 },
                 error: function(error) {
                     $('#addGallery').modal('show')
-                }
-            });
-        });
-
-        $(document).on('click', '.view_btn', function(e) {
-            e.preventDefault();
-            var memorial_id = $(this).val();
-            $.ajax({
-                type: "GET",
-                url: 'memorial/' + memorial_id,
-                success: function(response) {
-                    console.log('success');
                 }
             });
         });
