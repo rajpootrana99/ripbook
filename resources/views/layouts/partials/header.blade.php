@@ -28,7 +28,11 @@
             <ul class="navbar-list">
                 <li>
                     <a href="#" class="search-toggle iq-waves-effect d-flex align-items-center bg-primary rounded">
+                        @if(Auth::user()->image)
+                            <img src="{{ asset('storage/'.Auth::user()->image) }}" class="img-fluid rounded mr-3" alt="user">
+                        @else
                         <img src="{{ asset('asset/admin/images/user/1.jpg')}}" class="img-fluid rounded mr-3" alt="user">
+                        @endif
                         <div class="caption">
                             <h6 class="mb-0 line-height text-white">{{Auth::user()->name}}</h6>
                             <span class="font-size-12 text-white">Available</span>
