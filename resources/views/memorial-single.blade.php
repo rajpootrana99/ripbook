@@ -184,7 +184,7 @@
             </div>
             <div class="horizontal_slider_wrapper">
                 <button onclick="showSlider(this,'section_3')" class="h_slide_buttons h_slide_active">Tearful Tributes<sup>(06)</sup></button>
-                <button onclick="showSlider(this,'section_4')" class="h_slide_buttons">Gallery<sup>(50)</sup></button>
+                <button onclick="showSlider(this,'section_4')" class="h_slide_buttons">Gallery<sup>({{ count($memorial->gelleries) }})</sup></button>
                 <button onclick="showSlider(this,'section_5')" class="h_slide_buttons">Summary</button>
                 <button onclick="showSlider(this,'section_6')" class="h_slide_buttons">NOTICES<sup>(01)</sup></button>
             </div>
@@ -263,31 +263,19 @@
             </div>
         </div>
     </div>
-
     <div class="section section_4 d-none">
         <div class="main_section">
-            <div class="gallery_wrapper">
-                <div class="column">
-                    <img src="{{ asset('asset/images/gallery/kamala-euavs4jpg3@2x.png')}}" alt="" class="memory_image">
-                    <img src="{{ asset('asset/images/gallery/kamala-euavs4jpg4@2x.png')}}" alt="" class="memory_image">
-                    <img src="{{ asset('asset/images/gallery/kamala-euavs4jpg5@2x.png')}}" alt="" class="memory_image">
-
-                </div>
-                <div class="column">
-                    <img src="{{ asset('asset/images/gallery/kamala-euavs4jpg7@2x.png')}}" alt="" class="memory_image">
-                    <img src="{{ asset('asset/images/gallery/kamala-euavs4jpg8@2x.png')}}" alt="" class="memory_image">
-                    <img src="{{ asset('asset/images/gallery/kamala-euavs4jpg9@2x.png')}}" alt="" class="memory_image">
-
-                </div>
-                <div class="column">
-                    <img src="{{ asset('asset/images/gallery/kamala-euavs4jpg11@2x.png')}}" alt="" class="memory_image">
-                    <img src="{{ asset('asset/images/gallery/kamala-euavs4jpg12@2x.png')}}" alt="" class="memory_image">
-                    <img src="{{ asset('asset/images/gallery/kamala-euavs4jpg14@2x.png')}}" alt="" class="memory_image">
-
-                </div>
-                <div class="column">
-                    <img src="{{ asset('asset/images/gallery/kamala-euavs4jpg10@2x.png')}}" alt="" class="memory_image">
-                    <img src="{{ asset('asset/images/gallery/kamala-euavs4jpg6@2x.png')}}" alt="" class="memory_image">
+            <div class="container text-center">
+                <div class="row">
+                    @if(count($memorial->gelleries) > 0 )
+                    @foreach($memorial->gelleries as $gellery)
+                    <div class="col-sm-4 p-2">
+                        <img src="{{ asset($gellery->image)}}" alt="" class="memory_image">
+                    </div>
+                    @endforeach
+                    @else
+                    <div class="col-sm-12">No Gallery found</div>
+                    @endif
                 </div>
             </div>
         </div>
@@ -299,21 +287,21 @@
                 <div class="summaries">
                     <img src="{{ asset('asset/images/summary/flipflopssvgrepocom-2.svg')}}" alt="" class="event_picture">
                     <div class="summary_text_container">
-                        <div class="summary_name">Scales, Sri Lanka</div>
+                        <div class="summary_name">{{ $memorial->pob }}</div>
                         <div class="summary_relation">birth place</div>
                     </div>
                 </div>
                 <div class="summaries">
                     <img src="{{ asset('asset/images/summary/placeuipinsvgrepocom-1.svg')}}" alt="" class="event_picture">
                     <div class="summary_text_container">
-                        <div class="summary_name">Palai, Sri Lanka</div>
+                        <div class="summary_name">{{ $memorial->residence }}</div>
                         <div class="summary_relation">Place of residence</div>
                     </div>
                 </div>
                 <div class="summaries">
                     <img src="{{ asset('asset/images/summary/religioncrosssvgrepocom-1.svg')}}" alt="" class="event_picture">
                     <div class="summary_text_container">
-                        <div class="summary_name">Christian</div>
+                        <div class="summary_name">{{ $memorial->religion }}</div>
                         <div class="summary_relation">Religion</div>
                     </div>
                 </div>
