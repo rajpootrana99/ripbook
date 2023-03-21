@@ -15,6 +15,12 @@ return new class extends Migration
     {
         Schema::create('tearful_tributes', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('memorial_id');
+            $table->string('title');
+            $table->string('sub_title');
+            $table->string('description');
+            $table->string('country');
+            $table->string('date');
             $table->timestamps();
         });
     }

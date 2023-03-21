@@ -52,4 +52,9 @@ class Memorial extends Model
     {
         return $this->hasMany(Notice::class);
     }
+
+    public function tearfulTributes()
+    {
+        return $this->hasMany(TearfulTribute::class);
+    }
 }

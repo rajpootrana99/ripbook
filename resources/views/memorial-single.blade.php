@@ -108,6 +108,7 @@
 
     <div class="section section_1">
         <div class="main_section">
+        <input type="hidden" id="memorial" value="{{ $memorial->id }}">
             <div class="memorial_container">
                 <div class="person_container">
                     <img src="{{ asset('storage/'.$memorial->feature_image)}}" alt="" class="person_image">
@@ -194,72 +195,8 @@
 
     <div class="section section_3">
         <div class="main_section">
-            <div class="all_tributes_container">
-                <div class="tribute_item">
-                    <div class="l_item">
-                        <div class="tributee">
-                            <div class="tributer_name">Wreath Laid</div>
-                            <div class="tributer_comment">
-                                <img src="{{ asset('asset/images/comma.svg')}}" alt="" class="comma">
-                                RIP
-                            </div>
-
-                        </div>
-                        <div class="tributee_description">
-                            Our heartfelt condolences to you and your family Sivakaran, May her soul rest in peace.
-                        </div>
-                        <div class="tributee_location">
-                            Canada &#x2022; 2 years ago
-                        </div>
-                    </div>
-                    <div class="r_item">
-                        <img src="{{ asset('asset/images/flower1.png')}}" alt="" class="farewell_picture">
-                    </div>
-                </div>
-                <div class="tribute_item black_theme">
-                    <div class="l_item">
-                        <div class="tributee">
-                            <div class="tributer_name">Wreath Laid</div>
-                            <div class="tributer_comment">
-                                <img src="{{ asset('asset/images/comma.svg')}}" alt="" class="comma">
-                                RIP
-                            </div>
-
-                        </div>
-                        <div class="tributee_description">
-                            Even if your physical movements are gone, your emotional movements will remain with your children and loved ones forever
-                        </div>
-                        <div class="tributee_location">
-                            Canada &#x2022; 5 years ago
-                        </div>
-                    </div>
-                    <div class="r_item">
-                        <img src="{{ asset('asset/images/flower3png@2x.png')}}" alt="" class="farewell_picture">
-                    </div>
-                </div>
-                <div class="tribute_item">
-                    <div class="l_item">
-                        <div class="tributee">
-                            <div class="tributer_name">Wreath Laid</div>
-                            <div class="tributer_comment">
-                                <img src="{{ asset('asset/images/comma.svg')}}" alt="" class="comma">
-                                RIP
-                            </div>
-
-                        </div>
-                        <div class="tributee_description">
-                            <img src="{{ asset('asset/images/comma.svg')}}" alt="" class="comma">Even if your physical movements are gone, your emotional movements will remain with your children and loved ones forever
-                        </div>
-
-
-                        <div class="tributee_location">
-                            Canada &#x2022; 5 years ago
-                        </div>
-                    </div>
-                    <div class="r_item">
-                        <img src="{{ asset('asset/images/flower4png@2x.png')}}" alt="" class="farewell_picture">
-                    </div>
-                </div>
+            <div class="all_tributes_container" id="tributes">
+                
             </div>
         </div>
     </div>
@@ -369,31 +306,37 @@
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        <form id="tearfulTributeFrom">
+                        <form id="tearfulTributeFrom" method="POST">
                             @csrf
+                            <input type="hidden" name="memorial_id" id="memorial_id" >
                             <div class="row">
                                 <div class="col">
                                     <div class="inputBox">
                                         <span>Title</span>
-                                        <input type="text" name="title" id="" placeholder="Wreath Laid">
+                                        <input type="text" name="title" id="title" placeholder="Wreath Laid">
+                                        <span class="text-danger title_error error_text"></span>
                                     </div>
                                     <div class="inputBox">
                                         <span>Sub Title</span>
-                                        <input type="number" name="sub_title" id="" placeholder="RIP">
+                                        <input type="text" name="sub_title" id="sub_title" placeholder="RIP">
+                                        <span class="text-danger sub_title_error error_text"></span>
                                     </div>
                                     <div class="inputBox">
                                         <span>Description</span>
-                                        <textarea name="description" id="" cols="30" rows="3" placeholder="Write your tribute..."></textarea>
+                                        <textarea name="description" id="description" cols="30" rows="3" placeholder="Write your tribute..."></textarea>
+                                        <span class="text-danger description_error error_text"></span>
                                     </div>
 
                                     <div class="flex">
                                         <div class="inputBox">
                                             <span>Country</span>
-                                            <input type="text" name="country" id="" placeholder="Sri Lanka">
+                                            <input type="text" name="country" id="country" placeholder="Sri Lanka">
+                                            <span class="text-danger country_error error_text"></span>
                                         </div>
                                         <div class="inputBox">
                                             <span>Date</span>
-                                            <input type="date" name="date" id="">
+                                            <input type="date" name="date" id="date">
+                                            <span class="text-danger date_error error_text"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -418,17 +361,93 @@
 
     <script>
         $(document).ready(function() {
+            const memorial_id = document.getElementById('memorial').value;
             $.ajaxSetup({
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
 
+            fetchTearfulTributes();
+
+            function fetchTearfulTributes() {
+            $.ajax({
+                type: "GET",
+                url: "../fetchTearfulTributes/"+memorial_id,
+                dataType: "json",
+                success: function(response) {
+                    $('#tributes').html("");
+                    var theme;
+                    $.each(response.tearfulTributes, function(key, tearfulTribute) {
+                        if(key%2 == 0){
+                            theme = '';
+                        }
+                        else {
+                            theme = 'black_theme';
+                        }
+                        $('#tributes').append('<div class="tribute_item '+theme+'">\
+                            <div class="l_item">\
+                                <div class="tributee">\
+                                    <div class="tributer_name">'+tearfulTribute.title+'</div>\
+                                    <div class="tributer_comment">\
+                                        <img src="../asset/images/comma.svg" alt="" class="comma">\
+                                        '+tearfulTribute.sub_title+'\
+                                    </div>\
+                                </div>\
+                                <div class="tributee_description">\
+                                    '+tearfulTribute.description+'\
+                                </div>\
+                                <div class="tributee_location">\
+                                    '+tearfulTribute.country+' &#x2022; 5 years ago\
+                                </div>\
+                            </div>\
+                            <div class="r_item">\
+                                <img src="../asset/images/flower3png@2x.png" alt="" class="farewell_picture">\
+                            </div>\
+                        </div>');
+                    });
+                }
+            });
+        }
+
             $(document).on('click', '#tributeBtn', function(e) {
                 e.preventDefault();
                 $('#tributeModal').modal('show');
+                $('#memorial_id').val(memorial_id);
+                $('span.error_text').text('');
+                $('#tearfulTributeFrom')[0].reset();
             });
 
+            $(document).on('submit', '#tearfulTributeFrom', async function(e) {
+                e.preventDefault();        
+                let formData = new FormData($('#tearfulTributeFrom')[0]);
+                console.log(formData)
+                $.ajax({
+                    type: "post",
+                    url: "../tearfulTribute",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $(document).find('span.error_text').text('');
+                    },
+                    success: function(response) {
+                        if (response.status == 0) {
+                            $('#tributeModal').modal('show')
+                            $.each(response.error, function(prefix, val) {
+                                $('span.' + prefix + '_error').text(val[0]);
+                            });
+                        } else {
+                            $('#tearfulTributeFrom')[0].reset();
+                            $('#tributeModal').modal('hide');
+                            fetchTearfulTributes();
+                        }
+                    },
+                    error: function(error) {
+                        $('#tributeModal').modal('show')
+                    }
+                });
+            });
         });
     </script>
 </body>
