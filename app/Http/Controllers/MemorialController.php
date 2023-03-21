@@ -126,7 +126,7 @@ class MemorialController extends Controller
      */
     public function show($memorial)
     {
-        $memorial = Memorial::with('gelleries', 'notices')->find($memorial);
+        $memorial = Memorial::with('gelleries', 'notices', 'tearfulTributes')->find($memorial);
         return view('memorial-single', ['memorial' => $memorial]);
     }
 

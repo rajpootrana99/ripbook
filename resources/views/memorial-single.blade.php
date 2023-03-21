@@ -184,7 +184,7 @@
                 </div>
             </div>
             <div class="horizontal_slider_wrapper">
-                <button onclick="showSlider(this,'section_3')" class="h_slide_buttons h_slide_active">Tearful Tributes<sup>(06)</sup></button>
+                <button onclick="showSlider(this,'section_3')" class="h_slide_buttons h_slide_active">Tearful Tributes<sup>({{ count($memorial->tearfulTributes) }})</sup></button>
                 <button onclick="showSlider(this,'section_4')" class="h_slide_buttons">Gallery<sup>({{ count($memorial->gelleries) }})</sup></button>
                 <button onclick="showSlider(this,'section_5')" class="h_slide_buttons">Summary</button>
                 <button onclick="showSlider(this,'section_6')" class="h_slide_buttons">NOTICES<sup>(01)</sup></button>
@@ -377,6 +377,9 @@
                 dataType: "json",
                 success: function(response) {
                     $('#tributes').html("");
+                    if(response.status === false){
+                        $('#tributes').append('<div class="text-center">Post a Tearful Tribute</div>');
+                    }
                     var theme;
                     $.each(response.tearfulTributes, function(key, tearfulTribute) {
                         if(key%2 == 0){
