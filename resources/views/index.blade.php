@@ -108,6 +108,7 @@
     </div>
     <div class="section section_1">
         <div class="main_section">
+        <input type="hidden" id="stripe_key" value="{{ env('STRIPE_KEY') }}"/>
             <div class="left_section_1">
                 <div class="moto">
                     The most <span style="color:#ffffffa6;">beautiful tribute</span> for your departed loved one.
@@ -588,8 +589,9 @@
                 }
             });
 
-            const stripe = Stripe('{{ env('
-                STRIPE_KEY ') }}')
+            // const stripe = Stripe('{{ env('
+            //     STRIPE_KEY ') }}')
+            const stripe = Stripe(document.getElementById('stripe_key').value);
             const elements = stripe.elements();
             const cardElement = elements.create('card')
 

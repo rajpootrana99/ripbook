@@ -79,10 +79,12 @@ body {
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
+    cursor: pointer !important;
 }
 
 .logo_text {
+    cursor: pointer;
     text-decoration: none;
     font-size: 40px;
     font-family: var(--Source-Serif-Pro);
@@ -120,6 +122,7 @@ a {
     column-gap: 10px;
     width: max-content;
     align-items: center;
+    cursor: pointer;
 }
 
 .user_picture {

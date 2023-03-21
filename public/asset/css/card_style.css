@@ -17,23 +17,21 @@
     align-items: center;
 }
 
-.container form {
-    padding: 10px;
-}
-
-.container form .close {
+/* .container form {
+    /* padding: 10px; */
+} */
+/* 
+.close {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-}
-
-.container form .close:hover,
-.container form .close:focus {
+} 
+.close:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;
-}
+} */
 
 .container form .row {
     display: flex;
@@ -67,6 +65,18 @@
     padding: 10px 15px;
     font-size: 15px;
     text-transform: none;
+}
+
+.container form .row .col .inputBox textarea {
+    width: 100%;
+    border: 1px solid #ccc;
+    padding: 10px 15px;
+    font-size: 15px;
+    text-transform: none;
+}
+
+.container form .row .col .inputBox .description {
+    column-count: 5;
 }
 
 .container form .row .col .inputBox input:focus {

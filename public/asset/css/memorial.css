@@ -1,5 +1,9 @@
 /* SECTION 1 DESIGN BEGINS  */
 
+a {
+    text-decoration: none !important;
+    cursor: pointer !important;
+}
 
 .section_1{
     background-color: #F5F5F5;

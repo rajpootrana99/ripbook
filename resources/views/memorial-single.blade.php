@@ -19,8 +19,9 @@
     <link rel="stylesheet" href="{{ asset('asset/css/header.css')}}">
     <link rel="stylesheet" href="{{ asset('asset/css/memorial.css')}}">
     <link rel="stylesheet" href="{{ asset('asset/css/footer.css')}}">
+    <link rel="stylesheet" href="{{ asset('asset/css/card_style.css') }}">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
 
 </head>
 
@@ -134,7 +135,7 @@
                             {{ $memorial->dod}}
                         </div>
                     </div>
-                    <a href="" class="tribute_now_button info_buttons"> <img src="{{ asset('asset/images/tribute_now.svg')}}" alt=""> Tribute Now</a>
+                    <a class="tribute_now_button info_buttons" id="tributeBtn"> <img src="{{ asset('asset/images/tribute_now.svg')}}" alt=""> Tribute Now</a>
                     <div class="likeShareBtnmt-3">
                         <div id="fb-root"></div>
                         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0" nonce="mQPuNecT"></script>
@@ -147,7 +148,8 @@
                             data-layout="" data-size="large">
                             <a target="_blank" 
                                 href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" 
-                                class="fb-xfbml-parse-ignore">Share</a></div>
+                                class="fb-xfbml-parse-ignore">Share</a>
+                            </div>
                     </div>
                     
                 </div>
@@ -369,12 +371,78 @@
             </div>
         </div>
     </div>
+
+    <div class="modal" id="tributeModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tribute</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="container">
+                        <form id="tearfulTributeFrom">
+                            @csrf
+                            <div class="row">
+                                <div class="col">
+                                    <div class="inputBox">
+                                        <span>Title</span>
+                                        <input type="text" name="title" id="" placeholder="Wreath Laid">
+                                    </div>
+                                    <div class="inputBox">
+                                        <span>Sub Title</span>
+                                        <input type="number" name="sub_title" id="" placeholder="RIP">
+                                    </div>
+                                    <div class="inputBox">
+                                        <span>Description</span>
+                                        <textarea name="description" id="" cols="30" rows="3" placeholder="Write your tribute..."></textarea>
+                                    </div>
+
+                                    <div class="flex">
+                                        <div class="inputBox">
+                                            <span>Country</span>
+                                            <input type="text" name="country" id="" placeholder="Sri Lanka">
+                                        </div>
+                                        <div class="inputBox">
+                                            <span>Date</span>
+                                            <input type="date" name="date" id="">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="submit" value="Tribute" class="submit-btn">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script src="{{ asset('asset/js/header.js')}}"></script>
     <script src="{{ asset('asset/js/memorial.js')}}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+
+    <script>
+        $(document).ready(function() {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            $(document).on('click', '#tributeBtn', function(e) {
+                e.preventDefault();
+                $('#tributeModal').modal('show');
+            });
+
+        });
+    </script>
 </body>
 
 </html>

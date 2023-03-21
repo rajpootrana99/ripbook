@@ -1,5 +1,4 @@
 /* SECTION ONE DESIGN BEGINS */
-
 .section_1 {
     background-image: linear-gradient(#3dbac5, #1478ae);
     padding: 10% 0 15% 0;
@@ -12,8 +11,10 @@
 }
 
 a {
-    text-decoration: none;
+    text-decoration: none !important;
+    cursor: pointer !important;
 }
+
 .left_section_1 {
     /* margin-left: 10%; */
     flex-direction: column;
