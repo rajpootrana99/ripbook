@@ -8,7 +8,7 @@ a {
 .section_1{
     background-color: #F5F5F5;
     background-image: none;
-    padding: 5% 0% 5% 0%;
+    padding: 3% 0% 0% 0%;
 }
 
 .section_1 * .main_section{
@@ -136,7 +136,7 @@ a {
 .section_2{
     background-color: #F5F5F5;
     background-image: none;
-    padding: 5% 0% 0% 0%;   
+    padding: 2% 0% 0% 0%;   
 }
 .section_2 > .main_section{
     row-gap: 80px;

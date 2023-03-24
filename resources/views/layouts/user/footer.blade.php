@@ -6,16 +6,12 @@
                     <div class="copyright_statement">©2022-vaalvu All rights reserved.</div>
                 </div>
                 <div class="middle_footer_section foot_section">
-                    <a href="" class="head_anchor foot_anchor">Home</a>
-                    <a href="" class="head_anchor foot_anchor">Pricing</a>
+                    <a href="/" class="head_anchor foot_anchor">Home</a>
+                    <a href="#pricicing_section" class="head_anchor foot_anchor">Pricing</a>
                     <a href="" class="head_anchor foot_anchor">Contact</a>
-                    <a href="" class="head_anchor foot_anchor">Help Center</a>
                 </div>
                 <div class="right_footer_section foot_section">
                     <div class="light_anchor_container">
-                        <a href="" class="light_foot_anchor">About Us</a>
-                        <a href="" class="light_foot_anchor">Terms</a>
-                        <a href="" class="light_foot_anchor">Report Us</a>
                         <a href="" class="light_foot_anchor">Privacy Policy</a>
                         <a href="" class="light_foot_anchor">Cookie Policy</a>
                         <a href="" class="light_foot_anchor">Community Rules</a>

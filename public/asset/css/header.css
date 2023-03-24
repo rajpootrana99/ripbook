@@ -83,6 +83,14 @@ a {
     cursor: pointer !important;
 }
 
+a:hover {
+    color: #1478ae;
+}
+
+a:active{
+    color: #1478ae;
+}
+
 .logo_text {
     cursor: pointer;
     text-decoration: none;
@@ -98,7 +106,7 @@ a {
     font-size: 16px;
     font-family: var(--Source-Sans-Pro);
     font-weight: var(--Source-Sans-Pro-SemiBold);
-    color: #9c9c9c;
+    color: #171717;
 }
 
 .head_anchor_active {
