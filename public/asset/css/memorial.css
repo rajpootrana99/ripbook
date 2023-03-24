@@ -17,8 +17,6 @@ a {
 
 .section_1 * .memorial_container{
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     column-gap: 30px;
 }
 
@@ -35,7 +33,6 @@ a {
 
 .section_1 * .person_image{
     width: 274px;
-    height: 274px;
 }
 
 .section_1 * .info_container{

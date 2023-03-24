@@ -1,111 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.guest')
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rip Book | Home</title>
-
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="{{ asset('asset/css/header.css')}}">
-    <link rel="stylesheet" href="{{ asset('asset/css/index.css')}}">
-    <link rel="stylesheet" href="{{ asset('asset/css/footer.css')}}">
-    <link rel="stylesheet" href="{{ asset('asset/css/card_style.css')}}">
-
-    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-
-</head>
-
-<body>
-    <div class="header">
-        <div class="main_section">
-            <div class="hamburger_container">
-                <div onclick="showDropdown(this)">
-                    @guest
-                    <button class="hamburger picture_dropdown_button"> <i class="fa-solid fa-gear"></i> </button>
-                    @endguest
-                    @auth
-                    <img src="{{ asset('asset/images/section_7_img_1.png')}}" alt="" class="user_picture img-fluid picture_dropdown_button">
-                    @endauth
-                </div>
-                <div class="dropdown_1 hide_dropdown" style="text-align: end;margin-top: 60px;" id="picture_dropdown_target">
-                    @guest
-                    <a href="{{ route('login' )}}" class="head_button dropdown_anchors">Login</a>
-                    @endguest
-                    @auth
-                    <div class="user_name dropdown_anchors">{{ Auth::user()->name }}</div>
-                    <a href="{{ route('dashboard') }}" class="head_anchor dropdown_anchors">Profile</a>
-                    <form action="{{ route('logout') }}" style="display: none;" method="post" id="lgut">
-                        @csrf
-                        <input type="submit" id="logoutbtn">
-                    </form>
-                    <a type="button" onclick="$('#lgut').submit()" class="head_anchor dropdown_anchors">Logout</a>
-                    @endauth
-                </div>
-            </div>
-            <div class="left_header">
-                <a class="logo_text" href="">Vaalvu</a>
-            </div>
-            <div class="right_header">
-                <div class="right">
-                    <a href="/" class="head_anchor head_anchor_active">Home</a>
-                    <a href="#pricicing_section" class="head_anchor">Pricing</a>
-                    <a href="" class="head_anchor">Contact us</a>
-                </div>
-                <div class="left">
-                    @guest
-                    <a href="{{route('login')}}" class="head_button">Login</a>
-                    @endguest
-                    <div class="user_information">
-                        <div onclick="showDropdown(this)">
-                            @guest
-                            <button class="hamburger picture_dropdown_button settings-icon"> <i class="fa-solid fa-gear"></i> </button>
-                            @endguest
-                            @auth
-                            <img src="{{ asset('asset/images/section_7_img_1.png')}}" alt="" class="user_picture img-fluid picture_dropdown_button">
-                            @endauth
-                        </div>
-                        <div class="dropdown_1 hide_dropdown" style="right:unset;width: 200px;top: 0;" id="picture_dropdown_target">
-                            @guest
-                            <a href="{{route('login')}}" class="head_button dropdown_anchors">Login</a>
-                            @endguest
-                            @auth
-                            <div class="user_name dropdown_anchors">{{ Auth::user()->name }}</div>
-                            <a href="{{ route('dashboard') }}" class="head_anchor dropdown_anchors">Profile</a>
-                            <form action="{{ route('logout') }}" style="display: none;" method="post" id="lgut">
-                                @csrf
-                                <input type="submit" id="logoutbtn">
-                            </form>
-                            <a type="button" onclick="$('#lgut').submit()" class="head_anchor dropdown_anchors">Logout</a>
-                            @endauth
-                        </div>
-                        @auth
-                        <div class="user_name">{{ Auth::user()->name }}</div>
-                        @endauth
-                    </div>
-                </div>
-            </div>
-            <div class="hamburger_container">
-                <button class="hamburger" id="hamburger_dropdown_button" onclick="showDropdown(this)"> <i class="fa-solid fa-bars"></i> </button>
-                <div class="dropdown_1 hide_dropdown" id="hamburger_dropdown_target">
-                    <a href="/" class="head_anchor head_anchor_active dropdown_anchors">Home</a>
-                    <a href="#pricicing_section" class="head_anchor dropdown_anchors">Pricing</a>
-                    <a href="http://" class="head_anchor dropdown_anchors">Contact us</a>
-                </div>
-            </div>
-
-        </div>
-    </div>
+@section('content')
     <div class="section section_1">
         <div class="main_section">
         <input type="hidden" id="stripe_key" value="{{ env('STRIPE_KEY') }}"/>
@@ -491,45 +386,6 @@
         </div>
     </div>
 
-    <div class="section footer">
-        <div class="main_section">
-            <div class="footer_section">
-                <div class="left_footer_section foot_section">
-                    <a href="" class="logo_text company_logo">Vaalvu</a>
-                    <div class="copyright_statement">©2022-vaalvu All rights reserved.</div>
-                </div>
-                <div class="middle_footer_section foot_section">
-                    <a href="" class="head_anchor foot_anchor">Home</a>
-                    <a href="" class="head_anchor foot_anchor">Pricing</a>
-                    <a href="" class="head_anchor foot_anchor">Contact</a>
-                    <a href="" class="head_anchor foot_anchor">Help Center</a>
-                </div>
-                <div class="right_footer_section foot_section">
-                    <div class="light_anchor_container">
-                        <a href="" class="light_foot_anchor">About Us</a>
-                        <a href="" class="light_foot_anchor">Terms</a>
-                        <a href="" class="light_foot_anchor">Report Us</a>
-                        <a href="" class="light_foot_anchor">Privacy Policy</a>
-                        <a href="" class="light_foot_anchor">Cookie Policy</a>
-                        <a href="" class="light_foot_anchor">Community Rules</a>
-                    </div>
-                    <div class="social_link_container">
-                        <a href="" class="social_links">
-                            <img src="{{ asset('asset/images/instagram.svg')}}" alt="" class="link_image">
-                        </a>
-                        <a href="" class="social_links">
-                            <img src="{{ asset('asset/images/facebook.svg')}}" alt="" class="link_image">
-                        </a>
-                        <a href="" class="social_links">
-                            <img src="{{ asset('asset/images/twitter.svg')}}" alt="" class="link_image">
-                        </a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="modal" id="cardModal" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -568,18 +424,6 @@
             </div>
         </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script> -->
-    <script src="{{ asset('asset/js/header.js')}}"></script>
-    <script src="{{ asset('asset/js/index.js')}}"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-
-    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <script>
         $(document).ready(function() {
@@ -675,6 +519,4 @@
 
         });
     </script>
-</body>
-
-</html>
+@endsection

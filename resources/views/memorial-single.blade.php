@@ -26,85 +26,7 @@
 </head>
 
 <body>
-    <div class="header">
-        <div class="main_section">
-            <div class="hamburger_container">
-                <div onclick="showDropdown(this)">
-                    @guest
-                    <button class="hamburger picture_dropdown_button"> <i class="fa-solid fa-gear"></i> </button>
-                    @endguest
-                    @auth
-                    <img src="{{ asset('asset/images/section_7_img_1.png')}}" alt="" class="user_picture img-fluid picture_dropdown_button">
-                    @endauth
-                </div>
-                <div class="dropdown_1 hide_dropdown" style="text-align: end;margin-top: 60px;" id="picture_dropdown_target">
-                    @guest
-                    <a href="{{ route('login' )}}" class="head_button dropdown_anchors">Login</a>
-                    @endguest
-                    @auth
-                    <div class="user_name dropdown_anchors">{{ Auth::user()->name }}</div>
-                    <a href="{{ route('dashboard') }}" class="head_anchor dropdown_anchors">Profile</a>
-                    <form action="{{ route('logout') }}" style="display: none;" method="post" id="lgut">
-                        @csrf
-                        <input type="submit" id="logoutbtn">
-                    </form>
-                    <a type="button" onclick="$('#lgut').submit()" class="head_anchor dropdown_anchors">Logout</a>
-                    @endauth
-                </div>
-            </div>
-            <div class="left_header">
-                <a class="logo_text" href="/">Vaalvu</a>
-            </div>
-            <div class="right_header">
-                <div class="right">
-                    <a href="/" class="head_anchor head_anchor_active">Home</a>
-                    <a href="/" class="head_anchor">Pricing</a>
-                    <a href="http://" class="head_anchor">Contact us</a>
-                </div>
-                <div class="left">
-                    @guest
-                    <a href="{{route('login')}}" class="head_button">Login</a>
-                    @endguest
-                    <div class="user_information">
-                        <div onclick="showDropdown(this)">
-                            @guest
-                            <button class="hamburger picture_dropdown_button settings-icon"> <i class="fa-solid fa-gear"></i> </button>
-                            @endguest
-                            @auth
-                            <img src="{{ asset('asset/images/section_7_img_1.png')}}" alt="" class="user_picture img-fluid picture_dropdown_button">
-                            @endauth
-                        </div>
-                        <div class="dropdown_1 hide_dropdown" style="right:unset;width: 200px;top: 0;" id="picture_dropdown_target">
-                            @guest
-                            <a href="{{route('login')}}" class="head_button dropdown_anchors">Login</a>
-                            @endguest
-                            @auth
-                            <div class="user_name dropdown_anchors">{{ Auth::user()->name }}</div>
-                            <a href="{{ route('dashboard') }}" class="head_anchor dropdown_anchors">Profile</a>
-                            <form action="{{ route('logout') }}" style="display: none;" method="post" id="lgut">
-                                @csrf
-                                <input type="submit" id="logoutbtn">
-                            </form>
-                            <a type="button" onclick="$('#lgut').submit()" class="head_anchor dropdown_anchors">Logout</a>
-                            @endauth
-                        </div>
-                        @auth
-                        <div class="user_name">{{ Auth::user()->name }}</div>
-                        @endauth
-                    </div>
-                </div>
-            </div>
-            <div class="hamburger_container">
-                <button class="hamburger" id="hamburger_dropdown_button" onclick="showDropdown(this)"> <i class="fa-solid fa-bars"></i> </button>
-                <div class="dropdown_1 hide_dropdown" id="hamburger_dropdown_target">
-                    <a href="home/" class="head_anchor head_anchor_active dropdown_anchors" rel="noopener noreferrer">Home</a>
-                    <a href="http://" class="head_anchor dropdown_anchors" rel="noopener noreferrer">Pricing</a>
-                    <a href="http://" class="head_anchor dropdown_anchors" rel="noopener noreferrer">Contact us</a>
-                </div>
-            </div>
-
-        </div>
-    </div>
+   @include('layouts.user.header')
 
     <div class="section section_1">
         <div class="main_section">
@@ -258,44 +180,7 @@
         </div>
     </div>
 
-    <div class="section footer">
-        <div class="main_section">
-            <div class="footer_section">
-                <div class="left_footer_section foot_section">
-                    <a href="" class="logo_text company_logo">Vaalvu</a>
-                    <div class="copyright_statement">©2022-vaalvu All rights reserved.</div>
-                </div>
-                <div class="middle_footer_section foot_section">
-                    <a href="" class="head_anchor foot_anchor">Home</a>
-                    <a href="" class="head_anchor foot_anchor">Pricing</a>
-                    <a href="" class="head_anchor foot_anchor">Contact</a>
-                    <a href="" class="head_anchor foot_anchor">Help Center</a>
-                </div>
-                <div class="right_footer_section foot_section">
-                    <div class="light_anchor_container">
-                        <a href="" class="light_foot_anchor">About Us</a>
-                        <a href="" class="light_foot_anchor">Terms</a>
-                        <a href="" class="light_foot_anchor">Report Us</a>
-                        <a href="" class="light_foot_anchor">Privacy Policy</a>
-                        <a href="" class="light_foot_anchor">Cookie Policy</a>
-                        <a href="" class="light_foot_anchor">Community Rules</a>
-                    </div>
-                    <div class="social_link_container">
-                        <a href="" class="social_links">
-                            <img src="{{ asset('asset/images/instagram.svg')}}" alt="" class="link_image">
-                        </a>
-                        <a href="" class="social_links">
-                            <img src="{{ asset('asset/images/facebook.svg')}}" alt="" class="link_image">
-                        </a>
-                        <a href="" class="social_links">
-                            <img src="{{ asset('asset/images/twitter.svg')}}" alt="" class="link_image">
-                        </a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('layouts.user.footer')
 
     <div class="modal" id="tributeModal" tabindex="-1" role="dialog">
         <div class="modal-dialog">
