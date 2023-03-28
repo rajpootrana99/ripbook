@@ -17,12 +17,16 @@
                     </div>
                     <div class="form_grid">
                         <div class="radio_1">
-                            <input type="radio" name="date" id="d_o_b">
+                            <input type="radio" name="dob" id="d_o_b">
                             <label for="d_o_b"><span style="opacity: 0.6;">Date of birth</span></label>
                         </div>
                         <div class="radio_2">
-                            <input type="radio" name="date" id="d_o_d">
+                            <input type="radio" name="dod" id="d_o_d">
                             <label for="d_o_d"><span style="opacity: 0.6;">Date of death</span></label>
+                        </div>
+                        <div class="radio_3">
+                            <input type="radio" name="name" id="name">
+                            <label for="name"><span style="opacity: 0.6;">Name</span></label>
                         </div>
                     </div>
                     <div class="form_grid" style="column-gap: 0%;">

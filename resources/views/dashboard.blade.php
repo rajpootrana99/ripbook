@@ -57,17 +57,17 @@
                                  <div class="form-group col-sm-6">
                                     <label for="name">Name:</label>
                                     <input type="text" class="form-control" name="name" id="name" value="{{ Auth::user()->name }}">
-                                    <span class="text-danger name_error"></span>
+                                    <span class="text-danger name_error error-text"></span>
                                  </div>
                                  <div class="form-group col-sm-6">
                                     <label for="email">Email:</label>
                                     <input type="email" class="form-control" name="email" id="email" value="{{ Auth::user()->email }}">
-                                    <span class="text-danger email_error"></span>
+                                    <span class="text-danger email_error error-text"></span>
                                  </div>
                                  <div class="form-group col-sm-6">
                                     <label for="phone">Phone:</label>
                                     <input type="number" class="form-control" name="phone" id="phone" value="{{ Auth::user()->phone }}">
-                                    <span class="text-danger phone_error"></span>
+                                    <span class="text-danger phone_error error-text"></span>
                                  </div>
                                  <div class="form-group col-sm-6">
                                     <label for="street">Street Address:</label>
@@ -106,17 +106,17 @@
                               <div class="form-group">
                                  <label for="current_password">Current Password:</label>
                                     <input type="Password" class="form-control" name="current_password" id="current_password">
-                                    <span class="text-danger current_password_error"></span>
+                                    <span class="text-danger current_password_error error-text"></span>
                                  </div>
                               <div class="form-group">
                                  <label for="password">New Password:</label>
                                  <input type="Password" class="form-control" name="password" id="password">
-                                 <span class="text-danger password_error"></span>
+                                 <span class="text-danger password_error error-text"></span>
                               </div>
                               <div class="form-group">
                                  <label for="password_confirmation">Verify Password:</label>
                                     <input type="Password" class="form-control" name="password_confirmation" id="password_confirmation">
-                                    <span class="text-danger password_confirmation_error"></span>
+                                    <span class="text-danger password_confirmation_error error-text"></span>
                               </div>
                               <button type="submit" class="btn btn-primary mr-2">Submit</button>
                               <button type="reset" class="btn iq-bg-danger">Cancle</button>
@@ -133,6 +133,8 @@
 
 <script>
     $(document).ready(function() {
+
+      const x = document.getElementById("snackbar");
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -158,6 +160,9 @@
                         });
                     } else {
                         $('#updateUserProfile')[0].reset();
+                        x.innerHTML = response.message;
+                        x.className = "show";
+                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                         location.reload();
                     }
                 },
@@ -188,7 +193,10 @@
                         });
                     } else {
                         $('#changePassword')[0].reset();
-                        location.reload();
+                        $(document).find('span.error-text').text('');
+                        x.innerHTML = response.message;
+                        x.className = "show";
+                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                     }
                 },
             });

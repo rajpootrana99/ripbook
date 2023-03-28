@@ -22,26 +22,28 @@
                                 <button type="button" class="btn btn-sm iq-bg-success mb-1" data-toggle="modal" data-target="#createMemorial" id="createMemorialButton"><i class="ri-add-fill"><span class="pl-1">Create Memorial</span></i>
                                 </button>
                             </span>
-                            <table class="table table-bordered table-responsive-md text-center">
-                                <thead>
-                                    <tr>
-                                        <th>Image</th>
-                                        <th>Title</th>
-                                        <th>Address</th>
-                                        <th>Date of Birth</th>
-                                        <th>Place of Birth</th>
-                                        <th>Date of Death</th>
-                                        <th>Residence</th>
-                                        <th>Religon</th>
-                                        <th>View</th>
-                                        <th>Edit</th>
-                                        <th>Remove</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>Image</th>
+                                            <th>Title</th>
+                                            <th>Address</th>
+                                            <th>Date of Birth</th>
+                                            <th>Place of Birth</th>
+                                            <th>Date of Death</th>
+                                            <th>Residence</th>
+                                            <th>Religon</th>
+                                            <th>View</th>
+                                            <th>Edit</th>
+                                            <th>Remove</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -333,6 +335,9 @@
 
 <script>
     $(document).ready(function() {
+
+        const x = document.getElementById("snackbar");
+
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -357,9 +362,9 @@
                             <td>' + memorial.dod + '</td>\
                             <td>' + memorial.residence + '</td>\
                             <td>' + memorial.religion + '</td>\
-                            <td><a href="memorial/'+memorial.id+'" style="border: none; background-color: #fff" ><i class="fa fa-eye"></i></a></td>\
-                            <td><button value="' + memorial.id + '" style="border: none; background-color: #fff" class="edit_btn"><i class="fa fa-edit"></i></button></td>\
-                            <td><button value="' + memorial.id + '" style="border: none; background-color: #fff" class="delete_btn"><i class="fa fa-trash"></i></button></td>\
+                            <td><a href="memorial/'+memorial.id+'" style="border: none;" ><i class="fa fa-eye" style="font-size: 20px;"></i></a></td>\
+                            <td><button value="' + memorial.id + '" style="border: none;" class="edit_btn"><i class="fa fa-edit" style="font-size: 20px;"></i></button></td>\
+                            <td><button value="' + memorial.id + '" style="border: none;" class="delete_btn"><i class="fa fa-trash" style="font-size: 20px;"></i></button></td>\
                     </tr>');
                     });
                 }
@@ -380,7 +385,7 @@
                 dataType: "json",
                 success: function(response) {
                     var memorial_id = $('#notice_memorial_id');
-                    $('#memorial').children().remove().end();
+                    $('#notice_memorial_id').children().remove().end();
                     $.each(response.memorials, function(memorial) {
                         memorial_id.append($("<option />").val(response.memorials[memorial].id).text(response.memorials[memorial].id + ' - ' + response.memorials[memorial].title));
                     });
@@ -409,6 +414,9 @@
                     } else {
                         $('#addNoticeForm')[0].reset();
                         $('#addNotice').modal('hide');
+                        x.innerHTML = response.message;
+                        x.className = "show";
+                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                         fetchMemorials();
                     }
                 },
@@ -428,7 +436,7 @@
                 dataType: "json",
                 success: function(response) {
                     var memorial_id = $('#gallery_memorial_id');
-                    $('#memorial').children().remove().end();
+                    $('#gallery_memorial_id').children().remove().end();
                     $.each(response.memorials, function(memorial) {
                         memorial_id.append($("<option />").val(response.memorials[memorial].id).text(response.memorials[memorial].id + ' - ' + response.memorials[memorial].title));
                     });
@@ -457,6 +465,9 @@
                     } else {
                         $('#addGalleryForm')[0].reset();
                         $('#addGallery').modal('hide');
+                        x.innerHTML = response.message;
+                        x.className = "show";
+                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                         fetchMemorials();
                     }
                 },
@@ -482,10 +493,16 @@
                 dataType: 'json',
                 success: function(response) {
                     if (response.status == 0) {
+                        x.text(response.message);
+                        x.className = "show";
+                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                         $('#deleteMemorial').modal('hide');
                     } else {
-                        fetchMemorials();
                         $('#deleteMemorial').modal('hide');
+                        x.innerHTML = response.message;
+                        x.className = "show";
+                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                        fetchMemorials();
                     }
                 }
             });
@@ -551,6 +568,9 @@
                     } else {
                         $('#editMemorialForm')[0].reset();
                         $('#editMemorial').modal('hide');
+                        x.innerHTML = response.message;
+                        x.className = "show";
+                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                         fetchMemorials();
                     }
                 },
@@ -582,6 +602,9 @@
                     } else {
                         $('#createMemorialForm')[0].reset();
                         $('#createMemorial').modal('hide');
+                        x.innerHTML = response.message;
+                        x.className = "show";
+                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
                         fetchMemorials();
                     }
                 },

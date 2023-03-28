@@ -74,6 +74,13 @@ a {
     color: #ffffff;
 }
 
+.radio_3 {
+    font-size: 16px;
+    font-family: var(--Source-Sans-Pro);
+    font-weight: var(--Source-Sans-Pro-SemiBold);
+    color: #ffffff;
+}
+
 .input_box {
     width: 350px;
     border-radius: 40px;
@@ -767,6 +774,10 @@ a {
         row-gap: 15%;
     }
 
+    .form_grid{
+        flex-direction: column;
+    }
+
     .section_1 * .radio_1 {
         font-size: 13px;
     }
@@ -775,11 +786,16 @@ a {
         font-size: 13px;
     }
 
+    .section_1 * .radio_3 {
+        font-size: 13px;
+    }
+
     .section_1 * .input_box {
         width: 200px;
         font-size: 13px;
         padding: 10px 50px;
         height: 60px;
+        margin-bottom: 10px;
     }
 
     .section_1 * .calendar_icon {
@@ -799,7 +815,7 @@ a {
     }
 
     .section_1 * .absolute_item {
-        margin-top: 45%;
+        margin-top: 90%;
     }
 
     /* SECTION 2 */
