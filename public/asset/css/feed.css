@@ -1,20 +1,23 @@
-
 /* SECTION 1 STYLES BEGINS  */
 
-.section_1{
+a {
+    text-decoration: none !important;
+    color: black !important;
+}
+.section_1 {
     background-color: rgb(245, 245, 245);
     padding: 0px;
     background-image: none;
     align-items: end;
 }
 
-.section_1 > .main_section{
+.section_1 > .main_section {
     position: absolute;
     z-index: 10;
     margin-bottom: 20%;
 }
 
-.section_1 * .hero_container{
+.section_1 * .hero_container {
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -22,22 +25,22 @@
     width: 100%;
 }
 
-.section_1 > .hero_image{
+.section_1 > .hero_image {
     width: 100%;
     max-height: 690px;
     /* object-fit: fill;
     object-position: -0px -100px; */
 }
 
-.hero_gradient{
-    content: '';
+.hero_gradient {
+    content: "";
     position: absolute;
     left: 0;
-    background: linear-gradient(40deg,rgba(0, 0, 0, 0.6) 21%,transparent);
+    background: linear-gradient(40deg, rgba(0, 0, 0, 0.6) 21%, transparent);
     width: 100%;
 }
 
-.section_1 * .hero_content{
+.section_1 * .hero_content {
     position: relative;
     font-family: var(--Source-Sans-Pro);
     width: 100%;
@@ -48,12 +51,12 @@
     align-items: center;
 }
 
-.section_1 * .hero_heading{
+.section_1 * .hero_heading {
     font-weight: var(--Source-Sans-Pro-Bold);
     font-size: 40px;
 }
 
-.section_1 * .hero_paragraph{
+.section_1 * .hero_paragraph {
     line-break: loose;
     font-weight: var(--Source-Serif-Pro-Regular);
     font-size: 17px;
@@ -62,35 +65,34 @@
     margin-bottom: 2em;
 }
 
-
 /* SECTION 2 STYLES BEGINS  */
 
-.section_2{
-    background-color: #FAFAFA;
+.section_2 {
+    background-color: #fafafa;
     background-image: none;
     padding: 5% 0% 5% 0%;
 }
 
-.section_2 > .main_section{
+.section_2 > .main_section {
     overflow: unset;
 }
 
-.section_2 * .cards_container{
+.section_2 * .cards_container {
     display: flex;
     flex-direction: row;
-    width:100%;
+    width: 100%;
     justify-content: space-between;
     gap: 20px;
     padding: 10px;
 }
 
-.section_2 * .card_column{
+.section_2 * .card_column {
     display: flex;
     gap: 20px;
     flex-direction: column;
 }
 
-.section_2 * .card_item{
+.section_2 * .card_item {
     border-radius: 15px;
     overflow: hidden;
     display: flex;
@@ -99,19 +101,17 @@
     margin: 10px;
 }
 
-.card_item:hover * .read_more{
+.card_item:hover * .read_more {
     font-weight: bolder;
     font-size: 1.5em;
 }
 
-
-.section_2 * .card_image{
+.section_2 * .card_image {
     width: 100%;
     max-width: unset;
 }
 
-
-.read_more_container{
+.read_more_container {
     position: absolute;
     display: flex;
     /* background-color: rgba(0, 0, 0, 0.6); */
@@ -119,72 +119,66 @@
     justify-content: center;
 }
 
-.read_more{
+.read_more {
     color: white;
     font-size: 1em;
     font-weight: 600;
     padding: 10px;
 }
 
-
-
 /* RESPONSIVE DESIGN  */
-@media screen and (max-width: 660px)
-{
-    .section_1{
+@media screen and (max-width: 660px) {
+    .section_1 {
         padding: 0 !important;
     }
-    .section_1 > .main_section{
+    .section_1 > .main_section {
         margin-bottom: 5%;
     }
-    .section_1 * .hero_content{
+    .section_1 * .hero_content {
         row-gap: 10px;
     }
-    .section_1 * .hero_heading{
+    .section_1 * .hero_heading {
         font-size: 1.5em;
     }
-    .section_1 * .hero_paragraph{
+    .section_1 * .hero_paragraph {
         font-size: 0.7em;
     }
-    .section_2{
+    .section_2 {
         padding: 10% 0% 10% 0%;
     }
-    .section_2 * .cards_container{
+    .section_2 * .cards_container {
         gap: 10px;
         padding: 0;
         flex-direction: column;
     }
-    .section_2 * .card_column{
+    .section_2 * .card_column {
         gap: 20px;
     }
-    .section_2 * .card_item{
+    .section_2 * .card_item {
         width: unset;
         border-radius: 5px;
     }
-    .card_item:hover{
+    .card_item:hover {
         width: 100%;
         z-index: unset;
         background-color: unset;
     }
-    .card_item:hover * .read_more{
+    .card_item:hover * .read_more {
         font-size: 0.8em;
     }
-    .card_column * .item_information{
+    .card_column * .item_information {
         padding: 10px;
     }
-    .card_column * .item_country{
+    .card_column * .item_country {
         /* font-size: 0.5em; */
-
     }
-    .card_column * .item_name{
+    .card_column * .item_name {
         /* font-size: 0.5em; */
-
     }
-    .card_column * .time_of_death{
+    .card_column * .time_of_death {
         /* font-size: 0.5em; */
-
     }
-    .section_2 * .read_more{
+    .section_2 * .read_more {
         font-weight: bolder;
 
         font-size: 0.8em;

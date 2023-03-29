@@ -90,35 +90,35 @@
                             <textarea class="form-control" name="description" id="description" rows="3" style="line-height: 22px" placeholder="Write Description..."></textarea>
                             <span class="text-danger description_error"></span>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <input type="text" class="form-control" style="height: 40px;" id="dob" name="dob" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date of Birth">
                             <span class="text-danger dob_error"></span>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <input type="text" class="form-control" style="height: 40px;" id="pob" name="pob" placeholder="Place of Birth">
                             <span class="text-danger pob_error"></span>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <input type="text" class="form-control" style="height: 40px;" id="dod" name="dod" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date of Death">
                             <span class="text-danger dod_error"></span>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <input type="text" class="form-control" style="height: 40px;" id="pod" name="pod" placeholder="Place of Death">
                             <span class="text-danger pod_error"></span>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <input type="number" class="form-control" style="height: 40px;" id="age" name="age" placeholder="Enter Age">
                             <span class="text-danger age_error"></span>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <input type="text" class="form-control" style="height: 40px;" id="religion" name="religion" placeholder="Religion">
                             <span class="text-danger religion_error"></span>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <input type="text" class="form-control" style="height: 40px;" id="residence" name="residence" placeholder="Residence">
                             <span class="text-danger residence_error"></span>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <select class="form-control" id="exampleFormControlSelect4" name="visibility" id="visibility">
                                 <option value="0">Public</option>
                                 <option value="1">Private</option>
@@ -175,35 +175,35 @@
                             <textarea class="form-control" name="description" id="edit_description" rows="3" style="line-height: 22px" placeholder="Write Description..."></textarea>
                             <span class="text-danger description_update_error"></span>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <input type="text" class="form-control" style="height: 40px;" id="edit_dob" name="dob" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date of Birth">
                             <span class="text-danger dob_update_error"></span>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <input type="text" class="form-control" style="height: 40px;" id="edit_pob" name="pob" placeholder="Place of Birth">
                             <span class="text-danger pob_update_error"></span>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <input type="text" class="form-control" style="height: 40px;" id="edit_dod" name="dod" onfocus="(this.type='date')" onblur="(this.type='text')" placeholder="Date of Death">
                             <span class="text-danger dod_update_error"></span>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <input type="text" class="form-control" style="height: 40px;" id="edit_pod" name="pod" placeholder="Place of Death">
                             <span class="text-danger pod_update_error"></span>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <input type="number" class="form-control" style="height: 40px;" id="edit_age" name="age" placeholder="Enter Age">
                             <span class="text-danger age_update_error"></span>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <input type="text" class="form-control" style="height: 40px;" id="edit_religion" name="religion" placeholder="Religion">
                             <span class="text-danger religion_update_error"></span>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <input type="text" class="form-control" style="height: 40px;" id="edit_residence" name="residence" placeholder="Residence">
                             <span class="text-danger residence_update_error"></span>
                         </div>
-                        <div class="form-group col-sm-3">
+                        <div class="form-group col-sm-6">
                             <select class="form-control edit_visibility" id="edit_visibility" name="visibility">
                                 <option value="0">Public</option>
                                 <option value="1">Private</option>
@@ -222,7 +222,7 @@
 </div>
 
 <div class="modal fade" id="addGallery" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Upload Gallery for Memorial</h5>
@@ -263,7 +263,7 @@
 </div>
 
 <div class="modal fade" id="addNotice" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Add Notice for Memorial</h5>
@@ -362,7 +362,7 @@
                             <td>' + memorial.dod + '</td>\
                             <td>' + memorial.residence + '</td>\
                             <td>' + memorial.religion + '</td>\
-                            <td><a href="memorial/'+memorial.id+'" style="border: none;" ><i class="fa fa-eye" style="font-size: 20px;"></i></a></td>\
+                            <td><a href="memorial/' + memorial.id + '" style="border: none;" ><i class="fa fa-eye" style="font-size: 20px;"></i></a></td>\
                             <td><button value="' + memorial.id + '" style="border: none;" class="edit_btn"><i class="fa fa-edit" style="font-size: 20px;"></i></button></td>\
                             <td><button value="' + memorial.id + '" style="border: none;" class="delete_btn"><i class="fa fa-trash" style="font-size: 20px;"></i></button></td>\
                     </tr>');
@@ -416,7 +416,9 @@
                         $('#addNotice').modal('hide');
                         x.innerHTML = response.message;
                         x.className = "show";
-                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                        setTimeout(function() {
+                            x.className = x.className.replace("show", "");
+                        }, 3000);
                         fetchMemorials();
                     }
                 },
@@ -467,7 +469,9 @@
                         $('#addGallery').modal('hide');
                         x.innerHTML = response.message;
                         x.className = "show";
-                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                        setTimeout(function() {
+                            x.className = x.className.replace("show", "");
+                        }, 3000);
                         fetchMemorials();
                     }
                 },
@@ -495,13 +499,17 @@
                     if (response.status == 0) {
                         x.text(response.message);
                         x.className = "show";
-                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                        setTimeout(function() {
+                            x.className = x.className.replace("show", "");
+                        }, 3000);
                         $('#deleteMemorial').modal('hide');
                     } else {
                         $('#deleteMemorial').modal('hide');
                         x.innerHTML = response.message;
                         x.className = "show";
-                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                        setTimeout(function() {
+                            x.className = x.className.replace("show", "");
+                        }, 3000);
                         fetchMemorials();
                     }
                 }
@@ -570,7 +578,9 @@
                         $('#editMemorial').modal('hide');
                         x.innerHTML = response.message;
                         x.className = "show";
-                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                        setTimeout(function() {
+                            x.className = x.className.replace("show", "");
+                        }, 3000);
                         fetchMemorials();
                     }
                 },
@@ -604,7 +614,9 @@
                         $('#createMemorial').modal('hide');
                         x.innerHTML = response.message;
                         x.className = "show";
-                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                        setTimeout(function() {
+                            x.className = x.className.replace("show", "");
+                        }, 3000);
                         fetchMemorials();
                     }
                 },

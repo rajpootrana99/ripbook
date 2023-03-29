@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('asset/css/card_style.css') }}">
 
     <style>
-         #snackbar {
+        #snackbar {
             visibility: hidden;
             min-width: 250px;
             margin-left: -125px;
@@ -36,44 +36,72 @@
             left: 50%;
             bottom: 30px;
             font-size: 17px;
-         }
+        }
 
-         #snackbar.show {
+        #snackbar.show {
             visibility: visible;
             -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
             animation: fadein 0.5s, fadeout 0.5s 2.5s;
-         }
+        }
 
-         @-webkit-keyframes fadein {
-            from {bottom: 0; opacity: 0;} 
-            to {bottom: 30px; opacity: 1;}
-         }
+        @-webkit-keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
 
-         @keyframes fadein {
-            from {bottom: 0; opacity: 0;}
-            to {bottom: 30px; opacity: 1;}
-         }
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
 
-         @-webkit-keyframes fadeout {
-            from {bottom: 30px; opacity: 1;} 
-            to {bottom: 0; opacity: 0;}
-         }
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
 
-         @keyframes fadeout {
-            from {bottom: 30px; opacity: 1;}
-            to {bottom: 0; opacity: 0;}
-         }
-      </style>
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+    </style>
 
 </head>
 
 <body>
-   @include('layouts.user.header')
-   <div id="snackbar"></div>
+    @include('layouts.user.header')
+    <div id="snackbar"></div>
 
     <div class="section section_1">
         <div class="main_section">
-        <input type="hidden" id="memorial" value="{{ $memorial->id }}">
+            <input type="hidden" id="memorial" value="{{ $memorial->id }}">
             <div class="memorial_container">
                 <div class="person_container">
                     <img src="{{ asset('storage/'.$memorial->feature_image)}}" alt="" class="person_image">
@@ -105,19 +133,13 @@
                     <div class="likeShareBtnmt-3">
                         <div id="fb-root"></div>
                         <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v16.0" nonce="mQPuNecT"></script>
-                        <a target="_blank" 
-                            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" 
-                            class="share_button info_buttons fb-xfbml-parse-ignore"><img src="{{ asset('asset/images/reply.svg')}}" alt=""> Share</a>
-                    
-                        <div class="fb-share-button" 
-                            data-href="https://ripbook.arumsolutions.co/memorial/{{$memorial->id}}" 
-                            data-layout="" data-size="large">
-                            <a target="_blank" 
-                                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" 
-                                class="fb-xfbml-parse-ignore">Share</a>
-                            </div>
+                        <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="share_button info_buttons fb-xfbml-parse-ignore"><img src="{{ asset('asset/images/reply.svg')}}" alt=""> Share</a>
+
+                        <div class="fb-share-button" data-href="https://ripbook.arumsolutions.co/memorial/{{$memorial->id}}" data-layout="" data-size="large">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a>
+                        </div>
                     </div>
-                    
+
                 </div>
                 <div class="person_about_container">
                     <div class="small_title">Obituary</div>
@@ -152,7 +174,7 @@
                 <button onclick="showSlider(this,'section_3')" class="h_slide_buttons h_slide_active">Tearful Tributes<sup>({{ count($memorial->tearfulTributes) }})</sup></button>
                 <button onclick="showSlider(this,'section_4')" class="h_slide_buttons">Gallery<sup>({{ count($memorial->gelleries) }})</sup></button>
                 <button onclick="showSlider(this,'section_5')" class="h_slide_buttons">Summary</button>
-                <button onclick="showSlider(this,'section_6')" class="h_slide_buttons">NOTICES<sup>(01)</sup></button>
+                <button onclick="showSlider(this,'section_6')" class="h_slide_buttons">NOTICES<sup>({{ count($memorial->notices) }})</sup></button>
             </div>
         </div>
     </div>
@@ -161,7 +183,7 @@
     <div class="section section_3">
         <div class="main_section">
             <div class="all_tributes_container" id="tributes">
-                
+
             </div>
         </div>
     </div>
@@ -176,7 +198,13 @@
                     </div>
                     @endforeach
                     @else
-                    <div class="col-sm-12">No Gallery found</div>
+                    <div class="notice_container">
+                        <div class="notices d-none"></div>
+                        <div class="notice_not_available">
+                            <img src="{{ asset('asset/images/!notice.png')}}" alt="" class="notice_inavailable_picture">
+                            No Gallery available yet.
+                        </div>
+                    </div>
                     @endif
                 </div>
             </div>
@@ -213,12 +241,8 @@
 
     <div class="section section_6 d-none">
         <div class="main_section">
-            <div class="notice_container">
-                <div class="notices d-none"></div>
-                <div class="notice_not_available">
-                    <img src="{{ asset('asset/images/!notice.png')}}" alt="" class="notice_inavailable_picture">
-                    No notice available yet.
-                </div>
+            <div class="all_tributes_container" id="notices">
+
             </div>
         </div>
     </div>
@@ -236,7 +260,7 @@
                     <div class="container">
                         <form id="tearfulTributeFrom" method="POST">
                             @csrf
-                            <input type="hidden" name="memorial_id" id="memorial_id" >
+                            <input type="hidden" name="memorial_id" id="memorial_id">
                             <div class="row">
                                 <div class="col">
                                     <div class="inputBox">
@@ -298,49 +322,92 @@
             });
 
             fetchTearfulTributes();
+            fetchNotices();
 
             function fetchTearfulTributes() {
-            $.ajax({
-                type: "GET",
-                url: "../fetchTearfulTributes/"+memorial_id,
-                dataType: "json",
-                success: function(response) {
-                    $('#tributes').html("");
-                    if(response.status === false){
-                        $('#tributes').append('<div class="text-center">Post a Tearful Tribute</div>');
-                    }
-                    var theme;
-                    $.each(response.tearfulTributes, function(key, tearfulTribute) {
-                        if(key%2 == 0){
-                            theme = '';
+                $.ajax({
+                    type: "GET",
+                    url: "../fetchTearfulTributes/" + memorial_id,
+                    dataType: "json",
+                    success: function(response) {
+                        $('#tributes').html("");
+                        if (response.status === false) {
+                            $('#tributes').append('<div class="notice_container">\
+                                <div class="notices d-none"></div>\
+                                <div class="notice_not_available">\
+                                <img src="../asset/images/!notice.png" alt="" class="notice_inavailable_picture">' + response.message + '</div>\
+                            </div>');
                         }
-                        else {
-                            theme = 'black_theme';
-                        }
-                        $('#tributes').append('<div class="tribute_item '+theme+'">\
+                        var theme;
+                        $.each(response.tearfulTributes, function(key, tearfulTribute) {
+                            if (key % 2 == 0) {
+                                theme = '';
+                            } else {
+                                theme = 'black_theme';
+                            }
+                            $('#tributes').append('<div class="tribute_item ' + theme + '">\
                             <div class="l_item">\
                                 <div class="tributee">\
-                                    <div class="tributer_name">'+tearfulTribute.title+'</div>\
+                                    <div class="tributer_name">' + tearfulTribute.title + '</div>\
                                     <div class="tributer_comment">\
                                         <img src="../asset/images/comma.svg" alt="" class="comma">\
-                                        '+tearfulTribute.sub_title+'\
+                                        ' + tearfulTribute.sub_title + '\
                                     </div>\
                                 </div>\
                                 <div class="tributee_description">\
-                                    '+tearfulTribute.description+'\
+                                    ' + tearfulTribute.description + '\
                                 </div>\
                                 <div class="tributee_location">\
-                                    '+tearfulTribute.country+' &#x2022; 5 years ago\
+                                    ' + tearfulTribute.country + ' &#x2022; 5 years ago\
                                 </div>\
                             </div>\
                             <div class="r_item">\
                                 <img src="../asset/images/flower3png@2x.png" alt="" class="farewell_picture">\
                             </div>\
                         </div>');
-                    });
-                }
-            });
-        }
+                        });
+                    }
+                });
+            }
+
+            function fetchNotices() {
+                $.ajax({
+                    type: "GET",
+                    url: "../fetchNotices/" + memorial_id,
+                    dataType: "json",
+                    success: function(response) {
+                        $('#notices').html("");
+                        if (response.status === false) {
+                            $('#notices').append('<div class="notice_container">\
+                                <div class="notices d-none"></div>\
+                                <div class="notice_not_available">\
+                                <img src="../asset/images/!notice.png" alt="" class="notice_inavailable_picture">' + response.message + '</div>\
+                            </div>');
+                        }
+                        var theme;
+                        $.each(response.notices, function(key, notice) {
+                            if (key % 2 == 0) {
+                                theme = '';
+                            } else {
+                                theme = 'black_theme';
+                            }
+                            $('#notices').append('<div class="tribute_item ' + theme + '">\
+                            <div class="l_item">\
+                                <div class="tributee">\
+                                    <div class="tributer_name">' + notice.notice + '</div>\
+                                    <div class="tributer_comment"><Strong>Date: </strong>\
+                                        ' + notice.date + '\
+                                    </div>\
+                                </div>\
+                                <div class="tributee_description">\
+                                    ' + notice.description + '\
+                                </div>\
+                            </div>\
+                        </div>');
+                        });
+                    }
+                });
+            }
 
             $(document).on('click', '#tributeBtn', function(e) {
                 e.preventDefault();
@@ -351,7 +418,7 @@
             });
 
             $(document).on('submit', '#tearfulTributeFrom', async function(e) {
-                e.preventDefault();        
+                e.preventDefault();
                 let formData = new FormData($('#tearfulTributeFrom')[0]);
                 console.log(formData)
                 $.ajax({
@@ -374,7 +441,9 @@
                             $('#tributeModal').modal('hide');
                             x.innerHTML = response.message;
                             x.className = "show";
-                            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+                            setTimeout(function() {
+                                x.className = x.className.replace("show", "");
+                            }, 3000);
                             fetchTearfulTributes();
                         }
                     },

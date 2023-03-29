@@ -6,6 +6,7 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\FeedController;
+use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\TearfulTributeController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::get('feed', [FeedController::class, 'index'])->name('feed');
 Route::get('memorial/{memorial}', [MemorialController::class, 'show'])->name('memorial.show');
 Route::resource('/tearfulTribute', TearfulTributeController::class);
 Route::get('fetchTearfulTributes/{memorial}', [TearfulTributeController::class, 'fetchTearfulTributes']);
+Route::get('fetchNotices/{memorial}', [GeneralController::class, 'fetchNotices']);
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
