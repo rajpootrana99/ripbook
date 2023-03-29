@@ -31,7 +31,7 @@
             <div class="right">
                 <a href="/" class="head_anchor head_anchor_active">Home</a>
                 <a href="#pricicing_section" class="head_anchor">Pricing</a>
-                <a href="" class="head_anchor">Contact us</a>
+                <a href="{{ route('contact') }}" class="head_anchor">Contact us</a>
             </div>
             <div class="left">
                 @guest
@@ -70,7 +70,7 @@
             <div class="dropdown_1 hide_dropdown" id="hamburger_dropdown_target">
                 <a href="/" class="head_anchor head_anchor_active dropdown_anchors">Home</a>
                 <a href="#pricicing_section" class="head_anchor dropdown_anchors">Pricing</a>
-                <a href="http://" class="head_anchor dropdown_anchors">Contact us</a>
+                <a href="{{ route('contact') }}" class="head_anchor dropdown_anchors">Contact us</a>
             </div>
         </div>
 

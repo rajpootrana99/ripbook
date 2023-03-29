@@ -24,6 +24,18 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 })->name('home');
+Route::get('privacy', function () {
+    return view('privacy');
+})->name('privacy');
+Route::get('community', function () {
+    return view('community');
+})->name('community');
+Route::get('cookie', function () {
+    return view('cookie');
+})->name('cookie');
+Route::get('contact', function () {
+    return view('contact');
+})->name('contact');
 Route::get('/single-memorial', function () {
     return view('memorial-single');
 })->name('single-memorial');

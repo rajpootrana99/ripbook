@@ -13,6 +13,7 @@
 a {
     text-decoration: none !important;
     cursor: pointer !important;
+    color: #000 !important;
 }
 
 .left_section_1 {
@@ -132,7 +133,7 @@ a {
     font-size: 17px;
     font-family: var(--Source-Sans-Pro);
     font-weight: var(--Source-Sans-Pro-Bold);
-    color: #ffffff;
+    color: #ffffff !important;
 }
 
 .picture_container {
@@ -774,7 +775,7 @@ a {
         row-gap: 15%;
     }
 
-    .form_grid{
+    .form_grid {
         flex-direction: column;
     }
 
