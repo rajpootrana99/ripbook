@@ -67,7 +67,7 @@
                         <div class="description">What were they like as children? In college? At work? Participating in a hobby? We Remember encourages you to get memories from everyone who knew them, so you can see sides of them you never knew existed.</div>
                     </div>
                     <div class="form_grid left_bottom_section">
-                        <a href="" class="see_feed_button">See Feed</a>
+                        <a href="{{ route('feed') }}" class="see_feed_button">See Feed</a>
                         <a href="{{ route('memorial.index' )}}" class="create-memorial">
                             <i class="fa-solid fa-pen-to-square" style="color: #60C689;"></i> Create Memorial
                         </a>

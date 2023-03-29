@@ -5,6 +5,7 @@ use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Auth\PasswordController;
+use App\Http\Controllers\FeedController;
 use App\Http\Controllers\TearfulTributeController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,7 @@ Route::get('/', function () {
 Route::get('/single-memorial', function () {
     return view('memorial-single');
 })->name('single-memorial');
+Route::get('feed', [FeedController::class, 'index'])->name('feed');
 Route::get('memorial/{memorial}', [MemorialController::class, 'show'])->name('memorial.show');
 Route::resource('/tearfulTribute', TearfulTributeController::class);
 Route::get('fetchTearfulTributes/{memorial}', [TearfulTributeController::class, 'fetchTearfulTributes']);
