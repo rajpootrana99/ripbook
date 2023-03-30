@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rip Book | Cookie Policy</title>
+    <title>Rip Book | Help</title>
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -25,7 +25,7 @@
 <body>
     @include('layouts.user.header')
     <div class="container my-5">
-        <h1>Cookie Policy</h1>
+        <h1>Help</h1>
         <p>This cookie policy (&ldquo;Policy&rdquo;) describes how Ripbook.com &amp; Web Announcements Ltd. (&ldquo;Company,&rdquo; &ldquo;we,&rdquo; and &ldquo;our&rdquo;) collects, uses and shares personal data when using this website (the &ldquo;Site&rdquo;) and the associated applications(s), (the &ldquo;Applications&rdquo;), together (the &ldquo;Services&rdquo;). Please read the following information carefully to understand our views and practices regarding your personal data and how we will treat it.</p>
         <h4>1. COOKIES</h4>
         <p><strong>What are cookies?</strong></p>

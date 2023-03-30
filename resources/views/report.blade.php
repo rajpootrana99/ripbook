@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rip Book | Community Rules</title>
+    <title>Rip Book | Report Us</title>
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -25,16 +25,15 @@
 <body>
     @include('layouts.user.header')
     <div class="container my-5">
-        <h1>Community Rules</h1>
-        <p>At our community, we are committed to providing a safe and welcoming environment for all members. To ensure this, we have established the following community policies:</p>
-        <ul>
-            <li><strong>Respectful Communication:</strong> Members must communicate with one another in a respectful manner. This includes refraining from personal attacks, hate speech, or any form of discrimination.</li>
-            <li><strong>No Spamming:</strong> Members are not allowed to spam the community with promotional material, links, or any other form of unsolicited content.</li>
-            <li><strong>No Illegal Activity:</strong> Any form of illegal activity is strictly prohibited within the community. This includes the sharing of pirated content, hacking, or any other form of criminal activity.</li>
-            <li><strong>No Trolling:</strong> Members are not allowed to engage in trolling behavior or intentionally provoke other members.</li>
-            <li><strong>No Harassment:</strong> Harassment of any kind is not tolerated within the community. This includes sexual harassment, cyberbullying, or any other form of harassment.</li>
-        </ul>
-        <p>Any member who violates these policies may face disciplinary action, up to and including expulsion from the community.</p>
+        <h1>Report Us</h1>
+        <h2>Report Violation</h2>
+        <p>We work with cyber team to take into custody people who misuse our services. We need your support and co-operation to stop violation. You can alert us by sending an e-mail to&nbsp;<a href="mailto:reportviolation@ripbook.com">reportviolation@ripbook.com</a> and we will take necessary action. Also, while reporting such complaints, please provide all evidence you may have.</p>
+        <p><strong>Note:</strong> We will not disclose your identity to the miscreant.</p>
+        <h2>Some examples of violation:</h2>
+        <p>If you suspect a death notice to be obscene or fraudulent.</p>
+        <p>If you suspect notice details are incorrect (Partially / Fully).</p>
+        <p>If you suspect a decedent&apos;s photograph is not real.</p>
+        <p>If you notice any other business / individual trying to solicit you with ads or other material.</p>
     </div>
     
     @include('layouts.user.footer')

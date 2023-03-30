@@ -247,7 +247,7 @@ a {
 }
 
 .left > .left_bottom_section > .create-memorial {
-    color: #474747;
+    color: #474747 !important;
 }
 
 .right_section_2 {
@@ -487,7 +487,7 @@ a {
 }
 
 .learn_more_button {
-    color: #d0d0d0;
+    color: #d0d0d0 !important;
     background-color: #131313;
 }
 

@@ -12,9 +12,12 @@
             </div>
             <div class="right_footer_section foot_section">
                 <div class="light_anchor_container">
-                    <a target="_blank" href="{{ route('privacy') }}" class="light_foot_anchor">Privacy Policy</a>
-                    <a target="_blank" href="{{ route('cookie') }}" class="light_foot_anchor">Cookie Policy</a>
-                    <a target="_blank" href="{{ route('community') }}" class="light_foot_anchor">Community Rules</a>
+                    <a href="{{ route('about') }}" class="light_foot_anchor">About Us</a>
+                    <a href="{{ route('terms') }}" class="light_foot_anchor">Terms</a>
+                    <a href="{{ route('report') }}" class="light_foot_anchor">Report Us</a>
+                    <a href="{{ route('privacy') }}" class="light_foot_anchor">Privacy Policy</a>
+                    <a href="{{ route('cookie') }}" class="light_foot_anchor">Cookie Policy</a>
+                    <a href="{{ route('community') }}" class="light_foot_anchor">Community Rules</a>
                 </div>
                 <div class="social_link_container">
                     <a href="https://www.instagram.com/" class="social_links">

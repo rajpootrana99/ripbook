@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rip Book | Community Rules</title>
+    <title>Rip Book | About Us</title>
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -25,16 +25,18 @@
 <body>
     @include('layouts.user.header')
     <div class="container my-5">
-        <h1>Community Rules</h1>
-        <p>At our community, we are committed to providing a safe and welcoming environment for all members. To ensure this, we have established the following community policies:</p>
-        <ul>
-            <li><strong>Respectful Communication:</strong> Members must communicate with one another in a respectful manner. This includes refraining from personal attacks, hate speech, or any form of discrimination.</li>
-            <li><strong>No Spamming:</strong> Members are not allowed to spam the community with promotional material, links, or any other form of unsolicited content.</li>
-            <li><strong>No Illegal Activity:</strong> Any form of illegal activity is strictly prohibited within the community. This includes the sharing of pirated content, hacking, or any other form of criminal activity.</li>
-            <li><strong>No Trolling:</strong> Members are not allowed to engage in trolling behavior or intentionally provoke other members.</li>
-            <li><strong>No Harassment:</strong> Harassment of any kind is not tolerated within the community. This includes sexual harassment, cyberbullying, or any other form of harassment.</li>
-        </ul>
-        <p>Any member who violates these policies may face disciplinary action, up to and including expulsion from the community.</p>
+        <h1>About Us</h1>
+        <p>RIPBook.com is the place where the world pauses to embrace the power of a life well-lived. We believe that a single life story can provide extraordinary inspiration, even after that person has died. So we champion every life, knowing it can connect us in unexpected, powerful ways.
+        <br><br>
+        Today, RIPBook.com is the global leader in online obituaries and a destination for over half a million unique visitors & more than 2 million pages viewed each month around the world. Founded in 2018, RIPBook.com is honored to serve users across the global. We do have partnerships with world’s largest vendors to provide easy ways for consumers to express condolences, share direct support for families, and celebrate the people who have touched their lives.
+        <br><br>
+        RIPBook.com's partners benefit from our unparalleled scale, which enables continuous innovation of our industry-leading obituary products and accompanying cross-platform e-commerce engine. RIPBook.com is a privately held company, headquartered in UK Flag Unit 1 10 Stonefield Way, Ruislip, Middlesex, HA4 0JS, UK
+        <br><br>
+        with additional offices in Canada,France,Switzerland,India and Sri lanka with dedicated associates who help the customers across global.
+        <br><br>
+        Regards,
+        <br>
+        Website Administration</p>
     </div>
     
     @include('layouts.user.footer')
