@@ -119,7 +119,7 @@
                             <span class="text-danger residence_error"></span>
                         </div>
                         <div class="form-group col-sm-6">
-                            <select class="form-control" id="exampleFormControlSelect4" name="visibility" id="visibility">
+                            <select class="form-control" id="exampleFormControlSelect4" style="height: 40px;" name="visibility" id="visibility">
                                 <option value="0">Public</option>
                                 <option value="1">Private</option>
                             </select>
@@ -204,7 +204,7 @@
                             <span class="text-danger residence_update_error"></span>
                         </div>
                         <div class="form-group col-sm-6">
-                            <select class="form-control edit_visibility" id="edit_visibility" name="visibility">
+                            <select class="form-control edit_visibility" style="height: 40px;" id="edit_visibility" name="visibility">
                                 <option value="0">Public</option>
                                 <option value="1">Private</option>
                             </select>
@@ -378,7 +378,7 @@
         $(document).on('click', '#addNoticeButton', function(e) {
             e.preventDefault();
             $('#addNotice').modal('show');
-            $(document).find('span.error-text').text('');
+            $(document).find('span.text-danger').text('');
             $.ajax({
                 type: "GET",
                 url: "fetchMemorials",
@@ -403,7 +403,7 @@
                 contentType: false,
                 processData: false,
                 beforeSend: function() {
-                    $(document).find('span.error-text').text('');
+                    $(document).find('span.text-danger').text('');
                 },
                 success: function(response) {
                     if (response.status == 0) {
@@ -431,7 +431,7 @@
         $(document).on('click', '#addGalleryButton', function(e) {
             e.preventDefault();
             $('#addGallery').modal('show');
-            $(document).find('span.error-text').text('');
+            $(document).find('span.text-danger').text('');
             $.ajax({
                 type: "GET",
                 url: "fetchMemorials",
@@ -456,7 +456,7 @@
                 contentType: false,
                 processData: false,
                 beforeSend: function() {
-                    $(document).find('span.error-text').text('');
+                    $(document).find('span.text-danger').text('');
                 },
                 success: function(response) {
                     if (response.status == 0) {
@@ -519,7 +519,7 @@
             e.preventDefault();
             var memorial_id = $(this).val();
             $('#editMemorial').modal('show');
-            $(document).find('span.error-text').text('');
+            $(document).find('span.text-danger').text('');
             $.ajax({
                 type: "GET",
                 url: 'memorial/' + memorial_id + '/edit',
@@ -565,7 +565,7 @@
                 contentType: false,
                 processData: false,
                 beforeSend: function() {
-                    $(document).find('span.error-text').text('');
+                    $(document).find('span.text-danger').text('');
                 },
                 success: function(response) {
                     if (response.status == 0) {
@@ -601,7 +601,7 @@
                 contentType: false,
                 processData: false,
                 beforeSend: function() {
-                    $(document).find('span.error-text').text('');
+                    $(document).find('span.text-danger').text('');
                 },
                 success: function(response) {
                     if (response.status == 0) {
