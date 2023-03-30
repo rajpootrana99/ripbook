@@ -71,19 +71,19 @@
                                  </div>
                                  <div class="form-group col-sm-6">
                                     <label for="street">Street Address:</label>
-                                    <input type="text" class="form-control" id="street" name="street" placeholder="Street # 1" value="{{ Auth::user()->street }}">
+                                    <input type="text" class="form-control" id="street" name="street" placeholder="Please Enter Street Address" value="{{ Auth::user()->street }}">
                                  </div>
                                  <div class="form-group col-sm-6">
                                     <label for="cname">City:</label>
-                                    <input type="text" class="form-control" name="city" id="city" placeholder="Colombo" value="{{ Auth::user()->city }}">
+                                    <input type="text" class="form-control" name="city" id="city" placeholder="Please Enter City" value="{{ Auth::user()->city }}">
                                  </div>
                                  <div class="form-group col-sm-6">
                                     <label for="pcode">Postal Code:</label>
-                                    <input type="number" class="form-control" name="pcode" id="pcode" placeholder="60000" value="{{ Auth::user()->pcode }}">
+                                    <input type="number" class="form-control" name="pcode" id="pcode" placeholder="Please Enter Post Code" value="{{ Auth::user()->pcode }}">
                                  </div>
                                  <div class="form-group col-sm-6">
                                     <label for="Contry">Country:</label>
-                                    <input type="text" class="form-control" name="country" id="country" placeholder="Sirilanka" value="{{ Auth::user()->country }}">
+                                    <input type="text" class="form-control" name="country" id="country" placeholder="Please Enter Country" value="{{ Auth::user()->country }}">
                                  </div>
                               </div>
                               <button type="submit" class="btn btn-primary mr-2">Save</button>

@@ -19,6 +19,7 @@ class PasswordController extends Controller
         $validator = Validator::make($request->all(), [
             'current_password' => ['required', 'current_password'],
             'password' => ['required', Password::defaults(), 'confirmed'],
+            'password_confirmation' => ['required', 'same:password']
         ]);
         if (!$validator->passes()) {
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
