@@ -18,6 +18,14 @@
 
     <link rel="stylesheet" href="{{ asset('asset/css/header.css')}}">
     <link rel="stylesheet" href="{{ asset('asset/css/footer.css')}}">
+    <style>
+        .footer {
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            width: 100%;
+        }
+    </style>
 
 
 </head>

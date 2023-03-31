@@ -17,8 +17,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('asset/css/header.css')}}">
-    <link rel="stylesheet" href="{{ asset('asset/css/index.css')}}">
     <link rel="stylesheet" href="{{ asset('asset/css/footer.css')}}">
+    <link rel="stylesheet" href="{{ asset('asset/css/index.css')}}">
+    
     <link rel="stylesheet" href="{{ asset('asset/css/card_style.css')}}">
 
     <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
