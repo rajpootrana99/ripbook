@@ -68,7 +68,7 @@
                     <div class="form-group row align-items-center">
                         <div class="col-md-12">
                             <div class="profile-img-edit">
-                                <img class="profile-pic" src="{{ asset('asset/admin/images/user/11.png')}}" alt="profile-pic">
+                                <img class="profile-pic" src="{{ asset('asset/admin/images/user/11.png')}}" width="150px" height="150px" alt="profile-pic">
                                 <div class="p-image">
                                     <i class="ri-pencil-line upload-button"></i>
                                     <input class="file-upload" type="file" name="feature_image" id="feature_image" accept="image/*" />
@@ -153,7 +153,7 @@
                     <div class="form-group row align-items-center">
                         <div class="col-md-12">
                             <div class="profile-img-edit">
-                                <img class="profile-pic" src="{{ asset('asset/admin/images/user/11.png')}}" id="show_feature_image" alt="profile-pic">
+                                <img class="profile-pic" src="{{ asset('asset/admin/images/user/11.png')}}" width="150px" height="150px" id="show_feature_image" alt="profile-pic">
                                 <div class="p-image">
                                     <i class="ri-pencil-line upload-button"></i>
                                     <input class="file-upload" type="file" name="feature_image" id="edit_feature_image" accept="image/*" />

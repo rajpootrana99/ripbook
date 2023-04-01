@@ -1,4 +1,3 @@
-
 @extends('layouts.app')
 
 @section('content')
@@ -29,7 +28,7 @@
             <div class="iq-edit-list-data">
                <div class="tab-content">
                   <div class="tab-pane fade active show" id="personal-information" role="tabpanel">
-                        <div class="iq-card">
+                     <div class="iq-card">
                         <div class="iq-card-header d-flex justify-content-between">
                            <div class="iq-header-title">
                               <h4 class="card-title">Personal Information</h4>
@@ -42,13 +41,13 @@
                                  <div class="col-md-12">
                                     <div class="profile-img-edit">
                                        @if(Auth::user()->image)
-                                          <img class="profile-pic" src="{{ asset('storage/'.Auth::user()->image) }}" alt="profile-pic">
+                                       <img class="profile-pic" src="{{ asset('storage/'.Auth::user()->image) }}" width="150px" height="150px" alt="profile-pic">
                                        @else
-                                       <img class="profile-pic" src="{{ asset('asset/admin/images/user/11.png')}}" alt="profile-pic">
+                                       <img class="profile-pic" src="{{ asset('asset/admin/images/user/11.png')}}" width="150px" height="150px" alt="profile-pic">
                                        @endif
                                        <div class="p-image">
                                           <i class="ri-pencil-line upload-button"></i>
-                                          <input class="file-upload" type="file" name="image" accept="image/*"/>
+                                          <input class="file-upload" type="file" name="image" accept="image/*" />
                                        </div>
                                     </div>
                                  </div>
@@ -93,7 +92,7 @@
                      </div>
                   </div>
                   <div class="tab-pane fade" id="chang-pwd" role="tabpanel">
-                        <div class="iq-card">
+                     <div class="iq-card">
                         <div class="iq-card-header d-flex justify-content-between">
                            <div class="iq-header-title">
                               <h4 class="card-title">Change Password</h4>
@@ -105,9 +104,9 @@
                               @method('PUT')
                               <div class="form-group">
                                  <label for="current_password">Current Password:</label>
-                                    <input type="Password" class="form-control" name="current_password" id="current_password">
-                                    <span class="text-danger current_password_error error-text"></span>
-                                 </div>
+                                 <input type="Password" class="form-control" name="current_password" id="current_password">
+                                 <span class="text-danger current_password_error error-text"></span>
+                              </div>
                               <div class="form-group">
                                  <label for="password">New Password:</label>
                                  <input type="Password" class="form-control" name="password" id="password">
@@ -115,8 +114,8 @@
                               </div>
                               <div class="form-group">
                                  <label for="password_confirmation">Verify Password:</label>
-                                    <input type="Password" class="form-control" name="password_confirmation" id="password_confirmation">
-                                    <span class="text-danger password_confirmation_error error-text"></span>
+                                 <input type="Password" class="form-control" name="password_confirmation" id="password_confirmation">
+                                 <span class="text-danger password_confirmation_error error-text"></span>
                               </div>
                               <button type="submit" class="btn btn-primary mr-2">Submit</button>
                               <button type="reset" class="btn iq-bg-danger">Cancle</button>
@@ -132,75 +131,79 @@
 </div>
 
 <script>
-    $(document).ready(function() {
+   $(document).ready(function() {
 
       const x = document.getElementById("snackbar");
-        $.ajaxSetup({
+      $.ajaxSetup({
+         headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         }
+      });
+
+      $(document).on('submit', '#updateUserProfile', function(e) {
+         e.preventDefault();
+         let formData = new FormData($('#updateUserProfile')[0]);
+         $.ajax({
+            type: "post",
+            url: "updateUser",
+            data: formData,
+            contentType: false,
+            processData: false,
+            beforeSend: function() {
+               $(document).find('span.error-text').text('');
+            },
+            success: function(response) {
+               if (response.status == 0) {
+                  $.each(response.error, function(prefix, val) {
+                     $('span.' + prefix + '_error').text(val[0]);
+                  });
+               } else {
+                  $('#updateUserProfile')[0].reset();
+                  x.innerHTML = response.message;
+                  x.className = "show";
+                  setTimeout(function() {
+                     x.className = x.className.replace("show", "");
+                  }, 3000);
+                  location.reload();
+               }
+            },
+         });
+      });
+
+      $(document).on('submit', '#changePassword', function(e) {
+         e.preventDefault();
+         let formData = new FormData($('#changePassword')[0]);
+         console.log(formData)
+         $.ajax({
+            type: "post",
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $(document).on('submit', '#updateUserProfile', function(e) {
-            e.preventDefault();
-            let formData = new FormData($('#updateUserProfile')[0]);
-            $.ajax({
-                type: "post",
-                url: "updateUser",
-                data: formData,
-                contentType: false,
-                processData: false,
-                beforeSend: function() {
-                    $(document).find('span.error-text').text('');
-                },
-                success: function(response) {
-                    if (response.status == 0) {
-                        $.each(response.error, function(prefix, val) {
-                            $('span.' + prefix + '_error').text(val[0]);
-                        });
-                    } else {
-                        $('#updateUserProfile')[0].reset();
-                        x.innerHTML = response.message;
-                        x.className = "show";
-                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-                        location.reload();
-                    }
-                },
-            });
-        });
-
-        $(document).on('submit', '#changePassword', function(e) {
-            e.preventDefault();
-            let formData = new FormData($('#changePassword')[0]);
-            console.log(formData)
-            $.ajax({
-               type: "post",
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content'),
-                    '_method': 'put'
-                },
-                url: "password",
-                data: formData,
-                contentType: false,
-                processData: false,
-                beforeSend: function() {
-                    $(document).find('span.error-text').text('');
-                },
-                success: function(response) {
-                    if (response.status == 0) {
-                        $.each(response.error, function(prefix, val) {
-                            $('span.' + prefix + '_error').text(val[0]);
-                        });
-                    } else {
-                        $('#changePassword')[0].reset();
-                        $(document).find('span.error-text').text('');
-                        x.innerHTML = response.message;
-                        x.className = "show";
-                        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-                    }
-                },
-            });
-        });
-    });
+               'X-CSRF-TOKEN': $('meta[name="csrf_token"]').attr('content'),
+               '_method': 'put'
+            },
+            url: "password",
+            data: formData,
+            contentType: false,
+            processData: false,
+            beforeSend: function() {
+               $(document).find('span.error-text').text('');
+            },
+            success: function(response) {
+               if (response.status == 0) {
+                  $.each(response.error, function(prefix, val) {
+                     $('span.' + prefix + '_error').text(val[0]);
+                  });
+               } else {
+                  $('#changePassword')[0].reset();
+                  $(document).find('span.error-text').text('');
+                  x.innerHTML = response.message;
+                  x.className = "show";
+                  setTimeout(function() {
+                     x.className = x.className.replace("show", "");
+                  }, 3000);
+               }
+            },
+         });
+      });
+   });
 </script>
 @endsection

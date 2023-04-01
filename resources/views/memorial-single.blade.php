@@ -34,7 +34,7 @@
             position: fixed;
             z-index: 1;
             left: 50%;
-            bottom: 30px;
+            top: 30px;
             font-size: 17px;
         }
 
@@ -46,48 +46,48 @@
 
         @-webkit-keyframes fadein {
             from {
-                bottom: 0;
+                top: 0;
                 opacity: 0;
             }
 
             to {
-                bottom: 30px;
+                top: 30px;
                 opacity: 1;
             }
         }
 
         @keyframes fadein {
             from {
-                bottom: 0;
+                top: 0;
                 opacity: 0;
             }
 
             to {
-                bottom: 30px;
+                top: 30px;
                 opacity: 1;
             }
         }
 
         @-webkit-keyframes fadeout {
             from {
-                bottom: 30px;
+                top: 30px;
                 opacity: 1;
             }
 
             to {
-                bottom: 0;
+                top: 0;
                 opacity: 0;
             }
         }
 
         @keyframes fadeout {
             from {
-                bottom: 30px;
+                top: 30px;
                 opacity: 1;
             }
 
             to {
-                bottom: 0;
+                top: 0;
                 opacity: 0;
             }
         }
@@ -165,10 +165,12 @@
                 <div class="heading">Memories</div>
                 <div class="tribute_container">
                     <div class="write_tribute">Write tribute</div>
-                    <form action="" method="post" class="post_tribute_wrapper">
-                        <input type="text" class="tribute_box" placeholder="Write your own tribute here...">
+                    <form method="POST" class="post_tribute_wrapper" id="postTribute">
+                        @csrf
+                        <input type="text" class="tribute_box" name="message" id="message" placeholder="Write your own tribute here...">
                         <button type="submit" class="post_tribute_button">Post your tribute</button>
                     </form>
+                    <span class="text-danger message_error error_text" style="padding: 0 3%"></span>
                 </div>
             </div>
             <div class="horizontal_slider_wrapper">
@@ -421,7 +423,6 @@
             $(document).on('submit', '#tearfulTributeFrom', async function(e) {
                 e.preventDefault();
                 let formData = new FormData($('#tearfulTributeFrom')[0]);
-                console.log(formData)
                 $.ajax({
                     type: "post",
                     url: "../tearfulTribute",
@@ -453,6 +454,44 @@
                     }
                 });
             });
+
+            $(document).on('submit', '#postTribute', async function(e) {
+                e.preventDefault();
+                let formData = new FormData($('#postTribute')[0]);
+                $.ajax({
+                    type: "post",
+                    url: "../addTribute",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $(document).find('span.error_text').text('');
+                    },
+                    success: function(response) {
+                        if (response.status == 0) {
+                            $.each(response.error, function(prefix, val) {
+                                $('span.' + prefix + '_error').text(val[0]);
+                            });
+                        } else {
+                            $('#postTribute')[0].reset();
+                            x.innerHTML = response.message;
+                            x.className = "show";
+                            setTimeout(function() {
+                                x.className = x.className.replace("show", "");
+                            }, 3000);
+                            fetchTearfulTributes();
+                        }
+                    },
+                    error: function(error) {
+                        if (error.responseJSON.message == 'Unauthenticated.') {
+                            window.alert('Login Required');
+                        } else {
+                            window.alert(error.responseJSON.message);
+                        }
+                    }
+                });
+            });
+
         });
     </script>
 </body>

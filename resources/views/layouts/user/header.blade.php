@@ -6,7 +6,11 @@
                 <button class="hamburger picture_dropdown_button"> <i class="fa-solid fa-gear"></i> </button>
                 @endguest
                 @auth
+                @if(Auth::user()->image)
+                <img src="{{ asset('storage/'.Auth::user()->image) }}" alt="" class="user_picture img-fluid picture_dropdown_button">
+                @else
                 <img src="{{ asset('asset/images/section_7_img_1.png')}}" alt="" class="user_picture img-fluid picture_dropdown_button">
+                @endif
                 @endauth
             </div>
             <div class="dropdown_1 hide_dropdown" style="text-align: end;margin-top: 60px;" id="picture_dropdown_target">
@@ -44,7 +48,11 @@
                         <button class="hamburger picture_dropdown_button settings-icon"> <i class="fa-solid fa-gear"></i> </button>
                         @endguest
                         @auth
+                        @if(Auth::user()->image)
+                        <img src="{{ asset('storage/'.Auth::user()->image) }}" alt="" class="user_picture img-fluid picture_dropdown_button">
+                        @else
                         <img src="{{ asset('asset/images/section_7_img_1.png')}}" alt="" class="user_picture img-fluid picture_dropdown_button">
+                        @endif
                         @endauth
                     </div>
                     <div class="dropdown_1 hide_dropdown" style="right:unset;width: 200px;top: 0;" id="picture_dropdown_target">

@@ -354,42 +354,28 @@
     <div class="main_section">
         <div class="heading">Memorial Reviews</div>
         <div class="review_container">
+            @if(count($tributes) > 0)
+            @foreach($tributes as $tribute)
             <div class="review">
                 <div class="review_comment">
-                    “Thank you for offering this service and site. It's really appreciated by my family and me.”
+                    “{{ $tribute->message }}”
                 </div>
                 <div class="person_container">
+                    @if($tribute->user->image)
+                    <img src="{{ asset('storage/'.$tribute->user->image) }}" alt="" class="person_picture">
+                    @else
                     <img src="{{ asset('asset/images/section_7_img_1.png')}}" alt="" class="person_picture">
+                    @endif
                     <div class="person_information">
-                        <div class="person_name">David</div>
+                        <div class="person_name">{{ $tribute->user->name }}</div>
                         <div class="person_moto">We Remember User</div>
                     </div>
                 </div>
             </div>
-            <div class="review">
-                <div class="review_comment">
-                    “Loved seeing other people’s loving and funny memories. It made me realize just how many lives my mom touched in 68 years.”
-                </div>
-                <div class="person_container">
-                    <img src="{{ asset('asset/images/section_7_img_2.png')}}" alt="" class="person_picture">
-                    <div class="person_information">
-                        <div class="person_name">Emily</div>
-                        <div class="person_moto">We Remember User</div>
-                    </div>
-                </div>
-            </div>
-            <div class="review">
-                <div class="review_comment">
-                    “Thank you so very much! THANK YOU... Simply for existing, so that we may share our loved ones with the world.”
-                </div>
-                <div class="person_container">
-                    <img src="{{ asset('asset/images/section_7_img_3.png')}}" alt="" class="person_picture">
-                    <div class="person_information">
-                        <div class="person_name">Caroline</div>
-                        <div class="person_moto">We Remember User</div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
+            @else
+            <p>No Review yet</p>
+            @endif
         </div>
     </div>
 </div>

@@ -65,6 +65,7 @@ Route::middleware('auth')->group(function () {
     Route::post('subscription', [PlanController::class, 'subscription'])->name('subscription.create');
     Route::post('/addGallery', [MemorialController::class, 'addGallery']);
     Route::post('updateUser', [ProfileController::class, 'update']);
+    Route::post('addTribute', [GeneralController::class, 'addTribute']);
     Route::resource('notice', NoticeController::class);
 });
 Route::resource('plan', PlanController::class);

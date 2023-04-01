@@ -49,7 +49,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function memorials(){
+    public function memorials()
+    {
         return $this->hasMany(Memorial::class);
+    }
+
+    public function tributes()
+    {
+        return  $this->hasMany(Tribute::class);
     }
 }
