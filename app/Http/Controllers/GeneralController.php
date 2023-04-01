@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SearchRequest;
+use App\Models\Memorial;
 use App\Models\Notice;
 use App\Models\Tribute;
 use Illuminate\Http\Request;
@@ -45,6 +47,28 @@ class GeneralController extends Controller
             return response()->json(['status' => 1, 'message' => 'Tribute Added Successfully']);
         } else {
             return response()->json(['status' => 0, 'message' => 'Tribute not Added Successfully']);
+        }
+    }
+
+    public function searchFeed(Request $request)
+    {
+        if ($request->search == 'dob') {
+            $feeds = Memorial::where('dob', $request->search_val)->where('visibility', 0)->get();
+            return view('feed', [
+                'feeds' => $feeds,
+            ]);
+        }
+        if ($request->search == 'dod') {
+            $feeds = Memorial::where('dod', $request->search_val)->where('visibility', 0)->get();
+            return view('feed', [
+                'feeds' => $feeds,
+            ]);
+        }
+        if ($request->search == 'name') {
+            $feeds = Memorial::where('title', 'like', '%' . $request->search_val . '%')->where('visibility', 0)->get();
+            return view('feed', [
+                'feeds' => $feeds,
+            ]);
         }
     }
 }

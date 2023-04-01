@@ -51,6 +51,7 @@ Route::get('contact', function () {
 Route::get('/single-memorial', function () {
     return view('memorial-single');
 })->name('single-memorial');
+Route::post('searchFeed', [GeneralController::class, 'searchFeed'])->name('searchFeed');
 Route::get('feed', [FeedController::class, 'index'])->name('feed');
 Route::get('memorial/{memorial}', [MemorialController::class, 'show'])->name('memorial.show');
 Route::resource('/tearfulTribute', TearfulTributeController::class);

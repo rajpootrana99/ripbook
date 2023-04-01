@@ -104,6 +104,12 @@ a {
     left: -88%;
 }
 
+.user_icon {
+    width: 24px;
+    position: relative;
+    left: -88%;
+}
+
 .search_btn {
     width: 130px;
     height: 60px;
@@ -805,6 +811,11 @@ a {
     }
 
     .section_1 * .calendar_icon {
+        width: 18px;
+        left: -84%;
+    }
+
+    .section_1 * .user_icon {
         width: 18px;
         left: -84%;
     }

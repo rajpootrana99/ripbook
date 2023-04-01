@@ -11,34 +11,38 @@
             <div class="description">
                 Memories are fragile. Conversations fade. Photos are scattered. That’s why we created a single, simple place to collect and preserve memories. The result is a rich tapestry of stories and photos, preserved for family and friends for years to come. Completely Free!
             </div>
-            <div class="form_wrapper">
+            <form class="form_wrapper" method="POST" action="{{ route('searchFeed') }}">
+                @csrf
                 <div class="form_name">
                     Search By
                 </div>
                 <div class="form_grid">
                     <div class="radio_1">
-                        <input type="radio" name="dob" id="d_o_b">
+                        <input type="radio" name="search" value="dob" id="d_o_b" checked>
                         <label for="d_o_b"><span style="opacity: 0.6;">Date of birth</span></label>
                     </div>
                     <div class="radio_2">
-                        <input type="radio" name="dod" id="d_o_d">
+                        <input type="radio" name="search" value="dod" id="d_o_d">
                         <label for="d_o_d"><span style="opacity: 0.6;">Date of death</span></label>
                     </div>
                     <div class="radio_3">
-                        <input type="radio" name="name" id="name">
+                        <input type="radio" name="search" value="name" id="name">
                         <label for="name"><span style="opacity: 0.6;">Name</span></label>
                     </div>
                 </div>
                 <div class="form_grid" style="column-gap: 0%;">
-                    <div style="display:flex;">
-                        <input type="text" name="" readonly onclick="this.nextElementSibling.showPicker()" placeholder="Enter Date" class="input_box" id="">
-                        <input type="date" name="" id="" onchange="this.previousElementSibling.value=this.value" class="input_box date_box">
+                    <div style="display:flex;" id="search_input_date">
+                        <input type="text" readonly onclick="this.nextElementSibling.showPicker()" placeholder="Enter Date" class="input_box" id="sarch_val">
+                        <input type="date" name="search_val" id="" onchange="this.previousElementSibling.value=this.value" class="input_box date_box">
                         <img loading="lazy" src="{{ asset('asset/images/calendar.svg')}}" class="calendar_icon" alt="" srcset="">
                     </div>
-
+                    <div style="display:none;" id="search_input_text">
+                        <input type="text" name="sarch_val" placeholder="Enter Name" class="input_box" id="sarch_val">
+                        <img loading="lazy" src="{{ asset('asset/images/user.svg')}}" class="user_icon" alt="" srcset="">
+                    </div>
                     <input type="submit" class="search_btn" role="button" value="Search">
                 </div>
-            </div>
+            </form>
         </div>
         <div class="right_section_1">
             <div class="absolute_item">
@@ -241,7 +245,7 @@
                 <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
                 <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
                 <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> &mdash; </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
             </div>
             <div class="table_row">
                 <div class="mode_option">Word Limit</div>
@@ -255,83 +259,83 @@
             </div>
             <div class="table_row">
                 <div class="mode_option">Correction</div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
             </div>
             <div class="table_row">
                 <div class="mode_option">Core integrations</div>
                 <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
                 <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
                 <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
             </div>
             <div class="table_row">
                 <div class="mode_option">*Lifetime Record</div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
             </div>
             <div class="table_row">
                 <div class="mode_option">*Tamilwin.com</div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
             </div>
             <div class="table_row">
                 <div class="mode_option">*Social Media</div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
             </div>
             <div class="table_row">
                 <div class="mode_option">Photo SlideShow</div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
             </div>
             <div class="table_row">
                 <div class="mode_option">*Priority Publish</div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
             </div>
             <div class="table_row">
                 <div class="mode_option">*Extra Boost</div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
-                <div class="td"> <img src="{{ asset('asset/images/plus.svg')}}" alt="" srcset=""> </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> &mdash; </div>
+                <div class="td"> <img src="{{ asset('asset/images/check-circle.svg')}}" alt="" srcset=""> </div>
             </div>
 
             <div class="table_row">
@@ -421,6 +425,39 @@
 
 <script>
     $(document).ready(function() {
+
+        function validateForm() {
+            let x = document.forms["searchForm"]["search_val"].value;
+            if (x == "") {
+                alert("Name must be filled out");
+                return false;
+            }
+        }
+
+        $("#d_o_b").click(function() {
+            searchForm();
+        });
+        $("#d_o_d").click(function() {
+            searchForm();
+        });
+        $("#name").click(function() {
+            searchForm();
+        });
+
+        function searchForm() {
+            if ($("#d_o_b").prop("checked")) {
+                $('#search_input_text').css('display', 'none');
+                $('#search_input_date').css('display', 'flex');
+            }
+            if ($("#d_o_d").prop("checked")) {
+                $('#search_input_text').css('display', 'none');
+                $('#search_input_date').css('display', 'flex');
+            }
+            if ($("#name").prop("checked")) {
+                $('#search_input_text').css('display', 'flex');
+                $('#search_input_date').css('display', 'none');
+            }
+        }
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

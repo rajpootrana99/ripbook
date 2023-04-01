@@ -52,8 +52,9 @@
         <div class="main_section">
             <div class="cards_container">
                 <div class="row">
+                    @if(count($feeds)>0)
                     @foreach($feeds as $feed)
-                    <div class="col-sm-4">
+                    <div class="col-lg-4">
                         <div class="item_container card_item">
                             <a href="{{ route('memorial.show',['memorial' => $feed]) }}">
                                 <img loading="lazy" src="{{ asset('storage/'.$feed->feature_image)}}" class="item_picture card_image" alt="" srcset="">
@@ -69,6 +70,9 @@
                         </div>
                     </div>
                     @endforeach
+                    @else
+                    <h4 class="text-center">No Memorial Available</h4>
+                    @endif
                 </div>
             </div>
         </div>

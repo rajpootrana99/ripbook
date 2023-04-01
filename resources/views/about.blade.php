@@ -18,7 +18,11 @@
 
     <link rel="stylesheet" href="{{ asset('asset/css/header.css')}}">
     <link rel="stylesheet" href="{{ asset('asset/css/footer.css')}}">
-
+    <style>
+        .container {
+            height: 100vh;
+        }
+    </style>
 
 </head>
 
@@ -27,18 +31,19 @@
     <div class="container my-5">
         <h1>About Us</h1>
         <p>RIPBook.com is the place where the world pauses to embrace the power of a life well-lived. We believe that a single life story can provide extraordinary inspiration, even after that person has died. So we champion every life, knowing it can connect us in unexpected, powerful ways.
-        <br><br>
-        Today, RIPBook.com is the global leader in online obituaries and a destination for over half a million unique visitors & more than 2 million pages viewed each month around the world. Founded in 2018, RIPBook.com is honored to serve users across the global. We do have partnerships with world’s largest vendors to provide easy ways for consumers to express condolences, share direct support for families, and celebrate the people who have touched their lives.
-        <br><br>
-        RIPBook.com's partners benefit from our unparalleled scale, which enables continuous innovation of our industry-leading obituary products and accompanying cross-platform e-commerce engine. RIPBook.com is a privately held company, headquartered in UK Flag Unit 1 10 Stonefield Way, Ruislip, Middlesex, HA4 0JS, UK
-        <br><br>
-        with additional offices in Canada,France,Switzerland,India and Sri lanka with dedicated associates who help the customers across global.
-        <br><br>
-        Regards,
-        <br>
-        Website Administration</p>
+            <br><br>
+            Today, RIPBook.com is the global leader in online obituaries and a destination for over half a million unique visitors & more than 2 million pages viewed each month around the world. Founded in 2018, RIPBook.com is honored to serve users across the global. We do have partnerships with world’s largest vendors to provide easy ways for consumers to express condolences, share direct support for families, and celebrate the people who have touched their lives.
+            <br><br>
+            RIPBook.com's partners benefit from our unparalleled scale, which enables continuous innovation of our industry-leading obituary products and accompanying cross-platform e-commerce engine. RIPBook.com is a privately held company, headquartered in UK Flag Unit 1 10 Stonefield Way, Ruislip, Middlesex, HA4 0JS, UK
+            <br><br>
+            with additional offices in Canada,France,Switzerland,India and Sri lanka with dedicated associates who help the customers across global.
+            <br><br>
+            Regards,
+            <br>
+            Website Administration
+        </p>
     </div>
-    
+
     @include('layouts.user.footer')
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
