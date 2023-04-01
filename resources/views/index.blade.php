@@ -113,7 +113,7 @@
                                     <div class="item_name">{{ $right_memorial->title }}</div>
 
                                     <div class="time_of_death">
-                                        <div class="lifetime">Date of Birth: {{ $right_memorial->dob }}</div>
+                                        <div class="lifetime">Date of Birth: {{ $right_memorial->dob }}</div><br>
                                         <div class="time_passed">Date of Death: {{ $right_memorial->dod }}</div>
                                     </div>
                                 </div>

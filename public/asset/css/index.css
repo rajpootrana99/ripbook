@@ -343,13 +343,14 @@ a {
 
 .time_of_death {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     font-size: 12px;
     line-height: 3;
 }
 
 .lifetime {
-    font-weight: var(--Source-Sans-Pro-Regular);
+    font-weight: var(--Source-Sans-Pro-SemiBold);
 }
 
 .time_passed {
