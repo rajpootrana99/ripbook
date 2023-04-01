@@ -136,7 +136,7 @@
 
                         <div class="fb-share-button" data-href="https://ripbook.arumsolutions.co/memorial/{{$memorial->id}}" data-layout="" data-size="large">
                             <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">
-                                <div class="share_button info_buttons fb-xfbml-parse-ignore"><img src="{{ asset('asset/images/reply.svg')}}" alt=""> Share</div>
+                                Share
                             </a>
                         </div>
                     </div>
