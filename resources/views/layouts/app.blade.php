@@ -92,6 +92,11 @@
             opacity: 0;
          }
       }
+
+      #preview img {
+         max-height: 100px;
+         padding: 1%;
+      }
    </style>
 
 </head>

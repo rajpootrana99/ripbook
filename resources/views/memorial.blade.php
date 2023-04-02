@@ -245,11 +245,14 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="image[]" name="image[]" multiple>
+                                    <input type="file" class="custom-file-input" id="images" name="image[]" multiple>
                                     <label class="custom-file-label" for="image">Choose file</label>
                                 </div>
                                 <span class="text-danger image_error"></span>
                             </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div id="preview"></div>
                         </div>
                     </div><!--end row-->
                 </div><!--end modal-body-->
@@ -337,6 +340,22 @@
     $(document).ready(function() {
 
         const x = document.getElementById("snackbar");
+
+        const preview = (file) => {
+            const fr = new FileReader();
+            fr.onload = () => {
+                const img = document.createElement("img");
+                img.src = fr.result; // String Base64 
+                img.alt = file.name;
+                document.querySelector('#preview').append(img);
+            };
+            fr.readAsDataURL(file);
+        };
+
+        document.querySelector("#images").addEventListener("change", (ev) => {
+            if (!ev.target.files) return; // Do nothing.
+            [...ev.target.files].forEach(preview);
+        });
 
         $.ajaxSetup({
             headers: {
