@@ -575,6 +575,11 @@ a {
     border: none;
 }
 
+.table_head .th:focus {
+    background-color: #3dbac5;
+    outline: none;
+}
+
 .th > .price {
     font-weight: var(--Source-Sans-Pro-Bold);
     font-size: 32px;
@@ -628,7 +633,9 @@ a {
     color: #131313;
     cursor: pointer;
 }
-
+.order_button:hover {
+    background-color: #3dbac5;
+}
 .order_recomended {
     background-color: #fcb71e !important;
     cursor: pointer;

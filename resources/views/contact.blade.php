@@ -31,7 +31,7 @@
             border-radius: 2px;
             padding: 16px;
             position: fixed;
-            z-index: 1;
+            z-index: 1000;
             left: 50%;
             top: 30px;
             font-size: 17px;
@@ -187,6 +187,7 @@
 
     <script>
         $(document).ready(function() {
+            const x = document.getElementById("snackbar");
             $(document).on('submit', '#contactForm', async function(e) {
                 e.preventDefault();
                 let formData = new FormData($('#contactForm')[0]);

@@ -84,27 +84,27 @@ class GeneralController extends Controller
         if (!$validator->passes()) {
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
         }
-        $fromName = $request->name;
-        $subject = 'Contact Query from user';
-        $data = array(
-            'message' => $request->message
-        );
-
-        $fromEmail = $request->email;
-
-        $toName = 'Muhammad Rana';
-        $toEmail = 'bfoot171@gmail.com';
-
-        Mail::send('mails.contact', $data, function ($message) use ($toEmail, $toName, $fromEmail, $fromName, $subject) {
-
-            $message->from($fromEmail, $fromName);
-            $message->to($toEmail, $toName);
-            $message->subject($subject);
-        });
+        $email = $request->email;
 
         return response()->json([
             'status' => 1,
-            'message' => 'We have got you mail Contact you soon'
+            'message' => 'We have recieved your mail we will contact you soon',
         ]);
+
+        // try {
+        //     Mail::send('mails.contact', ['message', $request->message], function (Message $message) use ($email) {
+        //         $message->to($email);
+        //         $message->subject('Rip Book Query Confirmation mail');
+        //     });
+        //     return response()->json([
+        //         'status' => 1,
+        //         'message' => 'Check your Mail'
+        //     ]);
+        // } catch (\Exception $e) {
+        //     return response()->json([
+        //         'status' => 0,
+        //         'message' => 'Sorry Something went wrong'
+        //     ]);
+        // }
     }
 }

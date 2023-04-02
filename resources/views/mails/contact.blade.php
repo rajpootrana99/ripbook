@@ -1,1 +1,1 @@
-{{$message}}
+<p>Thank you for your message! we will contact you soon on your query</p>
