@@ -8,7 +8,9 @@ use App\Models\Memorial;
 use App\Models\Notice;
 use App\Models\Tribute;
 use Illuminate\Http\Request;
+use Illuminate\Mail\Message;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class GeneralController extends Controller
@@ -70,5 +72,39 @@ class GeneralController extends Controller
                 'feeds' => $feeds,
             ]);
         }
+    }
+
+    public function sendMail(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => ['required', 'string', 'min:3'],
+            'email' => ['required', 'email'],
+            'message' => ['required', 'string', 'min:3'],
+        ]);
+        if (!$validator->passes()) {
+            return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
+        }
+        $fromName = $request->name;
+        $subject = 'Contact Query from user';
+        $data = array(
+            'message' => $request->message
+        );
+
+        $fromEmail = $request->email;
+
+        $toName = 'Muhammad Rana';
+        $toEmail = 'bfoot171@gmail.com';
+
+        Mail::send('mails.contact', $data, function ($message) use ($toEmail, $toName, $fromEmail, $fromName, $subject) {
+
+            $message->from($fromEmail, $fromName);
+            $message->to($toEmail, $toName);
+            $message->subject($subject);
+        });
+
+        return response()->json([
+            'status' => 1,
+            'message' => 'We have got you mail Contact you soon'
+        ]);
     }
 }

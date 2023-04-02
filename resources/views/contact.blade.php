@@ -33,7 +33,7 @@
             position: fixed;
             z-index: 1;
             left: 50%;
-            bottom: 30px;
+            top: 30px;
             font-size: 17px;
         }
 
@@ -45,48 +45,48 @@
 
         @-webkit-keyframes fadein {
             from {
-                bottom: 0;
+                top: 0;
                 opacity: 0;
             }
 
             to {
-                bottom: 30px;
+                top: 30px;
                 opacity: 1;
             }
         }
 
         @keyframes fadein {
             from {
-                bottom: 0;
+                top: 0;
                 opacity: 0;
             }
 
             to {
-                bottom: 30px;
+                top: 30px;
                 opacity: 1;
             }
         }
 
         @-webkit-keyframes fadeout {
             from {
-                bottom: 30px;
+                top: 30px;
                 opacity: 1;
             }
 
             to {
-                bottom: 0;
+                top: 0;
                 opacity: 0;
             }
         }
 
         @keyframes fadeout {
             from {
-                bottom: 30px;
+                top: 30px;
                 opacity: 1;
             }
 
             to {
-                bottom: 0;
+                top: 0;
                 opacity: 0;
             }
         }
@@ -145,22 +145,26 @@
                 </div>
 
                 <div class="contact-form">
-                    <form action="" id="contact-form">
+                    <form method="POST" id="contactForm">
+                        @csrf
                         <h2>Send Message</h2>
                         <div class="input-box">
-                            <input type="text" required="true" name="">
+                            <input type="text" id="name" name="name">
                             <span>Full Name</span>
                         </div>
+                        <span class="text-danger name_error error_text"></span>
 
                         <div class="input-box">
-                            <input type="email" required="true" name="">
+                            <input type="email" id="email" name="email">
                             <span>Email</span>
                         </div>
+                        <span class="text-danger email_error error_text"></span>
 
                         <div class="input-box">
-                            <textarea required="true" name=""></textarea>
+                            <textarea id="message" name="message"></textarea>
                             <span>Type your Message...</span>
                         </div>
+                        <span class="text-danger message_error error_text"></span>
 
                         <div class="input-box">
                             <input type="submit" value="Send" name="">
@@ -181,6 +185,42 @@
     <script src="{{ asset('asset/js/header.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
+    <script>
+        $(document).ready(function() {
+            $(document).on('submit', '#contactForm', async function(e) {
+                e.preventDefault();
+                let formData = new FormData($('#contactForm')[0]);
+                $.ajax({
+                    type: "post",
+                    url: "../sendMail",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    beforeSend: function() {
+                        $(document).find('span.error_text').text('');
+                    },
+                    success: function(response) {
+                        if (response.status == 0) {
+                            $.each(response.error, function(prefix, val) {
+                                $('span.' + prefix + '_error').text(val[0]);
+                            });
+                        } else {
+                            $('#contactForm')[0].reset();
+                            x.innerHTML = response.message;
+                            x.className = "show";
+                            setTimeout(function() {
+                                x.className = x.className.replace("show", "");
+                            }, 3000);
+                        }
+                    },
+                    error: function(error) {
+                        window.alert(error.responseJSON.message);
+                    }
+                });
+            });
+
+        });
+    </script>
 </body>
 
 </html>
