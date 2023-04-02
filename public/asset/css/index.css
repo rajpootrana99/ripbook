@@ -580,6 +580,10 @@ a {
     outline: none;
 }
 
+.table_head .th:hover {
+    cursor: pointer;
+}
+
 .th > .price {
     font-weight: var(--Source-Sans-Pro-Bold);
     font-size: 32px;
