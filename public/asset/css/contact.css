@@ -134,6 +134,12 @@ section {
     transform: translateY(-20px);
 }
 
+.textFill {
+    color: #1478ae !important;
+    font-size: 12px !important;
+    transform: translateY(-20px);
+}
+
 .contact-form .input-box input[type="submit"] {
     width: 100%;
     background: #1478ae;

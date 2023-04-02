@@ -150,19 +150,19 @@
                         <h2>Send Message</h2>
                         <div class="input-box">
                             <input type="text" id="name" name="name">
-                            <span>Full Name</span>
+                            <span id="nameSpan">Full Name</span>
                         </div>
                         <span class="text-danger name_error error_text"></span>
 
                         <div class="input-box">
                             <input type="email" id="email" name="email">
-                            <span>Email</span>
+                            <span id="emailSpan">Email</span>
                         </div>
                         <span class="text-danger email_error error_text"></span>
 
                         <div class="input-box">
                             <textarea id="message" name="message"></textarea>
-                            <span>Type your Message...</span>
+                            <span id="messageSpan">Type your Message...</span>
                         </div>
                         <span class="text-danger message_error error_text"></span>
 
@@ -188,7 +188,35 @@
     <script>
         $(document).ready(function() {
             const x = document.getElementById("snackbar");
-            $(document).on('submit', '#contactForm', async function(e) {
+
+            $(document).on('change', '#name', function(e) {
+                e.preventDefault();
+                if ($('#name').val() != '') {
+                    $('#nameSpan').addClass('textFill');
+                } else {
+                    $('#nameSpan').removeClass('textFill');
+                }
+            });
+
+            $(document).on('change', '#email', function(e) {
+                e.preventDefault();
+                if ($('#email').val() != '') {
+                    $('#emailSpan').addClass('textFill');
+                } else {
+                    $('#emailSpan').removeClass('textFill');
+                }
+            });
+
+            $(document).on('change', '#message', function(e) {
+                e.preventDefault();
+                if ($('#message').val() != '') {
+                    $('#messageSpan').addClass('textFill');
+                } else {
+                    $('#messageSpan').removeClass('textFill');
+                }
+            });
+
+            $(document).on('submit', '#contactForm', function(e) {
                 e.preventDefault();
                 let formData = new FormData($('#contactForm')[0]);
                 $.ajax({
