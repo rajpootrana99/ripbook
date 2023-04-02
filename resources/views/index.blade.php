@@ -340,13 +340,13 @@
 
             <div class="table_row">
                 <div class="mode_option"></div>
-                <button type="button" value="1" class="order_button" id="buySubscriptionButton">Order</button>
-                <button type="button" value="2" class="order_button" id="buySubscriptionButton">Order</button>
-                <button type="button" value="3" class="order_button order_recomended" id="buySubscriptionButton">Order</button>
-                <button type="button" value="4" class="order_button" id="buySubscriptionButton">Order</button>
-                <button type="button" value="5" value="1" class="order_button" id="buySubscriptionButton">Order</button>
-                <button type="button" value="6" class="order_button" id="buySubscriptionButton">Order</button>
-                <button type="button" value="7" class="order_button order_best" id="buySubscriptionButton">Order</button>
+                <a href="{{ route('plan',['plan' => 1]) }}" class="order_button">Order</a>
+                <a href="{{ route('plan',['plan' => 2]) }}" class="order_button">Order</a>
+                <a href="{{ route('plan',['plan' => 3]) }}" class="order_button order_recomended">Order</a>
+                <a href="{{ route('plan',['plan' => 4]) }}" class="order_button">Order</a>
+                <a href="{{ route('plan',['plan' => 5]) }}" class="order_button">Order</a>
+                <a href="{{ route('plan',['plan' => 6]) }}" class="order_button">Order</a>
+                <a href="{{ route('plan',['plan' => 7]) }}" class="order_button order_best">Order</a>
 
             </div>
         </div>

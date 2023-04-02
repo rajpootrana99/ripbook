@@ -636,6 +636,9 @@ a {
     border: none;
     color: #131313;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .order_button:hover {
     background-color: #3dbac5;

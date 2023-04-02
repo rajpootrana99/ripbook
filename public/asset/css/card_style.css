@@ -17,21 +17,9 @@
     align-items: center;
 }
 
-/* .container form {
+.container form {
     padding: 10px;
 }
-
-.close {
-    color: #aaaaaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-} 
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-} */
 
 .container form .row {
     display: flex;

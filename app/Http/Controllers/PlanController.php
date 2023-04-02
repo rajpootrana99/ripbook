@@ -9,31 +9,23 @@ use Illuminate\Support\Facades\Validator;
 
 class PlanController extends Controller
 {
-    public function show($plan){
-        if(Auth::user()){
-            if(Auth::user()->stripe_id){
-                return response()->json([
-                    'status' => 0,
-                    'message' => 'You already Bought a Plan'
-                ]);
-            }
-            else{
-                $intent = auth()->user()->createSetupIntent();
-                return response()->json([
-                    'status' => 1,
-                    'intent' => $intent
-                ]);
-            }
-        }
-        else{
+    public function show($plan)
+    {
+        if (Auth::user()->stripe_id) {
             return response()->json([
                 'status' => 0,
-                'message' => 'Login Required'
+                'message' => 'You already Bought a Plan'
+            ]);
+        } else {
+            return view('payment', [
+                'intent' => auth()->user()->createSetupIntent(),
+                'plan' => Plan::find($plan),
             ]);
         }
     }
 
-    public function subscription(Request $request){
+    public function subscription(Request $request)
+    {
         $validator = Validator::make($request->all(), [
             'name' => ['required', 'string', 'min:3'],
             'token' => ['required'],

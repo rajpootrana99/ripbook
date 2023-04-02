@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="{{ asset('asset/css/header.css')}}">
     <link rel="stylesheet" href="{{ asset('asset/css/footer.css')}}">
     <link rel="stylesheet" href="{{ asset('asset/css/index.css')}}">
-    
+
     <link rel="stylesheet" href="{{ asset('asset/css/card_style.css')}}">
 
     <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
@@ -29,8 +29,8 @@
 
 <body>
     @include('layouts.user.header')
-        @yield('content')
-      </div>
+    @yield('content')
+    </div>
 
     @include('layouts.user.footer')
 

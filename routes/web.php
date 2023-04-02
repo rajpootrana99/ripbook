@@ -49,8 +49,9 @@ Route::get('contact', function () {
     return view('contact');
 })->name('contact');
 Route::get('/single-memorial', function () {
-    return view('memorial-single');
+    return view('single-memorial');
 })->name('single-memorial');
+
 Route::post('searchFeed', [GeneralController::class, 'searchFeed'])->name('searchFeed');
 Route::post('sendMail', [GeneralController::class, 'sendMail'])->name('sendMail');
 Route::get('feed', [FeedController::class, 'index'])->name('feed');
@@ -59,6 +60,7 @@ Route::resource('/tearfulTribute', TearfulTributeController::class);
 Route::get('fetchTearfulTributes/{memorial}', [TearfulTributeController::class, 'fetchTearfulTributes']);
 Route::get('fetchNotices/{memorial}', [GeneralController::class, 'fetchNotices']);
 Route::middleware('auth')->group(function () {
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
@@ -69,7 +71,7 @@ Route::middleware('auth')->group(function () {
     Route::post('updateUser', [ProfileController::class, 'update']);
     Route::post('addTribute', [GeneralController::class, 'addTribute']);
     Route::resource('notice', NoticeController::class);
+    Route::get('plan/{plan}', [PlanController::class, 'show'])->name('plan');
 });
-Route::resource('plan', PlanController::class);
 
 require __DIR__ . '/auth.php';
