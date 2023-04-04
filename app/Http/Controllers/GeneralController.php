@@ -67,7 +67,7 @@ class GeneralController extends Controller
             ]);
         }
         if ($request->search == 'name') {
-            $feeds = Memorial::where('title', 'like', '%' . $request->search_val . '%')->where('visibility', 0)->get();
+            $feeds = Memorial::where('title', 'like', '%' . $request->search_val1 . '%')->where('visibility', 0)->get();
             return view('feed', [
                 'feeds' => $feeds,
             ]);

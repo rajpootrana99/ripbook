@@ -37,7 +37,7 @@
                         <img loading="lazy" src="{{ asset('asset/images/calendar.svg')}}" class="calendar_icon" alt="" srcset="">
                     </div>
                     <div style="display:none;" id="search_input_text">
-                        <input type="text" name="sarch_val" placeholder="Enter Name" class="input_box" id="sarch_val">
+                        <input type="text" name="search_val1" placeholder="Enter Name" class="input_box" id="name">
                         <img loading="lazy" src="{{ asset('asset/images/user.svg')}}" class="user_icon" alt="" srcset="">
                     </div>
                     <input type="submit" class="search_btn" role="button" value="Search">
@@ -188,7 +188,7 @@
             <div class="description">
                 Celebrate the life of a colleague, family member, or friend who has passed away with a custom Vaalvu setup.
             </div>
-            <a href="http://" class="see_feed_button learn_more_button" target="_blank" rel="noopener noreferrer">Learn More</a>
+            <a href="{{ route('help' )}}" class="see_feed_button learn_more_button" target="_blank" rel="noopener noreferrer">Learn More</a>
         </div>
         <div class="right_section">
             <div class="image_container">
@@ -461,90 +461,6 @@
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        // const stripe = Stripe('{{ env('
-        //     STRIPE_KEY ') }}')
-        const stripe = Stripe(document.getElementById('stripe_key').value);
-        const elements = stripe.elements();
-        const cardElement = elements.create('card')
-
-        $(document).on('click', '#buySubscriptionButton', function(e) {
-            e.preventDefault();
-            var plan_id = $(this).val();
-            $.ajax({
-                type: "GET",
-                url: "plan/" + plan_id,
-                dataType: "json",
-                success: function(response) {
-                    if (response.status == 0) {
-                        alert(response.message);
-                    } else {
-                        $('#cardModal').modal('show');
-                        $('#plan_id').val(plan_id)
-                        cardElement.mount('#card-element')
-                        $('#purchase_button').attr('data-secret', response.intent.client_secret);
-                    }
-                }
-            });
-        });
-
-        $(document).on('submit', '#payment-form', async function(e) {
-            e.preventDefault();
-            const purchaseBtn = document.getElementById('purchase_button');
-            // console.log(purchaseBtn);
-            const form = document.getElementById('payment-form');
-            const cardHolderName = $('#card-holder-name');
-            purchaseBtn.disabled = true;
-            const {
-                setupIntent,
-                error
-            } = await stripe.confirmCardSetup(
-                purchaseBtn.dataset.secret, {
-                    payment_method: {
-                        card: cardElement,
-                        billing_details: {
-                            name: cardHolderName.value
-                        }
-                    }
-                }
-            );
-
-            if (error) {
-                purchaseBtn.disable = false
-            } else {
-                let token = document.createElement('input');
-                token.setAttribute('type', 'hidden');
-                token.setAttribute('name', 'token');
-                token.setAttribute('value', setupIntent.payment_method);
-                form.appendChild(token);
-                let formDate = new FormData($('#payment-form')[0]);
-                $.ajax({
-                    type: "post",
-                    url: "subscription",
-                    data: formDate,
-                    contentType: false,
-                    processData: false,
-                    beforeSend: function() {
-                        $(document).find('span.error-text').text('');
-                    },
-                    success: function(response) {
-                        if (response.status == 0) {
-                            $('#cardModal').modal('show')
-                            $.each(response.error, function(prefix, val) {
-                                $('span.' + prefix + '_error').text(val[0]);
-                            });
-                        } else {
-                            $('#payment-form')[0].reset();
-                            $('#cardModal').modal('hide');
-                            alert(response.message);
-                        }
-                    },
-                    error: function(error) {
-                        $('#cardModal').modal('show')
-                    }
-                });
             }
         });
 

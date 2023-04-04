@@ -164,11 +164,11 @@
             <div class="tribute_wrapper">
                 <div class="heading">Memories</div>
                 <div class="tribute_container">
-                    <div class="write_tribute">Write tribute</div>
+                    <div class="write_tribute">Write a Review</div>
                     <form method="POST" class="post_tribute_wrapper" id="postTribute">
                         @csrf
-                        <input type="text" class="tribute_box" name="message" id="message" placeholder="Write your own tribute here...">
-                        <button type="submit" class="post_tribute_button">Post your tribute</button>
+                        <input type="text" class="tribute_box" name="message" id="message" placeholder="Write your own review here...">
+                        <button type="submit" class="post_tribute_button">Post your review</button>
                     </form>
                     <span class="text-danger message_error error_text" style="padding: 0 3%"></span>
                 </div>

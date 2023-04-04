@@ -66,7 +66,7 @@ Route::middleware('auth')->group(function () {
     })->name('dashboard');
     Route::resource('memorial', MemorialController::class)->except(['show']);;
     Route::get('/fetchMemorials', [MemorialController::class, 'fetchMemorials'])->name('memorial.get');
-    Route::post('subscription', [PlanController::class, 'subscription'])->name('subscription.create');
+    Route::post('subscription', [PlanController::class, 'subscription'])->name('subscription.post');
     Route::post('/addGallery', [MemorialController::class, 'addGallery']);
     Route::post('updateUser', [ProfileController::class, 'update']);
     Route::post('addTribute', [GeneralController::class, 'addTribute']);

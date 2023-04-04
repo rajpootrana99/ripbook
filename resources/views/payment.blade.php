@@ -49,13 +49,14 @@
     <input type="hidden" id="stripe_key" value="{{ env('STRIPE_KEY') }}" />
     <div class="container">
 
-        <form id="payment-form" method="POST">
+        <form id="payment-form" method="POST" action="{{ route('subscription.post') }}">
             <div class="plan-detail">
                 <p><strong>Plan Name : </strong> {{$plan->name}}</p>
                 <p><strong>Price : </strong>${{$plan->price}}</p>
             </div>
             @csrf
-            <input type="hidden" name="memorial_id" id="memorial_id">
+            <input type="text" id="input">
+            <input type="hidden" name="plan_id" id="plan_id" value="{{$plan->id}}">
             <div class="row">
                 <div class="col">
                     <div class="inputBox">
@@ -102,6 +103,10 @@
 
             initialize();
 
+            document
+                .querySelector("#payment-form")
+                .addEventListener("submit", handleSubmit);
+
             function initialize() {
                 elements = stripe.elements({
                     clientSecret: "{{ $intent->client_secret }}",
@@ -109,6 +114,53 @@
 
                 const paymentElement = elements.create("payment");
                 paymentElement.mount("#payment-element");
+            }
+
+            function showMessage(messageText) {
+                const messageContainer = document.querySelector("#payment-message");
+
+                messageContainer.classList.remove("hidden");
+                messageContainer.textContent = messageText;
+
+                setTimeout(function () {
+                    messageContainer.classList.add("hidden");
+                    messageText.textContent = "";
+                }, 4000);
+            }
+
+            async function handleSubmit(e) {
+                e.preventDefault();
+
+                const { setupIntent, error } = await stripe.confirmSetup({
+                    elements,
+                    confirmParams: {
+                    // Make sure to change this to your payment completion page
+                    return_url: "http://localhost:4242/checkout.html",
+                    },
+                    redirect: 'if_required'
+                });
+
+                // This point will only be reached if there is an immediate error when
+                // confirming the payment. Otherwise, your customer will be redirected to
+                // your `return_url`. For some payment methods like iDEAL, your customer will
+                // be redirected to an intermediate site first to authorize the payment, then
+                // redirected to the `return_url`.
+                if(error){
+                    if (error.type === "card_error" || error.type === "validation_error") {
+                        showMessage(error.message);
+                    } else {
+                        showMessage("An unexpected error occurred.");
+                    }
+                } else  {
+                    var form = document.getElementById('payment-form');
+                    var hiddenInput = document.getElementById('input');
+                    hiddenInput.setAttribute('type', 'hidden');
+                    hiddenInput.setAttribute('name', 'paymentMethod');
+                    hiddenInput.setAttribute('value', setupIntent.payment_method);
+                    form.appendChild(hiddenInput);
+
+                    form.submit();
+                }
             }
 
         });

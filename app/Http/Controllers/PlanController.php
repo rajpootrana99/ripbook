@@ -12,10 +12,7 @@ class PlanController extends Controller
     public function show($plan)
     {
         if (Auth::user()->stripe_id) {
-            return response()->json([
-                'status' => 0,
-                'message' => 'You already Bought a Plan'
-            ]);
+            return redirect('/');
         } else {
             return view('payment', [
                 'intent' => auth()->user()->createSetupIntent(),
@@ -26,18 +23,8 @@ class PlanController extends Controller
 
     public function subscription(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => ['required', 'string', 'min:3'],
-            'token' => ['required'],
-        ]);
-        if (!$validator->passes()) {
-            return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
-        }
         $plan = Plan::find($request->plan_id);
-        $subscription = $request->user()->newSubscription($request->plan_id, $plan->stripe_plan)->create($request->token);
-        return response()->json([
-            'status' => 1,
-            'message' => 'You Bought Subscription Succcessfully'
-        ]);
+        $subscription = $request->user()->newSubscription($request->plan_id, $plan->stripe_plan)->create($request->paymentMethod);
+        return redirect('/');
     }
 }
