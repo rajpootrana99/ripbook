@@ -12,7 +12,7 @@ class PlanController extends Controller
     public function show($plan)
     {
         if (Auth::user()->stripe_id) {
-            return redirect('/');
+            return redirect()->back()->with(['message' => 'You already bouhght a plan.']);
         } else {
             return view('payment', [
                 'intent' => auth()->user()->createSetupIntent(),

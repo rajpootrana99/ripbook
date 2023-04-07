@@ -25,12 +25,36 @@
     <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
+    <style>
+        .error-message {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            background-color: #ff0000;
+            color: #ffffff;
+            z-index: 1000;
+        }
+
+        .error-message i {
+            cursor: pointer;
+        }
+
+        .hide-message {
+            display: none;
+        }
+    </style>
 </head>
 
 <body>
+
+        @if(\Session::has('message'))
+            <div class="error-message">{!! \Session::get('message') !!}<div class="btn-close"><i class="fas fa-close" ></i></div></div>
+        @endif
     @include('layouts.user.header')
     @yield('content')
-    </div>
 
     @include('layouts.user.footer')
 
@@ -45,6 +69,32 @@
 
     <script src="{{ asset('asset/js/memorial.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <script>
+    $(document).ready(function() {
+
+        function validateForm() {
+            let x = document.forms["searchForm"]["search_val"].value;
+            if (x == "") {
+                alert("Name must be filled out");
+                return false;
+            }
+        }
+
+        $("#d_o_b").click(function() {
+            searchForm();
+        });
+        $("#d_o_d").click(function() {
+            searchForm();
+        });
+        $(".btn-close").click(function() {
+            $('.error-message').addClass('hide-message');
+        });
+
+        
+
+    });
+</script>
 
 </body>
 

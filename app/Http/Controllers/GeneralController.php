@@ -46,9 +46,9 @@ class GeneralController extends Controller
         ]);
 
         if ($tribute) {
-            return response()->json(['status' => 1, 'message' => 'Tribute Added Successfully']);
+            return response()->json(['status' => 1, 'message' => 'Review Added Successfully']);
         } else {
-            return response()->json(['status' => 0, 'message' => 'Tribute not Added Successfully']);
+            return response()->json(['status' => 0, 'message' => 'Review not Added Successfully']);
         }
     }
 
