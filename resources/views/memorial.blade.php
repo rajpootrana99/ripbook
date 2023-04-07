@@ -627,8 +627,9 @@
                         $('#addSite').modal('show')
                         $.each(response.error, function(prefix, val) {
                             $('span.' + prefix + '_error').text(val[0]);
-                        });
-                    } else {
+                        }); 
+                        $('span.description_error').text(response.description);
+                    }  else {
                         $('#createMemorialForm')[0].reset();
                         $('#createMemorial').modal('hide');
                         x.innerHTML = response.message;

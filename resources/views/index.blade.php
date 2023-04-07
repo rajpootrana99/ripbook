@@ -1,6 +1,7 @@
 @extends('layouts.guest')
 
 @section('content')
+
 <div class="section section_1">
     <div class="main_section">
         <input type="hidden" id="stripe_key" value="{{ env('STRIPE_KEY') }}" />
@@ -250,12 +251,12 @@
             <div class="table_row">
                 <div class="mode_option">Word Limit</div>
                 <div class="td dim_bg">50 words</div>
-                <div class="td dim_bg">50 words</div>
-                <div class="td dim_bg">50 words</div>
-                <div class="td dim_bg">50 words</div>
-                <div class="td dim_bg">50 words</div>
-                <div class="td dim_bg">50 words</div>
-                <div class="td dim_bg">50 words</div>
+                <div class="td dim_bg">70 words</div>
+                <div class="td dim_bg">Unlimited</div>
+                <div class="td dim_bg">Unlimited</div>
+                <div class="td dim_bg">Unlimited</div>
+                <div class="td dim_bg">Unlimited</div>
+                <div class="td dim_bg">Unlimited</div>
             </div>
             <div class="table_row">
                 <div class="mode_option">Correction</div>

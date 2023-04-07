@@ -20,11 +20,11 @@
                 <li @if(Request::is('dashboard')) class="active" @endif>
                 <a href="{{ route('dashboard') }}" class="iq-waves-effect"><i class="ri-user-line"></i><span>Profile</span></a>
                 </li>
-                
+                @if(Auth::user()->stripe_id)
                 <li @if(Request::is('memorial')) class="active" @endif>
                 <a href="{{ route('memorial.index') }}" class="iq-waves-effect"><i class="ri-home-3-line"></i><span>Memorial</span></a>
                 </li>
-                
+                @endif
             </ul>
         </nav>
         <div class="p-3"></div>

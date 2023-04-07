@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('pcode')->nullable();
             $table->string('country')->nullable();
             $table->string('image')->nullable();
+            $table->integer('plan_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -19,7 +19,13 @@ class MemorialController extends Controller
      */
     public function index()
     {
-        return view('memorial');
+        if(Auth::user()->stripe_id){
+            return view('memorial');
+        }
+        else{
+            return redirect()->back()->with(['message' => 'You have not bouhght any plan yet.']);
+        }
+        
     }
 
     public function fetchMemorials()
@@ -65,6 +71,18 @@ class MemorialController extends Controller
         ]);
         if (!$validator->passes()) {
             return response()->json(['status' => 0, 'error' => $validator->errors()->toArray()]);
+        }
+
+        if(Auth::user()->plan_id == 1){
+            if(count(explode(' ', $request->description)) > 50){
+                return response()->json(['status' => 0, 'error' => [], 'description' => 'max 50 words']);
+            }
+        }
+
+        if(Auth::user()->plan_id == 2){
+            if(count(explode(' ', $request->description)) > 70){
+                return response()->json(['status' => 0, 'error' => [], 'description' => 'max 70 words']);
+            }
         }
 
         $memorial = Memorial::create([

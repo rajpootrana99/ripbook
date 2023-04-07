@@ -28,6 +28,7 @@ class User extends Authenticatable
         'pcode',
         'country',
         'image',
+        'plan_id',
     ];
 
     /**
