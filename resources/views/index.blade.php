@@ -445,16 +445,21 @@
             searchForm();
         });
 
+        searchForm();
+
         function searchForm() {
             if ($("#d_o_b").prop("checked")) {
+                console.log('1')
                 $('#search_input_text').css('display', 'none');
                 $('#search_input_date').css('display', 'flex');
             }
             if ($("#d_o_d").prop("checked")) {
+                console.log('2')
                 $('#search_input_text').css('display', 'none');
                 $('#search_input_date').css('display', 'flex');
             }
             if ($("#name").prop("checked")) {
+                console.log('3')
                 $('#search_input_text').css('display', 'flex');
                 $('#search_input_date').css('display', 'none');
             }

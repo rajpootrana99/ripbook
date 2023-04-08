@@ -181,6 +181,7 @@ a {
     height: 64px;
     outline: none;
     padding: 0px 30px;
+    text-transform: none !important;
     font-weight: var(--Source-Sans-Pro-Regular);
     font-size: 16px;
     /* color: #A9A9A9; */
@@ -196,6 +197,7 @@ a {
     border-radius: 50px;
     font-weight: var(--Source-Sans-Pro-Bold);
     font-size: 16px;
+    text-transform: capitalize;
 }
 
 .section_2 * .horizontal_slider_wrapper {
@@ -478,6 +480,7 @@ a {
         padding: 0px 10px;
         outline: none;
         font-size: 14px;
+        text-transform: none !important;
     }
 
     .section_2 * .post_tribute_button {

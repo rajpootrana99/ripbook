@@ -90,6 +90,7 @@ a {
     border: none;
     outline: none;
     cursor: pointer;
+    text-transform: none !important;
     /* box-shadow: 10px 19px #00000; */
     /* backdrop-filter: drop-shadow(2px 4px 6px black); */
 }
@@ -822,6 +823,7 @@ a {
         padding: 10px 50px;
         height: 60px;
         margin-bottom: 10px;
+        text-transform: none !important;
     }
 
     .section_1 * .calendar_icon {
