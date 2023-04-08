@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rip Book | Help</title>
+    <title>Rip Book | Price</title>
 
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -122,7 +122,7 @@
                 messageContainer.classList.remove("hidden");
                 messageContainer.textContent = messageText;
 
-                setTimeout(function () {
+                setTimeout(function() {
                     messageContainer.classList.add("hidden");
                     messageText.textContent = "";
                 }, 4000);
@@ -131,11 +131,14 @@
             async function handleSubmit(e) {
                 e.preventDefault();
 
-                const { setupIntent, error } = await stripe.confirmSetup({
+                const {
+                    setupIntent,
+                    error
+                } = await stripe.confirmSetup({
                     elements,
                     confirmParams: {
-                    // Make sure to change this to your payment completion page
-                    return_url: "http://localhost:4242/checkout.html",
+                        // Make sure to change this to your payment completion page
+                        return_url: "http://localhost:4242/checkout.html",
                     },
                     redirect: 'if_required'
                 });
@@ -145,13 +148,13 @@
                 // your `return_url`. For some payment methods like iDEAL, your customer will
                 // be redirected to an intermediate site first to authorize the payment, then
                 // redirected to the `return_url`.
-                if(error){
+                if (error) {
                     if (error.type === "card_error" || error.type === "validation_error") {
                         showMessage(error.message);
                     } else {
                         showMessage("An unexpected error occurred.");
                     }
-                } else  {
+                } else {
                     var form = document.getElementById('payment-form');
                     var hiddenInput = document.getElementById('input');
                     hiddenInput.setAttribute('type', 'hidden');

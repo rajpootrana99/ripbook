@@ -34,7 +34,7 @@
         <div class="right_header">
             <div class="right">
                 <a href="/" class="head_anchor head_anchor_active">Home</a>
-                <a href="#pricicing_section" class="head_anchor">Pricing</a>
+                <a href="/#pricicing_section" class="head_anchor">Pricing</a>
                 <a href="{{ route('help') }}" class="head_anchor">Help</a>
                 <a href="{{ route('contact') }}" class="head_anchor">Contact us</a>
             </div>
@@ -78,7 +78,7 @@
             <button class="hamburger" id="hamburger_dropdown_button" onclick="showDropdown(this)"> <i class="fa-solid fa-bars"></i> </button>
             <div class="dropdown_1 hide_dropdown" id="hamburger_dropdown_target">
                 <a href="/" class="head_anchor head_anchor_active dropdown_anchors">Home</a>
-                <a href="/" class="head_anchor dropdown_anchors">Pricing</a>
+                <a href="/#" class="head_anchor dropdown_anchors">Pricing</a>
                 <a href="/" class="head_anchor dropdown_anchors">Help</a>
                 <a href="{{ route('contact') }}" class="head_anchor dropdown_anchors">Contact us</a>
             </div>

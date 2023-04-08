@@ -7,7 +7,7 @@
             </div>
             <div class="middle_footer_section foot_section">
                 <a href="/" class="head_anchor foot_anchor">Home</a>
-                <a href="#pricicing_section" class="head_anchor foot_anchor">Pricing</a>
+                <a href="/#pricicing_section" class="head_anchor foot_anchor">Pricing</a>
                 <a href="{{ route('help') }}" class="head_anchor foot_anchor">Help</a>
                 <a href="{{ route('contact') }}" class="head_anchor foot_anchor">Contact</a>
             </div>

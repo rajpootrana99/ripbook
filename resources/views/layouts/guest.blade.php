@@ -50,9 +50,10 @@
 
 <body>
 
-        @if(\Session::has('message'))
-            <div class="error-message">{!! \Session::get('message') !!}<div class="btn-close"><i class="fas fa-close" ></i></div></div>
-        @endif
+    @if(\Session::has('message'))
+    <div class="error-message">{!! \Session::get('message') !!}<div class="btn-close"><i class="fas fa-close"></i></div>
+    </div>
+    @endif
     @include('layouts.user.header')
     @yield('content')
 
@@ -71,30 +72,30 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
 
     <script>
-    $(document).ready(function() {
+        $(document).ready(function() {
 
-        function validateForm() {
-            let x = document.forms["searchForm"]["search_val"].value;
-            if (x == "") {
-                alert("Name must be filled out");
-                return false;
+            function validateForm() {
+                let x = document.forms["searchForm"]["search_val"].value;
+                if (x == "") {
+                    alert("Name must be filled out");
+                    return false;
+                }
             }
-        }
 
-        $("#d_o_b").click(function() {
-            searchForm();
-        });
-        $("#d_o_d").click(function() {
-            searchForm();
-        });
-        $(".btn-close").click(function() {
-            $('.error-message').addClass('hide-message');
-        });
+            $("#d_o_b").click(function() {
+                searchForm();
+            });
+            $("#d_o_d").click(function() {
+                searchForm();
+            });
+            $(".btn-close").click(function() {
+                $('.error-message').addClass('hide-message');
+            });
 
-        
 
-    });
-</script>
+
+        });
+    </script>
 
 </body>
 
