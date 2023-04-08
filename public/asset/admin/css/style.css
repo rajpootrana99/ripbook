@@ -4110,6 +4110,11 @@ Profile Edit
 .file-upload {
     display: none;
 }
+
+.file-upload-2 {
+    display: none;
+}
+
 .p-image {
     position: absolute;
     top: auto;
@@ -4127,6 +4132,10 @@ Profile Edit
     cursor: pointer;
 }
 .upload-button {
+    font-size: 1.5em;
+}
+
+.upload-button-2 {
     font-size: 1.5em;
 }
 .iq-edit-profile .nav-link {

@@ -10342,6 +10342,9 @@ $(".table-add").on("click", "i", () => {
             $(".upload-button").on("click", function () {
                 $(".file-upload").click();
             });
+        $(".upload-button-2").on("click", function () {
+            $(".file-upload-2").click();
+        });
     }),
     $(function () {
         function e(e) {

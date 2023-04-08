@@ -68,7 +68,7 @@
                     <div class="form-group row align-items-center">
                         <div class="col-md-12">
                             <div class="profile-img-edit">
-                                <img class="profile-pic" src="{{ asset('asset/admin/images/user/11.png')}}" width="150px" height="150px" alt="profile-pic">
+                                <img class="profile-pic" src="{{ asset('asset/admin/images/user/11.png')}}" id="show_feature_image" width="150px" height="150px" alt="profile-pic">
                                 <div class="p-image">
                                     <i class="ri-pencil-line upload-button"></i>
                                     <input class="file-upload" type="file" name="feature_image" id="feature_image" accept="image/*" />
@@ -155,8 +155,8 @@
                             <div class="profile-img-edit">
                                 <img class="profile-pic" src="{{ asset('asset/admin/images/user/11.png')}}" width="150px" height="150px" id="show_feature_image" alt="profile-pic">
                                 <div class="p-image">
-                                    <i class="ri-pencil-line upload-button"></i>
-                                    <input class="file-upload" type="file" name="feature_image" id="edit_feature_image" accept="image/*" />
+                                    <i class="ri-pencil-line upload-button-2"></i>
+                                    <input class="file-upload-2" type="file" name="feature_image" id="edit_feature_image" accept="image/*" />
                                 </div>
                             </div>
                             <span class="text-danger feature_image_update_error"></span>
@@ -391,7 +391,9 @@
         }
         $(document).on('click', '#createMemorialButton', function(e) {
             e.preventDefault();
-            $(document).find('span.error-text').text('');
+            $(document).find('span.text-danger').text('');
+            $('#createMemorialForm')[0].reset();
+            $('#show_feature_image').attr('src', 'asset/admin/images/user/11.png');
         });
 
         $(document).on('click', '#addNoticeButton', function(e) {
