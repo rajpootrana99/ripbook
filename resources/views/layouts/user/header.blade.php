@@ -33,10 +33,10 @@
         </div>
         <div class="right_header">
             <div class="right">
-                <a href="/" class="head_anchor head_anchor_active">Home</a>
+                <a href="/" class="head_anchor @if(Request::is('/')) head_anchor_active  @endif">Home</a>
                 <a href="/#pricicing_section" class="head_anchor">Pricing</a>
-                <a href="{{ route('help') }}" class="head_anchor">Help</a>
-                <a href="{{ route('contact') }}" class="head_anchor">Contact us</a>
+                <a href="{{ route('help') }}" class="head_anchor @if(Request::is('help')) head_anchor_active  @endif">Help</a>
+                <a href="{{ route('contact') }}" class="head_anchor @if(Request::is('contact')) head_anchor_active  @endif">Contact us</a>
             </div>
             <div class="left">
                 @guest
@@ -79,8 +79,8 @@
             <div class="dropdown_1 hide_dropdown" id="hamburger_dropdown_target">
                 <a href="/" class="head_anchor head_anchor_active dropdown_anchors">Home</a>
                 <a href="/#" class="head_anchor dropdown_anchors">Pricing</a>
-                <a href="/" class="head_anchor dropdown_anchors">Help</a>
-                <a href="{{ route('contact') }}" class="head_anchor dropdown_anchors">Contact us</a>
+                <a href="{{ route('help') }}" class="head_anchor @if(Request::is('help')) head_anchor_active  @endif dropdown_anchors">Help</a>
+                <a href="{{ route('contact') }}" class="head_anchor @if(Request::is('contact')) head_anchor_active  @endif dropdown_anchors">Contact us</a>
             </div>
         </div>
 
