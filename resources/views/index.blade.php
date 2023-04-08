@@ -144,7 +144,7 @@
                 @if($memorials->count() > 0)
                 @foreach($memorials as $memorial)
                 <div class="item_container">
-                    <img src="{{ asset('storage/'.$memorial->feature_image)}}" alt="" class="latest_item_picture">
+                    <img src="{{ asset('storage/'.$memorial->feature_image)}}" height="100%" alt="" class="latest_item_picture">
                     <div class="item_information">
                         <div class="item_country">{{ $memorial->pob }}</div>
                         <a href="{{ route('memorial.show',['memorial' => $memorial]) }}">
